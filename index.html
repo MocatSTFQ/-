@@ -9,12 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <style>
-        /* ===== 全局重置 ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: #fbfbfd;
@@ -30,7 +25,6 @@
             --rubber-section-padding: clamp(16px, 3vw, 32px);
         }
 
-        /* ===== 导航栏 · 毛玻璃效果 ===== */
         .site-header {
             position: fixed;
             top: 0;
@@ -67,7 +61,6 @@
             transform: scale(1.02);
         }
 
-        /* ===== 下拉菜单 · 无透明渐变 ===== */
         .dropdown-menu {
             position: fixed;
             top: 72px;
@@ -91,7 +84,6 @@
             pointer-events: auto;
         }
 
-        /* 横向滚动容器 */
         .menu-scroll {
             overflow-x: auto;
             overflow-y: visible;
@@ -101,11 +93,8 @@
             overscroll-behavior-x: contain;
             padding-bottom: 4px;
         }
-        .menu-scroll::-webkit-scrollbar {
-            display: none;
-        }
+        .menu-scroll::-webkit-scrollbar { display: none; }
 
-        /* 菜单网格 */
         .menu-grid {
             display: grid;
             gap: clamp(20px, 3vw, 32px);
@@ -113,25 +102,11 @@
             grid-template-columns: repeat(4, 1fr);
             min-width: max-content;
         }
-        .rubber-tablet .menu-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-        .rubber-phone .menu-grid {
-            grid-template-columns: repeat(1, 1fr);
-            gap: 24px;
-            min-width: 100%;
-        }
-        .rubber-desktop .menu-grid,
-        .rubber-wide .menu-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+        .rubber-tablet .menu-grid { grid-template-columns: repeat(2, 1fr); }
+        .rubber-phone .menu-grid { grid-template-columns: repeat(1, 1fr); gap: 24px; min-width: 100%; }
+        .rubber-desktop .menu-grid, .rubber-wide .menu-grid { max-width: 1400px; margin: 0 auto; }
 
-        .menu-section {
-            text-align: left;
-            min-width: 160px;
-        }
-
+        .menu-section { text-align: left; min-width: 160px; }
         .menu-section h3 {
             font-size: clamp(1.3rem, 3.5vw, 1.6rem);
             font-weight: 700;
@@ -141,15 +116,8 @@
             border-bottom: 1px solid rgba(0,0,0,0.08);
             padding-bottom: 10px;
         }
-
-        .menu-section ul {
-            list-style: none;
-        }
-
-        .menu-section li {
-            margin: 10px 0;
-        }
-
+        .menu-section ul { list-style: none; }
+        .menu-section li { margin: 10px 0; }
         .menu-section a {
             text-decoration: none;
             color: #3a3a3c;
@@ -160,21 +128,13 @@
             padding: 4px 0;
             white-space: nowrap;
         }
-        .menu-section a:hover {
-            color: #b76e4b;
-            transform: translateX(4px);
-        }
+        .menu-section a:hover { color: #b76e4b; transform: translateX(4px); }
 
         @media (max-width: 600px) {
-            .dropdown-menu {
-                top: 60px;
-                max-height: calc(100vh - 60px);
-                padding: 24px 16px;
-            }
+            .dropdown-menu { top: 60px; max-height: calc(100vh - 60px); padding: 24px 16px; }
             .main-content { top: 60px; height: calc(100vh - 60px); }
         }
 
-        /* ===== 主内容区域 ===== */
         .main-content {
             position: fixed;
             top: 72px;
@@ -188,11 +148,8 @@
             overscroll-behavior-y: contain;
             padding-bottom: calc(var(--rubber-section-padding) * 1.5);
         }
-        .main-content::-webkit-scrollbar {
-            display: none;
-        }
+        .main-content::-webkit-scrollbar { display: none; }
 
-        /* ===== 封面卡片（海报）· 清空内容但保留光影 ===== */
         .cover-card {
             width: 100%;
             background: linear-gradient(145deg, #0b0b0c 0%, #1a1a1e 40%, #2a2a30 100%);
@@ -206,13 +163,9 @@
                 45deg,
                 #ff9a9e, #fad0c4, #fad0c4, #a18cd1, #a18cd1, #fbc2eb, #8fd3f4, #8fd3f4, #ff9a9e
             ) 1;
-            box-shadow: 
-                0 0 0 1px rgba(255, 255, 255, 0.15) inset,
-                0 0 20px rgba(160, 200, 255, 0.3),
-                0 0 40px rgba(200, 160, 255, 0.2);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 20px rgba(160, 200, 255, 0.3), 0 0 40px rgba(200, 160, 255, 0.2);
             min-height: clamp(180px, 30vw, 280px);
         }
-
         .cover-card::before {
             content: "";
             position: absolute;
@@ -223,7 +176,6 @@
             background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.08) 0%, transparent 60%);
             pointer-events: none;
         }
-
         .cover-card::after {
             content: "";
             position: absolute;
@@ -237,7 +189,6 @@
             pointer-events: none;
             filter: blur(4px);
         }
-
         @keyframes fullShine {
             0% { left: -100%; opacity: 0; }
             10% { opacity: 1; }
@@ -245,25 +196,14 @@
             40% { left: 120%; opacity: 0; }
             100% { left: -100%; opacity: 0; }
         }
-
-        .cover-subtitle,
-        .cover-domain,
-        .cover-footer-text,
-        .cover-badge {
-            display: none;
-        }
+        .cover-subtitle, .cover-domain, .cover-footer-text, .cover-badge { display: none; }
 
         .content-inner {
             padding: var(--rubber-section-padding) var(--rubber-section-padding) 0;
         }
 
-        .card-link-wrapper {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
+        .card-link-wrapper { text-decoration: none; color: inherit; display: block; }
 
-        /* ===== 宽卡片（维护提示） ===== */
         .wide-card {
             background: white;
             border-radius: clamp(20px, 3vw, 28px);
@@ -274,11 +214,7 @@
             display: flex;
             flex-direction: column;
         }
-        .wide-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 28px rgba(0,0,0,0.08);
-        }
-
+        .wide-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
         .wide-card-image {
             height: clamp(200px, 30vw, 300px);
             background-size: cover;
@@ -289,7 +225,6 @@
             color: rgba(255,255,255,0.9);
             font-size: clamp(2.5rem, 8vw, 4rem);
         }
-
         .wide-card-content {
             padding: clamp(24px, 4vw, 32px) clamp(24px, 4vw, 32px) clamp(32px, 5vw, 40px);
             text-align: center;
@@ -301,12 +236,7 @@
             color: #1d1d1f;
             margin-bottom: clamp(16px, 3vw, 24px);
         }
-        .wide-card-desc {
-            color: #6e6e73;
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            margin-bottom: 24px;
-        }
-
+        .wide-card-desc { color: #6e6e73; font-size: clamp(1rem, 3vw, 1.2rem); margin-bottom: 24px; }
         .card-btn {
             background: transparent;
             border: 1.5px solid #0071e3;
@@ -320,17 +250,9 @@
             white-space: nowrap;
             display: inline-block;
         }
-        .card-btn:hover {
-            background-color: #0071e3;
-            color: white;
-        }
-
+        .card-btn:hover { background-color: #0071e3; color: white; }
         .img-dark { background: linear-gradient(145deg, #1d1d1f, #2d2d2f); }
-
-        /* 隐藏其他卡片 */
-        .hidden-cards {
-            display: none;
-        }
+        .hidden-cards { display: none; }
     </style>
 </head>
 <body>
@@ -338,7 +260,6 @@
         <div class="header-title" id="mocTitle" role="button" aria-label="菜单">Moc</div>
     </header>
 
-    <!-- 下拉菜单（已更新链接，删除订阅项目） -->
     <div class="dropdown-menu" id="dropdownMenu" role="navigation">
         <div class="menu-scroll" id="menuScroll">
             <div class="menu-grid" id="menuGrid">
@@ -360,44 +281,39 @@
                 <div class="menu-section">
                     <h3>文学</h3>
                     <ul>
-                        <li><a href="#">Momoread</a></li>
-                        <li><a href="#">全部小说</a></li>
+                        <li><a href="momoread">Momoread</a></li>
                     </ul>
                 </div>
                 <!-- 程序 -->
                 <div class="menu-section">
                     <h3>程序</h3>
                     <ul>
-                        <li><a href="#">Tyubox待办盒子</a></li>
-                        <li><a href="#">Nofeed简索</a></li>
+                        <li><a href="tyubox">Tyubox待办盒子</a></li>
+                        <li><a href="nofeed">Nofeed简索</a></li>
                     </ul>
                 </div>
                 <!-- 活动 -->
                 <div class="menu-section">
                     <h3>活动</h3>
                     <ul>
-                        <li><a href="#">MOConference27</a></li>
+                        <li><a href="mocon27">MOConference27</a></li>
                     </ul>
                 </div>
                 <!-- 教育 -->
                 <div class="menu-section">
                     <h3>教育</h3>
                     <ul>
-                        <li><a href="#">VisionX</a></li>
-                        <li><a href="#">在线教育社区</a></li>
+                        <li><a href="visionx">VisionX</a></li>
+                        <li><a href="visionlive">在线教育社区</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 主内容区域 -->
     <div class="main-content" id="mainContent">
-        <!-- 纯光影海报 -->
         <div class="cover-card"></div>
-
         <div class="content-inner">
-            <!-- 维护提示卡片 -->
             <div class="wide-card">
                 <div class="wide-card-image img-dark">🔧</div>
                 <div class="wide-card-content">
@@ -405,7 +321,6 @@
                     <p class="wide-card-desc">该页面暂时不可用，请稍后再来。</p>
                 </div>
             </div>
-
             <div class="hidden-cards"></div>
         </div>
     </div>
@@ -414,16 +329,10 @@
         (function() {
             "use strict";
 
-            /* ===== 滑动引擎 ===== */
             const SmoothScrollEngine = {
                 init: function() {
-                    this._enhanceScrollContainers();
-                },
-                _enhanceScrollContainers: function() {
                     const menuScroll = document.getElementById('menuScroll');
-                    if (menuScroll) {
-                        this._applyInertiaToElement(menuScroll, 'horizontal');
-                    }
+                    if (menuScroll) this._applyInertiaToElement(menuScroll, 'horizontal');
                 },
                 _applyInertiaToElement: function(el, direction) {
                     if (!el) return;
@@ -447,31 +356,23 @@
                 }
             };
 
-            /* ===== 橡皮泥引擎 ===== */
             const RubberEngine = {
                 breakpoints: { phone: 600, tablet: 1024, desktop: 1440 },
                 currentDevice: 'desktop',
-                init: function() {
-                    this._detectAndApply();
-                    this._bindEvents();
-                },
+                init: function() { this._detectAndApply(); this._bindEvents(); },
                 _detectAndApply: function() {
                     const width = window.innerWidth;
                     const body = document.body;
                     body.classList.remove('rubber-phone', 'rubber-tablet', 'rubber-desktop', 'rubber-wide');
                     let device;
                     if (width < this.breakpoints.phone) {
-                        body.classList.add('rubber-phone');
-                        device = 'phone';
+                        body.classList.add('rubber-phone'); device = 'phone';
                     } else if (width < this.breakpoints.tablet) {
-                        body.classList.add('rubber-tablet');
-                        device = 'tablet';
+                        body.classList.add('rubber-tablet'); device = 'tablet';
                     } else if (width < this.breakpoints.desktop) {
-                        body.classList.add('rubber-desktop');
-                        device = 'desktop';
+                        body.classList.add('rubber-desktop'); device = 'desktop';
                     } else {
-                        body.classList.add('rubber-wide');
-                        device = 'wide';
+                        body.classList.add('rubber-wide'); device = 'wide';
                     }
                     this.currentDevice = device;
                     body.setAttribute('data-rubber-device', device);
@@ -491,13 +392,25 @@
             SmoothScrollEngine.init();
             RubberEngine.init();
 
-            /* ===== 菜单交互 ===== */
             const mocTitle = document.getElementById('mocTitle');
             const dropdownMenu = document.getElementById('dropdownMenu');
+
             mocTitle.addEventListener('click', function(e) {
                 e.stopPropagation();
-                dropdownMenu.classList.toggle('show');
+                const isMenuOpen = dropdownMenu.classList.contains('show');
+                if (isMenuOpen) {
+                    const currentPath = window.location.pathname.replace(/\/$/, '');
+                    const homePath = '/index' === currentPath || '/' === currentPath || currentPath === '';
+                    if (!homePath) {
+                        window.location.href = '/';
+                    } else {
+                        dropdownMenu.classList.remove('show');
+                    }
+                } else {
+                    dropdownMenu.classList.add('show');
+                }
             });
+
             dropdownMenu.addEventListener('click', e => e.stopPropagation());
             document.addEventListener('click', function(e) {
                 if (dropdownMenu.classList.contains('show')) {
