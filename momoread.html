@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>莫川读书会 · Momocat 莫猫</title>
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fbfbfd;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            overflow: hidden;
+            color: #1d1d1f;
+            --rubber-card-gap: clamp(16px, 2vw, 24px);
+            --rubber-section-padding: clamp(16px, 3vw, 32px);
+        }
+
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: clamp(10px, 2vw, 12px) clamp(16px, 3vw, 24px);
+            background-color: rgba(251, 251, 253, 0.65);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border-bottom: 0.8px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+            z-index: 30;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-title {
+            font-weight: 700;
+            font-size: clamp(1.8rem, 5vw, 2.2rem);
+            letter-spacing: -0.02em;
+            color: #1d1d1f;
+            cursor: pointer;
+            padding: clamp(6px, 1.5vw, 8px) clamp(20px, 4vw, 28px);
+            border-radius: 40px;
+            transition: background-color 0.2s, color 0.2s, transform 0.1s;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .header-title:hover {
+            background-color: rgba(0,0,0,0.03);
+            color: #b76e4b;
+            transform: scale(1.02);
+        }
+
+        .dropdown-menu {
+            position: fixed;
+            top: 72px;
+            left: 0;
+            width: 100%;
+            max-height: calc(100vh - 72px);
+            overflow-y: auto;
+            background-color: #ffffff;
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.06);
+            z-index: 29;
+            padding: clamp(28px, 5vw, 40px) clamp(16px, 3vw, 24px);
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+            pointer-events: none;
+            box-shadow: 0 12px 32px -12px rgba(0,0,0,0.08);
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        .dropdown-menu.show {
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .menu-scroll {
+            overflow-x: auto;
+            overflow-y: visible;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            overscroll-behavior-x: contain;
+            padding-bottom: 4px;
+        }
+        .menu-scroll::-webkit-scrollbar { display: none; }
+
+        .menu-grid {
+            display: grid;
+            gap: clamp(20px, 3vw, 32px);
+            margin: 0 auto;
+            grid-template-columns: repeat(4, 1fr);
+            min-width: max-content;
+        }
+        .rubber-tablet .menu-grid { grid-template-columns: repeat(2, 1fr); }
+        .rubber-phone .menu-grid { grid-template-columns: repeat(1, 1fr); gap: 24px; min-width: 100%; }
+        .rubber-desktop .menu-grid, .rubber-wide .menu-grid { max-width: 1400px; margin: 0 auto; }
+
+        .menu-section { text-align: left; min-width: 160px; }
+        .menu-section h3 {
+            font-size: clamp(1.3rem, 3.5vw, 1.6rem);
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            padding-bottom: 10px;
+        }
+        .menu-section ul { list-style: none; }
+        .menu-section li { margin: 10px 0; }
+        .menu-section a {
+            text-decoration: none;
+            color: #3a3a3c;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            font-weight: 440;
+            transition: color 0.2s, transform 0.15s;
+            display: inline-block;
+            padding: 4px 0;
+            white-space: nowrap;
+        }
+        .menu-section a:hover { color: #b76e4b; transform: translateX(4px); }
+
+        @media (max-width: 600px) {
+            .dropdown-menu { top: 60px; max-height: calc(100vh - 60px); padding: 24px 16px; }
+            .main-content { top: 60px; height: calc(100vh - 60px); }
+        }
+
+        .main-content {
+            position: fixed;
+            top: 72px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 72px);
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            overscroll-behavior-y: contain;
+            padding-bottom: calc(var(--rubber-section-padding) * 2);
+        }
+        .main-content::-webkit-scrollbar { display: none; }
+
+        .cover-card {
+            width: 100%;
+            background: linear-gradient(145deg, #0b0b0c 0%, #1a1a1e 40%, #2a2a30 100%);
+            padding: clamp(40px, 8vw, 70px) clamp(20px, 5vw, 40px);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            border: 0 solid transparent;
+            border-image: repeating-linear-gradient(
+                45deg,
+                #ff9a9e, #fad0c4, #fad0c4, #a18cd1, #a18cd1, #fbc2eb, #8fd3f4, #8fd3f4, #ff9a9e
+            ) 1;
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 20px rgba(160, 200, 255, 0.3), 0 0 40px rgba(200, 160, 255, 0.2);
+            min-height: clamp(180px, 30vw, 280px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cover-card::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 140%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .cover-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+            transform: skewX(-20deg);
+            animation: fullShine 5s ease-in-out infinite;
+            pointer-events: none;
+            filter: blur(4px);
+        }
+        @keyframes fullShine {
+            0% { left: -100%; opacity: 0; }
+            10% { opacity: 1; }
+            30% { left: 120%; opacity: 1; }
+            40% { left: 120%; opacity: 0; }
+            100% { left: -100%; opacity: 0; }
+        }
+
+        .cover-placeholder {
+            position: relative;
+            z-index: 2;
+            opacity: 0.35;
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .content-inner {
+            padding: var(--rubber-section-padding) var(--rubber-section-padding) 0;
+        }
+
+        .wide-card {
+            background: white;
+            border-radius: clamp(20px, 3vw, 28px);
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.02), 0 8px 24px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: var(--rubber-card-gap);
+            display: flex;
+            flex-direction: column;
+        }
+        .wide-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
+        .wide-card-image {
+            height: clamp(200px, 30vw, 300px);
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.9);
+            font-size: clamp(2.5rem, 8vw, 4rem);
+        }
+        .wide-card-content {
+            padding: clamp(24px, 4vw, 32px) clamp(24px, 4vw, 32px) clamp(32px, 5vw, 40px);
+            text-align: center;
+        }
+        .wide-card-title {
+            font-size: clamp(1.8rem, 6vw, 2.8rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #1d1d1f;
+            margin-bottom: clamp(16px, 3vw, 24px);
+        }
+        .wide-card-desc {
+            color: #6e6e73;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            margin-bottom: 24px;
+        }
+        .img-dark { background: linear-gradient(145deg, #1d1d1f, #2d2d2f); }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-title" id="mocTitle" role="button" aria-label="打开导航菜单" tabindex="0">Moc</div>
+    </header>
+
+    <div class="dropdown-menu" id="dropdownMenu" role="navigation" aria-label="站点导航">
+        <div class="menu-scroll" id="menuScroll">
+            <div class="menu-grid" id="menuGrid">
+                <div class="menu-section">
+                    <h3>主页</h3>
+                    <ul>
+                        <li><a href="newsroom">新闻室</a></li>
+                    </ul>
+                </div>
+                <div class="menu-section">
+                    <h3>商店</h3>
+                    <ul>
+                        <li><a href="store">购买项目</a></li>
+                    </ul>
+                </div>
+                <div class="menu-section">
+                    <h3>文学</h3>
+                    <ul>
+                        <li><a href="momoread">Momoread</a></li>
+                    </ul>
+                </div>
+                <div class="menu-section">
+                    <h3>程序</h3>
+                    <ul>
+                        <li><a href="tyubox">Tyubox待办盒子</a></li>
+                        <li><a href="nofeed">Nofeed简索</a></li>
+                    </ul>
+                </div>
+                <div class="menu-section">
+                    <h3>活动</h3>
+                    <ul>
+                        <li><a href="mocon27">MOConference27</a></li>
+                    </ul>
+                </div>
+                <div class="menu-section">
+                    <h3>教育</h3>
+                    <ul>
+                        <li><a href="visionx">VisionX</a></li>
+                        <li><a href="visionlive">在线教育社区</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content" id="mainContent">
+        <div class="cover-card">
+            <span class="cover-placeholder">莫川读书会 · 敬请期待</span>
+        </div>
+        <div class="content-inner">
+            <div class="wide-card">
+                <div class="wide-card-image img-dark">🔧</div>
+                <div class="wide-card-content">
+                    <h2 class="wide-card-title">正在维护中</h2>
+                    <p class="wide-card-desc">该页面暂时不可用，请稍后再来。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const SmoothScrollEngine = {
+                init: function() {
+                    const menuScroll = document.getElementById('menuScroll');
+                    if (menuScroll) this._applyInertiaToElement(menuScroll, 'horizontal');
+                },
+                _applyInertiaToElement: function(el, direction) {
+                    if (!el) return;
+                    let startX, scrollLeft;
+                    el.addEventListener('wheel', (e) => {
+                        if (direction === 'horizontal') {
+                            const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+                            if (Math.abs(delta) > 2) {
+                                e.preventDefault();
+                                el.scrollLeft += delta * 0.5;
+                            }
+                        }
+                    }, { passive: false });
+                    el.addEventListener('touchstart', (e) => {
+                        startX = e.touches[0].pageX;
+                        scrollLeft = el.scrollLeft;
+                    }, { passive: true });
+                    el.addEventListener('touchmove', (e) => {
+                        if (!startX) return;
+                        const x = e.touches[0].pageX;
+                        const walk = (startX - x) * 1.5;
+                        el.scrollLeft = scrollLeft + walk;
+                    }, { passive: true });
+                    el.addEventListener('touchend', () => { startX = null; });
+                }
+            };
+
+            const RubberEngine = {
+                breakpoints: { phone: 600, tablet: 1024, desktop: 1440 },
+                currentDevice: 'desktop',
+                init: function() { this._detectAndApply(); this._bindEvents(); },
+                _detectAndApply: function() {
+                    const width = window.innerWidth;
+                    const body = document.body;
+                    body.classList.remove('rubber-phone', 'rubber-tablet', 'rubber-desktop', 'rubber-wide');
+                    let device;
+                    if (width < this.breakpoints.phone) {
+                        body.classList.add('rubber-phone'); device = 'phone';
+                    } else if (width < this.breakpoints.tablet) {
+                        body.classList.add('rubber-tablet'); device = 'tablet';
+                    } else if (width < this.breakpoints.desktop) {
+                        body.classList.add('rubber-desktop'); device = 'desktop';
+                    } else {
+                        body.classList.add('rubber-wide'); device = 'wide';
+                    }
+                    this.currentDevice = device;
+                    body.setAttribute('data-rubber-device', device);
+                },
+                _bindEvents: function() {
+                    let resizeTimer;
+                    window.addEventListener('resize', () => {
+                        clearTimeout(resizeTimer);
+                        resizeTimer = setTimeout(() => this._detectAndApply(), 100);
+                    });
+                    window.addEventListener('orientationchange', () => {
+                        setTimeout(() => this._detectAndApply(), 50);
+                    });
+                }
+            };
+
+            SmoothScrollEngine.init();
+            RubberEngine.init();
+
+            const mocTitle = document.getElementById('mocTitle');
+            const dropdownMenu = document.getElementById('dropdownMenu');
+
+            mocTitle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isMenuOpen = dropdownMenu.classList.contains('show');
+                if (isMenuOpen) {
+                    window.location.href = '/';
+                } else {
+                    dropdownMenu.classList.add('show');
+                }
+            });
+
+            dropdownMenu.addEventListener('click', e => e.stopPropagation());
+            document.addEventListener('click', function(e) {
+                if (dropdownMenu.classList.contains('show')) {
+                    dropdownMenu.classList.remove('show');
+                }
+            });
+
+            window.RubberEngine = RubberEngine;
+            window.SmoothScrollEngine = SmoothScrollEngine;
+        })();
+    </script>
+</body>
+</html>
