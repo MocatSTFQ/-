@@ -210,7 +210,6 @@
                 0 0 0 1px rgba(255, 255, 255, 0.15) inset,
                 0 0 20px rgba(160, 200, 255, 0.3),
                 0 0 40px rgba(200, 160, 255, 0.2);
-            /* 保留高度 */
             min-height: clamp(180px, 30vw, 280px);
         }
 
@@ -247,7 +246,6 @@
             100% { left: -100%; opacity: 0; }
         }
 
-        /* 清空文字内容，仅保留空壳供光影特效显示 */
         .cover-subtitle,
         .cover-domain,
         .cover-footer-text,
@@ -340,7 +338,7 @@
         <div class="header-title" id="mocTitle" role="button" aria-label="菜单">Moc</div>
     </header>
 
-    <!-- 下拉菜单（程序链接已清除） -->
+    <!-- 下拉菜单（新闻室链接已更新为 home/newsroom） -->
     <div class="dropdown-menu" id="dropdownMenu" role="navigation">
         <div class="menu-scroll" id="menuScroll">
             <div class="menu-grid" id="menuGrid">
@@ -348,7 +346,7 @@
                 <div class="menu-section">
                     <h3>主页</h3>
                     <ul>
-                        <li><a href="#">新闻室</a></li>
+                        <li><a href="home/newsroom">新闻室</a></li>
                     </ul>
                 </div>
                 <!-- 商店 -->
@@ -396,7 +394,7 @@
 
     <!-- 主内容区域 -->
     <div class="main-content" id="mainContent">
-        <!-- 清空后的纯光影海报 -->
+        <!-- 纯光影海报 -->
         <div class="cover-card"></div>
 
         <div class="content-inner">
