@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>Tyubox待办盒子 · Momocat 莫猫</title>
+    <title>Nofeed简索 · Momocat 莫猫</title>
     <link rel="icon" type="image/jpeg" href="logo.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -156,117 +156,83 @@
         }
         .main-content::-webkit-scrollbar { display: none; }
 
-        .page-hero {
+        .tool-hero {
             background: #ffffff;
             border-bottom: 0.5px solid rgba(0,0,0,0.06);
             padding: clamp(32px, 5vw, 48px) var(--rubber-section-padding);
             text-align: center;
             margin-bottom: var(--rubber-section-padding);
         }
-        .page-hero-icon {
-            font-size: clamp(2.5rem, 6vw, 3.5rem);
-            margin-bottom: clamp(8px, 1.5vw, 12px);
-            display: block;
-        }
-        .page-hero-title {
+        .tool-hero-title {
             font-size: clamp(2rem, 6vw, 3rem);
             font-weight: 700;
             letter-spacing: -0.02em;
             color: #1d1d1f;
             margin-bottom: clamp(8px, 1.5vw, 12px);
         }
-        .page-hero-desc {
+        .tool-hero-desc {
             font-size: clamp(0.95rem, 2.5vw, 1.1rem);
             color: #86868b;
             font-weight: 450;
             letter-spacing: 0.01em;
-            max-width: 600px;
-            margin: 0 auto;
         }
 
         .content-inner {
             padding: 0 var(--rubber-section-padding);
         }
 
-        .section-title {
-            font-size: clamp(1.5rem, 4.5vw, 2rem);
-            font-weight: 700;
-            letter-spacing: -0.015em;
-            color: #1d1d1f;
-            margin-bottom: clamp(12px, 2vw, 16px);
-            padding-bottom: clamp(6px, 1.5vw, 10px);
-            border-bottom: 1px solid rgba(0,0,0,0.07);
-        }
-        .section-sub {
-            font-size: clamp(0.85rem, 2.2vw, 0.95rem);
-            color: #86868b;
-            font-weight: 440;
-            margin-bottom: clamp(20px, 3vw, 28px);
-        }
-
-        .feature-grid {
-            display: grid;
-            gap: var(--rubber-card-gap);
-            grid-template-columns: repeat(4, 1fr);
-        }
-        .rubber-desktop .feature-grid { grid-template-columns: repeat(3, 1fr); }
-        .rubber-tablet .feature-grid { grid-template-columns: repeat(2, 1fr); }
-        .rubber-phone .feature-grid { grid-template-columns: repeat(1, 1fr); }
-
-        .feature-card {
+        .search-card {
             background: white;
             border-radius: clamp(20px, 3vw, 28px);
-            padding: clamp(18px, 3vw, 24px) clamp(16px, 2.5vw, 22px);
+            overflow: hidden;
             box-shadow: 0 2px 12px rgba(0,0,0,0.02), 0 8px 24px rgba(0,0,0,0.04);
-            border: 0.5px solid rgba(0,0,0,0.04);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+            padding: clamp(20px, 4vw, 32px);
+            margin-bottom: var(--rubber-card-gap);
+            border: 0.5px solid rgba(0,0,0,0.04);
         }
-        .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 28px rgba(0,0,0,0.08);
-        }
-        .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 4px;
-        }
-        .feature-title {
-            font-weight: 700;
-            font-size: clamp(1.1rem, 2.5vw, 1.25rem);
-            color: #1d1d1f;
-            letter-spacing: -0.01em;
-        }
-        .feature-desc {
-            font-size: 0.9rem;
-            color: #6e6e73;
-            line-height: 1.5;
-        }
-        .tech-badge {
-            display: inline-block;
-            background: rgba(183, 110, 75, 0.08);
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            color: #b76e4b;
-            font-weight: 550;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
+        .search-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.06);
         }
 
-        .info-card {
-            background: white;
-            border-radius: clamp(20px, 3vw, 28px);
-            padding: clamp(20px, 3vw, 28px) clamp(18px, 3vw, 24px);
-            margin-bottom: var(--rubber-card-gap);
-            box-shadow: 0 2px 12px rgba(0,0,0,0.02), 0 8px 24px rgba(0,0,0,0.04);
-            border: 0.5px solid rgba(0,0,0,0.04);
-            font-size: clamp(0.9rem, 2.2vw, 1rem);
-            color: #3a3a3c;
-            line-height: 1.6;
+        [contenteditable] {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            font-size: 1.5rem;
+            line-height: 1.4;
+            outline: none;
+            border: none;
             text-align: center;
+            color: #1d1d1f;
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            min-height: 4rem;
+        }
+        [contenteditable]:empty:before {
+            content: "点击输入 搜索媒体 和 关键词";
+            color: #8e8e93;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .hint {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #86868b;
+            margin-top: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        .info-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #8e8e93;
+            margin-top: 2rem;
+            opacity: 0.7;
         }
     </style>
 </head>
@@ -322,122 +288,17 @@
     </div>
 
     <div class="main-content" id="mainContent">
-        <div class="page-hero">
-            <span class="page-hero-icon">📋</span>
-            <h1 class="page-hero-title">Tyubox 待办盒子</h1>
-            <p class="page-hero-desc">一款纯净高效的待办应用，进度条、成就徽章、重复任务、数据备份……所有功能都在本地，干净利落。</p>
+        <div class="tool-hero">
+            <h1 class="tool-hero-title">Nofeed 简索</h1>
+            <p class="tool-hero-desc">格式：应用名 关键词（例如：小红书 美食 或 bilibili 教程）</p>
         </div>
 
         <div class="content-inner">
-            <h2 class="section-title">✨ 核心功能 · 面面俱到</h2>
-            <p class="section-sub">每个特性都经过深思熟虑，只为提供最流畅的待办体验。</p>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <div class="feature-title">今日进度条</div>
-                    <p class="feature-desc">实时显示今日完成率，每完成一项任务进度条平滑增长。全部完成时解锁「今日事今日毕」永久徽章。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏆</div>
-                    <div class="feature-title">徽章成就系统</div>
-                    <p class="feature-desc">累计完成10/50/100个任务、连续打卡3/7/30天等成就自动点亮，成就墙可随时查看。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <div class="feature-title">智能重复任务</div>
-                    <p class="feature-desc">支持“每天跑步”“每周一开会”等自然语言，完成任务后自动生成下一个周期任务，截止日期智能推演。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔔</div>
-                    <div class="feature-title">浏览器通知</div>
-                    <p class="feature-desc">任务到期前一天或当天自动推送提醒，点击通知可直接定位到任务并高亮闪烁，不错过任何重要事项。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📥📤</div>
-                    <div class="feature-title">数据备份与恢复</div>
-                    <p class="feature-desc">一键导出所有待办、已完成、归档数据为JSON文件，支持导入恢复，跨设备迁移无忧。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📈</div>
-                    <div class="feature-title">统计图表 + 标签云</div>
-                    <p class="feature-desc">近7天完成趋势柱状图，标签云点击即可筛选任务，直观分析效率。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔍</div>
-                    <div class="feature-title">搜索与筛选联动</div>
-                    <p class="feature-desc">支持关键词搜索（文本/标签），点击标签云可快速筛选，筛选时搜索框自动提示当前范围。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📅</div>
-                    <div class="feature-title">优先级 + 截止日期</div>
-                    <p class="feature-desc">高/中/低优先级视觉标识，截止日期逾期红色、今日到期金色高亮，任务一目了然。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <div class="feature-title">主题色 & 深色模式</div>
-                    <p class="feature-desc">六种个性主题色（流光金/霓虹紫/赛博蓝...），一键切换深色/浅色模式，随系统或手动。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🗄️</div>
-                    <div class="feature-title">任务归档</div>
-                    <p class="feature-desc">已完成任务可一键归档，归档列表支持恢复或永久删除，保持主列表清爽。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎤</div>
-                    <div class="feature-title">语音输入</div>
-                    <p class="feature-desc">支持浏览器语音识别，直接口述创建待办，解放双手。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📤</div>
-                    <div class="feature-title">分享与导入代码</div>
-                    <p class="feature-desc">生成进度共享代码，朋友粘贴即可导入你的待办进度；也可导出文字列表分享。</p>
-                </div>
+            <div class="search-card">
+                <div contenteditable="true" id="inputArea"></div>
+                <div class="hint">↵ 按下 Enter 搜索</div>
             </div>
-
-            <h2 class="section-title" style="margin-top: 2rem;">⚙️ 技术实现 · 纯前端 隐私安全</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <span class="tech-badge">核心架构</span>
-                    <div class="feature-title">纯HTML/CSS/JS</div>
-                    <p class="feature-desc">无任何后端依赖，所有数据存储在浏览器本地（localStorage）。完全离线可用，不收集任何用户隐私。</p>
-                </div>
-                <div class="feature-card">
-                    <span class="tech-badge">自然语言解析</span>
-                    <div class="feature-title">智能规则引擎</div>
-                    <p class="feature-desc">内置规则解析“明天”“紧急”“每天跑步”“每周一开会”等中文短语，自动设置截止日期、优先级、重复规则。</p>
-                </div>
-                <div class="feature-card">
-                    <span class="tech-badge">数据持久化</span>
-                    <div class="feature-title">localStorage 存储</div>
-                    <p class="feature-desc">待办、已完成、归档均以JSON格式存储；支持完整导出/导入，数据跨设备迁移方便。</p>
-                </div>
-                <div class="feature-card">
-                    <span class="tech-badge">通知与交互</span>
-                    <div class="feature-title">Web Notification API</div>
-                    <p class="feature-desc">到期提醒 + 点击跳转高亮，采用 requestAnimationFrame 实现平滑动画，体验流畅。</p>
-                </div>
-                <div class="feature-card">
-                    <span class="tech-badge">图表与徽章</span>
-                    <div class="feature-title">Canvas 绘制 + 条件解锁</div>
-                    <p class="feature-desc">近7天图表动态绘制，徽章系统基于累计数据自动解锁，并持久化成就状态。</p>
-                </div>
-                <div class="feature-card">
-                    <span class="tech-badge">语音识别</span>
-                    <div class="feature-title">Web Speech API</div>
-                    <p class="feature-desc">调用浏览器原生语音识别，无需额外权限（仅麦克风请求），快速创建任务。</p>
-                </div>
-            </div>
-
-            <div class="info-card" style="margin-top: var(--rubber-card-gap);">
-                <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">🎯 设计哲学 · 极简 & 高效</h2>
-                <p style="max-width: 800px; margin: 0 auto;">我们不堆砌冗余功能，每个特性都经过深思熟虑：进度条激励、成就体系提供正向反馈；重复任务解放大脑；纯本地存储保护隐私。整个应用如一款精致的原生软件，开箱即用。</p>
-                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem; color: #86868b;">
-                    <div><span style="font-size: 2rem;">🔒</span><br>本地存储</div>
-                    <div><span style="font-size: 2rem;">⚡</span><br>瞬时响应</div>
-                    <div><span style="font-size: 2rem;">🎨</span><br>玻璃形态</div>
-                    <div><span style="font-size: 2rem;">♾️</span><br>无限任务</div>
-                </div>
-            </div>
+            <div class="info-note">支持 20+ 主流平台 · 输入应用名后空格接关键词</div>
         </div>
     </div>
 
@@ -445,6 +306,89 @@
         (function() {
             "use strict";
 
+            // ===== 应用库 (完整保留) =====
+            const APPS = [
+                { name: "小红书", url: "https://www.xiaohongshu.com/search_result?keyword={}", alias: ["xhs","rednote"] },
+                { name: "淘宝", url: "https://s.taobao.com/search?q={}", alias: ["tb","taobao"] },
+                { name: "京东", url: "https://search.jd.com/Search?keyword={}", alias: ["jd","jingdong"] },
+                { name: "拼多多", url: "https://search.pinduoduo.com/s?q={}", alias: ["pdd"] },
+                { name: "抖音", url: "https://www.douyin.com/search/{}", alias: ["dy","tiktok"] },
+                { name: "哔哩哔哩", url: "https://search.bilibili.com/all?keyword={}", alias: ["b站","bili","bilibili"] },
+                { name: "微博", url: "https://s.weibo.com/weibo?q={}", alias: ["weibo","wb"] },
+                { name: "知乎", url: "https://www.zhihu.com/search?type=content&q={}", alias: ["zhihu","zh"] },
+                { name: "美团", url: "https://www.meituan.com/s/?w={}", alias: ["meituan","mt"] },
+                { name: "大众点评", url: "https://www.dianping.com/search/keyword/{}", alias: ["dzdp"] },
+                { name: "百度", url: "https://www.baidu.com/s?wd={}", alias: ["baidu"] },
+                { name: "YouTube", url: "https://www.youtube.com/results?search_query={}", alias: ["yt"] },
+                { name: "微信", url: "https://weixin.sogou.com/weixin?type=2&query={}", alias: ["wechat","wx"] },
+                { name: "豆瓣", url: "https://search.douban.com/book/subject_search?search_text={}", alias: ["douban"] },
+                { name: "网易云音乐", url: "https://music.163.com/#/search/m/?s={}", alias: ["wyym"] },
+                { name: "QQ音乐", url: "https://y.qq.com/n/ryqq/search?w={}", alias: ["qqmusic"] },
+                { name: "饿了么", url: "https://www.ele.me/search/{}", alias: ["elm"] },
+                { name: "得物", url: "https://www.dewu.com/search?q={}", alias: ["dewu"] },
+                { name: "什么值得买", url: "https://search.smzdm.com/?c=home&s={}", alias: ["smzdm"] },
+                { name: "汽车之家", url: "https://www.autohome.com.cn/search.aspx?q={}", alias: ["qczj"] },
+                { name: "Chrome搜索", url: "https://www.google.com/search?q={}", alias: ["chrome","google"] },
+                { name: "Safari搜索", url: "https://www.bing.com/search?q={}", alias: ["safari"] }
+            ];
+
+            const aliasMap = new Map();
+            const appMap = new Map();
+            for (const app of APPS) {
+                appMap.set(app.name, app);
+                if (app.alias) {
+                    for (const a of app.alias) {
+                        aliasMap.set(a.toLowerCase(), app.name);
+                    }
+                }
+            }
+            const allAppNames = APPS.map(a => a.name);
+
+            function parseInput(raw) {
+                raw = raw.trim();
+                if (!raw) return null;
+                const firstSpace = raw.indexOf(' ');
+                if (firstSpace === -1) return null;
+                const appPart = raw.slice(0, firstSpace).trim();
+                const keyword = raw.slice(firstSpace + 1).trim();
+                if (!appPart || !keyword) return null;
+                return { appPart, keyword };
+            }
+
+            function resolveApp(appPart) {
+                const lower = appPart.toLowerCase();
+                if (aliasMap.has(lower)) {
+                    return appMap.get(aliasMap.get(lower));
+                }
+                if (appMap.has(appPart)) {
+                    return appMap.get(appPart);
+                }
+                const fuzzy = allAppNames.find(n => n.toLowerCase().includes(lower) || lower.includes(n.toLowerCase()));
+                return fuzzy ? appMap.get(fuzzy) : null;
+            }
+
+            function performSearch(app, keyword) {
+                const url = app.url.replace("{}", encodeURIComponent(keyword));
+                window.open(url, "_blank");
+            }
+
+            function onEnter() {
+                const rawText = document.getElementById("inputArea").innerText.trim();
+                if (!rawText) return;
+                const parsed = parseInput(rawText);
+                if (!parsed) {
+                    alert("格式: 应用名 关键词 (例如: 小红书 美食 或 xhs 美食)");
+                    return;
+                }
+                const app = resolveApp(parsed.appPart);
+                if (!app) {
+                    alert(`未识别应用“${parsed.appPart}”，试试: 小红书 / bilibili / 淘宝 / wb`);
+                    return;
+                }
+                performSearch(app, parsed.keyword);
+            }
+
+            // ===== 滑动引擎 =====
             const SmoothScrollEngine = {
                 init: function() {
                     const menuScroll = document.getElementById('menuScroll');
@@ -476,6 +420,7 @@
                 }
             };
 
+            // ===== 橡皮泥引擎 =====
             const RubberEngine = {
                 breakpoints: { phone: 600, tablet: 1024, desktop: 1440 },
                 currentDevice: 'desktop',
@@ -512,6 +457,7 @@
             SmoothScrollEngine.init();
             RubberEngine.init();
 
+            // ===== 菜单交互 =====
             const mocTitle = document.getElementById('mocTitle');
             const dropdownMenu = document.getElementById('dropdownMenu');
 
@@ -531,6 +477,16 @@
                     dropdownMenu.classList.remove('show');
                 }
             });
+
+            // ===== 搜索框事件 =====
+            const inputArea = document.getElementById("inputArea");
+            inputArea.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    onEnter();
+                }
+            });
+            inputArea.focus();
 
             window.RubberEngine = RubberEngine;
             window.SmoothScrollEngine = SmoothScrollEngine;

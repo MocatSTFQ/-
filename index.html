@@ -178,7 +178,7 @@
         .underline-btn:hover { border-bottom-color: #0071e3; }
         .share-icon { display: inline-flex; align-items: center; margin-left: 2px; }
         .sticker-emoji {
-            position: absolute; pointer-events: none; z-index: 2; user-select: none; opacity: 0.8;
+            position: absolute; pointer-events: none; z-index: 2; user-select: none; opacity: 0.85;
         }
 
         /* 弹窗 */
@@ -191,24 +191,59 @@
         }
         .modal-overlay.show { visibility: visible; opacity: 1; }
         .modal-dialog {
-            background: white; border-radius: 28px; padding: clamp(24px, 5vw, 36px);
-            max-width: 620px; width: 90%; max-height: 80vh; box-shadow: 0 16px 32px rgba(0,0,0,0.12);
-            position: relative; z-index: 51; display: flex; flex-direction: column;
+            background: white; border-radius: 28px; max-width: 620px; width: 90%; max-height: 80vh;
+            box-shadow: 0 16px 32px rgba(0,0,0,0.12); position: relative; z-index: 51;
+            display: flex; flex-direction: column; overflow: hidden;
+            padding: 0;
+        }
+        .modal-top-blur {
+            position: absolute; top: 0; left: 0; right: 0; height: 70px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+            z-index: 5; pointer-events: none;
+        }
+        .modal-bottom-blur {
+            position: absolute; bottom: 0; left: 0; right: 0; height: 70px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            mask-image: linear-gradient(to top, black 0%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to top, black 0%, transparent 100%);
+            z-index: 5; pointer-events: none;
         }
         .modal-close-btn {
             position: absolute; top: 16px; left: 16px; width: 36px; height: 36px;
             border-radius: 50%; background-color: #e5e5ea; border: none; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; transition: background-color 0.2s; z-index: 2; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            transition: background-color 0.2s; z-index: 6; flex-shrink: 0;
         }
         .modal-close-btn:hover { background-color: #d1d1d6; }
         .modal-close-btn svg { width: 16px; height: 16px; stroke: #1d1d1f; stroke-width: 2; }
-        .modal-content-area { overflow-y: auto; padding-top: 4px; scrollbar-width: thin; scrollbar-color: #c8c8ce transparent; }
+
+        .modal-content-area {
+            overflow-y: auto; 
+            padding: 0;
+            scrollbar-width: thin; scrollbar-color: #c8c8ce transparent;
+            z-index: 1;
+        }
         .modal-content-area::-webkit-scrollbar { width: 6px; }
         .modal-content-area::-webkit-scrollbar-thumb { background: #c8c8ce; border-radius: 3px; }
-        .modal-title-text { font-size: 1.8rem; font-weight: 700; color: #1d1d1f; margin-bottom: 4px; padding-left: 48px; }
-        .modal-meta { font-size: 0.9rem; color: #6e6e73; margin-bottom: 20px; padding-left: 48px; }
-        .modal-meta span { margin-right: 16px; }
-        .modal-body { font-size: 0.95rem; color: #2c2c2e; line-height: 1.7; padding-left: 48px; padding-right: 4px; }
+        .modal-title-text {
+            font-size: 1.8rem; font-weight: 700; color: #1d1d1f; margin: 24px 0 4px 48px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        .modal-meta {
+            font-size: 0.9rem; color: #6e6e73; margin: 0 0 20px 48px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        .modal-body, .modal-body * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+        }
+        .modal-body {
+            font-size: 0.95rem; color: #2c2c2e; line-height: 1.7;
+            padding-left: 48px; padding-right: 24px; padding-bottom: 24px;
+        }
         .modal-body h2 { font-size: 1.4rem; font-weight: 600; margin: 1.5em 0 0.6em; color: #1d1d1f; }
         .modal-body h3 { font-size: 1.1rem; font-weight: 600; margin: 1.2em 0 0.4em; color: #1d1d1f; }
         .modal-body p { margin-bottom: 1em; }
@@ -217,6 +252,12 @@
         .modal-body table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.9rem; }
         .modal-body th, .modal-body td { border: 1px solid #d2d2d7; padding: 6px 10px; text-align: left; }
         .modal-body th { background-color: #f5f5f7; font-weight: 600; color: #1d1d1f; }
+        .modal-body code {
+            background-color: #f0f0f5;
+            padding: 0.15em 0.4em;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
 
         .content-inner { padding: var(--rubber-section-padding) var(--rubber-section-padding) 0; }
         .card-link-wrapper { text-decoration: none; color: inherit; display: block; }
@@ -240,7 +281,6 @@
         .wide-card-title { font-size: clamp(1.8rem, 6vw, 2.8rem); font-weight: 600; letter-spacing: -0.02em; color: #1d1d1f; margin-bottom: clamp(16px, 3vw, 24px); }
         .wide-card-desc { color: #6e6e73; font-size: clamp(1rem, 3vw, 1.2rem); margin-bottom: 24px; }
 
-        /* 小卡片网格 */
         .card-grid {
             display: grid; gap: var(--rubber-card-gap); margin: 0 auto;
             grid-template-columns: repeat(2, 1fr);
@@ -305,7 +345,6 @@
         </div>
 
         <div class="content-inner">
-            <!-- Tyubox 宽卡片 -->
             <a href="tyubox" class="card-link-wrapper">
                 <div class="wide-card">
                     <div class="wide-card-image img-light">📦</div>
@@ -317,16 +356,13 @@
                 </div>
             </a>
 
-            <!-- 小卡片网格 -->
             <div class="card-grid" id="dynamicCardGrid">
                 <a href="nofeed" class="promo-card">
                     <div class="card-image img-dark">⚡</div>
                     <div class="card-content">
                         <h3 class="card-title">Nofeed 简索</h3>
                         <p class="card-desc">反信息流搜索，直达所需</p>
-                        <div class="card-footer">
-                            <span class="card-btn">试用</span>
-                        </div>
+                        <div class="card-footer"><span class="card-btn">试用</span></div>
                     </div>
                 </a>
                 <a href="momoread" class="promo-card">
@@ -334,9 +370,7 @@
                     <div class="card-content">
                         <h3 class="card-title">Momoread</h3>
                         <p class="card-desc">沉浸式阅读，远离干扰</p>
-                        <div class="card-footer">
-                            <span class="card-btn">阅读</span>
-                        </div>
+                        <div class="card-footer"><span class="card-btn">阅读</span></div>
                     </div>
                 </a>
             </div>
@@ -346,11 +380,10 @@
     <!-- 弹窗 -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-dialog">
+            <div class="modal-top-blur"></div>
+            <div class="modal-bottom-blur"></div>
             <button class="modal-close-btn" id="modalCloseBtn">
-                <svg viewBox="0 0 14 14" fill="none">
-                    <line x1="1" y1="1" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <line x1="13" y1="1" x2="1" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
+                <svg viewBox="0 0 14 14" fill="none"><line x1="1" y1="1" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="13" y1="1" x2="1" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </button>
             <div class="modal-content-area" id="modalContentArea"></div>
         </div>
@@ -374,14 +407,10 @@
                             el.scrollLeft += (e.deltaY || e.deltaX) * 0.5;
                         }
                     }, { passive: false });
-                    el.addEventListener('touchstart', (e) => {
-                        startX = e.touches[0].pageX;
-                        scrollLeft = el.scrollLeft;
-                    }, { passive: true });
+                    el.addEventListener('touchstart', (e) => { startX = e.touches[0].pageX; scrollLeft = el.scrollLeft; }, { passive: true });
                     el.addEventListener('touchmove', (e) => {
                         if (!startX) return;
-                        const x = e.touches[0].pageX;
-                        const walk = (startX - x) * 1.5;
+                        const x = e.touches[0].pageX; const walk = (startX - x) * 1.5;
                         el.scrollLeft = scrollLeft + walk;
                     }, { passive: true });
                 }
@@ -392,19 +421,13 @@
                 currentDevice: 'desktop',
                 init: function() { this._detectAndApply(); this._bindEvents(); },
                 _detectAndApply: function() {
-                    const width = window.innerWidth;
-                    const body = document.body;
+                    const width = window.innerWidth; const body = document.body;
                     body.classList.remove('rubber-phone', 'rubber-tablet', 'rubber-desktop', 'rubber-wide');
                     let device;
-                    if (width < this.breakpoints.phone) {
-                        body.classList.add('rubber-phone'); device = 'phone';
-                    } else if (width < this.breakpoints.tablet) {
-                        body.classList.add('rubber-tablet'); device = 'tablet';
-                    } else if (width < this.breakpoints.desktop) {
-                        body.classList.add('rubber-desktop'); device = 'desktop';
-                    } else {
-                        body.classList.add('rubber-wide'); device = 'wide';
-                    }
+                    if (width < this.breakpoints.phone) { body.classList.add('rubber-phone'); device = 'phone'; }
+                    else if (width < this.breakpoints.tablet) { body.classList.add('rubber-tablet'); device = 'tablet'; }
+                    else if (width < this.breakpoints.desktop) { body.classList.add('rubber-desktop'); device = 'desktop'; }
+                    else { body.classList.add('rubber-wide'); device = 'wide'; }
                     this.currentDevice = device;
                     body.setAttribute('data-rubber-device', device);
                     this._adjustGridColumns();
@@ -423,42 +446,56 @@
                 },
                 _bindEvents: function() {
                     let resizeTimer;
-                    window.addEventListener('resize', () => {
-                        clearTimeout(resizeTimer);
-                        resizeTimer = setTimeout(() => this._detectAndApply(), 100);
-                    });
-                    window.addEventListener('orientationchange', () => {
-                        setTimeout(() => this._detectAndApply(), 50);
-                    });
+                    window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => this._detectAndApply(), 100); });
+                    window.addEventListener('orientationchange', () => { setTimeout(() => this._detectAndApply(), 50); });
                 }
             };
 
             function createStickers() {
                 const coverCard = document.getElementById('coverCard');
                 if (!coverCard) return;
-                const existingStickers = coverCard.querySelectorAll('.sticker-emoji');
-                existingStickers.forEach(s => s.remove());
-                const emojis = ['😺','🐱','🐶','🐼','🦊','🐸','🐨','🦁','🐮','🐷','🌈','✨','⭐','🌟','💫','🔥','💧','❄️','☀️','🌙','🎈','🎉','🎵','🎨','📚','💡','🔮','🍀','🌸','🌿','🎧','💻','📱','🎭','🚀','🛸','🎯','🧩','🖍️','📌'];
-                const count = Math.floor(Math.random() * 2) + 4;
-                for (let i = 0; i < count; i++) {
-                    const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+                coverCard.querySelectorAll('.sticker-emoji').forEach(s => s.remove());
+                const emojis = [
+                    '😺','🐱','🐶','🐼','🦊','🐸','🐨','🦁','🐮','🐷',
+                    '🌈','✨','⭐','🌟','💫','🔥','💧','❄️','☀️','🌙',
+                    '🎈','🎉','🎵','🎨','📚','💡','🔮','🍀','🌸','🌿',
+                    '🎧','💻','📱','🎭','🚀','🛸','🎯','🧩','🖍️','📌',
+                    '🫐','🍋','🍊','🥑','🍕','🍜','☕','🧃','🧸','🪴',
+                    '🕶️','🎒','🧤','📎','✂️','📏','🔋','🧲','🛎️','🎛️'
+                ];
+                const shuffled = [...emojis].sort(() => Math.random() - 0.5);
+                const count = Math.floor(Math.random() * 2) + 5;
+                const usedEmojis = shuffled.slice(0, count);
+                const gridPositions = [];
+                for (let row = 0; row < 3; row++) {
+                    for (let col = 0; col < 3; col++) {
+                        gridPositions.push({ row, col });
+                    }
+                }
+                const selectedGrids = gridPositions.sort(() => Math.random() - 0.5).slice(0, count);
+                usedEmojis.forEach((emoji, index) => {
                     const span = document.createElement('span');
                     span.className = 'sticker-emoji'; span.textContent = emoji;
-                    let top = 0, left = 0; const edgeZone = 28;
-                    do { top = Math.random() * 100; left = Math.random() * 100; }
-                    while ((left > edgeZone && left < (100 - edgeZone)) && (top > edgeZone && top < (100 - edgeZone)));
+                    const grid = selectedGrids[index];
+                    const baseTop = (grid.row / 3) * 100;
+                    const baseLeft = (grid.col / 3) * 100;
+                    const offsetTop = (Math.random() * 25 - 12.5);
+                    const offsetLeft = (Math.random() * 25 - 12.5);
+                    const top = Math.min(100, Math.max(0, baseTop + offsetTop));
+                    const left = Math.min(100, Math.max(0, baseLeft + offsetLeft));
+                    const size = (Math.random() * 1.0 + 2.0).toFixed(2);
+                    const angle = Math.floor(Math.random() * 360);
                     span.style.top = `${top}%`; span.style.left = `${left}%`;
-                    span.style.fontSize = `${(Math.random() * 0.7 + 1.3).toFixed(2)}rem`;
-                    span.style.transform = `rotate(${Math.floor(Math.random() * 360)}deg)`;
+                    span.style.fontSize = `${size}rem`; span.style.transform = `rotate(${angle}deg)`;
                     coverCard.appendChild(span);
-                }
+                });
             }
 
             function fillModalContent() {
                 const contentArea = document.getElementById('modalContentArea');
                 if (!contentArea) return;
                 contentArea.innerHTML = `
-                    <div class="modal-title-text">MOC#001</div>
+                    <div class="modal-title-text">How It Works？#001</div>
                     <div class="modal-meta"><span>📅 2026-4-25</span><span>✍️ 作者：MOMOLAB</span></div>
                     <div class="modal-body">
                         <p>莫猫实验室发布轻量级“搜跳”工具——Nofeed 简索：用“应用名 + 空格 + 关键词”一次直达 20+ 平台，无 feed、无推荐，只做纯粹的搜索入口。本站独家拆解它的所有功能与实现细节。</p>
@@ -538,10 +575,8 @@
                 const dropdownMenu = document.getElementById('dropdownMenu');
                 mocTitle.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    const isMenuOpen = dropdownMenu.classList.contains('show');
-                    if (isMenuOpen) {
-                        const currentPath = window.location.pathname.replace(/\/$/, '');
-                        if (currentPath !== '' && currentPath !== '/index') {
+                    if (dropdownMenu.classList.contains('show')) {
+                        if (window.location.pathname.replace(/\/$/, '') !== '' && window.location.pathname.replace(/\/$/, '') !== '/index') {
                             window.location.href = '/';
                         } else {
                             dropdownMenu.classList.remove('show');
@@ -551,9 +586,7 @@
                     }
                 });
                 dropdownMenu.addEventListener('click', e => e.stopPropagation());
-                document.addEventListener('click', function(e) {
-                    if (dropdownMenu.classList.contains('show')) dropdownMenu.classList.remove('show');
-                });
+                document.addEventListener('click', () => { if (dropdownMenu.classList.contains('show')) dropdownMenu.classList.remove('show'); });
 
                 const howItWorksBtn = document.getElementById('howItWorksBtn');
                 const modalOverlay = document.getElementById('modalOverlay');
@@ -562,12 +595,8 @@
                 function closeModal() { modalOverlay.classList.remove('show'); }
                 howItWorksBtn.addEventListener('click', openModal);
                 modalCloseBtn.addEventListener('click', closeModal);
-                modalOverlay.addEventListener('click', function(e) {
-                    if (e.target === modalOverlay) closeModal();
-                });
-                document.addEventListener('keydown', function(e) {
-                    if (e.key === 'Escape' && modalOverlay.classList.contains('show')) closeModal();
-                });
+                modalOverlay.addEventListener('click', function(e) { if (e.target === modalOverlay) closeModal(); });
+                document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modalOverlay.classList.contains('show')) closeModal(); });
             }
 
             window.addEventListener('load', init);

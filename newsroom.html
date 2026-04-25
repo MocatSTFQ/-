@@ -41,7 +41,6 @@
             align-items: center;
             justify-content: center;
         }
-
         .header-title {
             font-weight: 700;
             font-size: clamp(1.8rem, 5vw, 2.2rem);
@@ -81,135 +80,177 @@
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
         }
-        .dropdown-menu.show {
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-
+        .dropdown-menu.show { transform: translateY(0); pointer-events: auto; }
         .menu-scroll {
-            overflow-x: auto;
-            overflow-y: visible;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            overscroll-behavior-x: contain;
-            padding-bottom: 4px;
+            overflow-x: auto; overflow-y: visible; scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch; scrollbar-width: none;
+            overscroll-behavior-x: contain; padding-bottom: 4px;
         }
         .menu-scroll::-webkit-scrollbar { display: none; }
-
         .menu-grid {
-            display: grid;
-            gap: clamp(20px, 3vw, 32px);
-            margin: 0 auto;
-            grid-template-columns: repeat(4, 1fr);
-            min-width: max-content;
+            display: grid; gap: clamp(20px, 3vw, 32px); margin: 0 auto;
+            grid-template-columns: repeat(4, 1fr); min-width: max-content;
         }
         .rubber-tablet .menu-grid { grid-template-columns: repeat(2, 1fr); }
         .rubber-phone .menu-grid { grid-template-columns: repeat(1, 1fr); gap: 24px; min-width: 100%; }
         .rubber-desktop .menu-grid, .rubber-wide .menu-grid { max-width: 1400px; margin: 0 auto; }
-
         .menu-section { text-align: left; min-width: 160px; }
         .menu-section h3 {
-            font-size: clamp(1.3rem, 3.5vw, 1.6rem);
-            font-weight: 700;
-            color: #1d1d1f;
-            margin-bottom: 16px;
-            letter-spacing: -0.01em;
-            border-bottom: 1px solid rgba(0,0,0,0.08);
+            font-size: clamp(1.3rem, 3.5vw, 1.6rem); font-weight: 700; color: #1d1d1f;
+            margin-bottom: 16px; letter-spacing: -0.01em; border-bottom: 1px solid rgba(0,0,0,0.08);
             padding-bottom: 10px;
         }
         .menu-section ul { list-style: none; }
         .menu-section li { margin: 10px 0; }
         .menu-section a {
-            text-decoration: none;
-            color: #3a3a3c;
-            font-size: clamp(1rem, 2.5vw, 1.1rem);
-            font-weight: 440;
-            transition: color 0.2s, transform 0.15s;
-            display: inline-block;
-            padding: 4px 0;
-            white-space: nowrap;
+            text-decoration: none; color: #3a3a3c; font-size: clamp(1rem, 2.5vw, 1.1rem);
+            font-weight: 440; transition: color 0.2s, transform 0.15s;
+            display: inline-block; padding: 4px 0; white-space: nowrap;
         }
         .menu-section a:hover { color: #b76e4b; transform: translateX(4px); }
-
         @media (max-width: 600px) {
             .dropdown-menu { top: 60px; max-height: calc(100vh - 60px); padding: 24px 16px; }
             .main-content { top: 60px; height: calc(100vh - 60px); }
         }
 
         .main-content {
-            position: fixed;
-            top: 72px;
-            left: 0;
-            width: 100%;
-            height: calc(100vh - 72px);
-            overflow-y: auto;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            overscroll-behavior-y: contain;
+            position: fixed; top: 72px; left: 0; width: 100%; height: calc(100vh - 72px);
+            overflow-y: auto; scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; overscroll-behavior-y: contain;
             padding-bottom: calc(var(--rubber-section-padding) * 2);
         }
         .main-content::-webkit-scrollbar { display: none; }
 
+        /* 海报卡片（复制自 index.html，去除 How It Works 按钮） */
         .cover-card {
-            width: 100%;
-            background: linear-gradient(145deg, #0b0b0c 0%, #1a1a1e 40%, #2a2a30 100%);
-            padding: clamp(40px, 8vw, 70px) clamp(20px, 5vw, 40px);
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
+            width: 100%; background-color: #e0e0e5;
+            padding: clamp(50px, 8vw, 80px) clamp(20px, 5vw, 40px);
+            text-align: center; position: relative; overflow: hidden;
             border: 0 solid transparent;
-            border-image: repeating-linear-gradient(
-                45deg,
-                #ff9a9e, #fad0c4, #fad0c4, #a18cd1, #a18cd1, #fbc2eb, #8fd3f4, #8fd3f4, #ff9a9e
-            ) 1;
-            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 20px rgba(160, 200, 255, 0.3), 0 0 40px rgba(200, 160, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: clamp(200px, 35vw, 320px);
+            border-image: repeating-linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #a18cd1, #a18cd1, #fbc2eb, #8fd3f4, #8fd3f4, #ff9a9e) 1;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.05) inset, 0 0 20px rgba(160, 200, 255, 0.3), 0 0 40px rgba(200, 160, 255, 0.2);
+            min-height: clamp(320px, 40vw, 420px);
+            display: flex; flex-direction: column; justify-content: center; color: #1d1d1f;
         }
         .cover-card::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -20%;
-            width: 140%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.08) 0%, transparent 60%);
-            pointer-events: none;
+            content: ""; position: absolute; top: -50%; left: -20%; width: 140%; height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.15) 0%, transparent 60%);
+            pointer-events: none; z-index: 1;
         }
         .cover-card::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
-            transform: skewX(-20deg);
-            animation: fullShine 5s ease-in-out infinite;
-            pointer-events: none;
-            filter: blur(4px);
+            content: ""; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: skewX(-20deg); animation: fullShine 5s ease-in-out infinite;
+            pointer-events: none; z-index: 1; filter: blur(4px);
         }
         @keyframes fullShine {
-            0% { left: -100%; opacity: 0; }
-            10% { opacity: 1; }
-            30% { left: 120%; opacity: 1; }
-            40% { left: 120%; opacity: 0; }
-            100% { left: -100%; opacity: 0; }
+            0% { left: -100%; opacity: 0; } 10% { opacity: 1; } 30% { left: 120%; opacity: 1; }
+            40% { left: 120%; opacity: 0; } 100% { left: -100%; opacity: 0; }
+        }
+        .cover-top-left {
+            position: absolute; top: clamp(20px, 3vw, 30px); left: clamp(20px, 3vw, 30px);
+            font-size: clamp(0.8rem, 2vw, 1rem); font-weight: 500; color: #86868b; letter-spacing: 1px; z-index: 2;
+        }
+        .cover-bottom-right {
+            position: absolute; bottom: clamp(20px, 3vw, 30px); right: clamp(20px, 3vw, 30px);
+            font-size: clamp(0.7rem, 1.8vw, 0.9rem); color: #86868b; z-index: 2;
+        }
+        .cover-center { position: relative; z-index: 2; }
+        .cover-nofeed {
+            font-size: clamp(3rem, 12vw, 6rem); font-weight: 700; letter-spacing: -0.03em;
+            color: #1d1d1f; margin-bottom: clamp(24px, 4vw, 36px); line-height: 1.1;
+        }
+        .cover-actions {
+            display: flex; align-items: center; justify-content: center;
+            gap: clamp(16px, 3vw, 24px); flex-wrap: wrap;
+        }
+        .card-btn {
+            background: transparent; border: 1.5px solid #0071e3; color: #0071e3;
+            padding: clamp(8px, 1.5vw, 12px) clamp(20px, 3vw, 28px);
+            border-radius: 40px; font-weight: 500; font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            text-decoration: none; transition: all 0.2s ease; white-space: nowrap; display: inline-block;
+        }
+        .card-btn:hover { background-color: #0071e3; color: white; }
+        .sticker-emoji {
+            position: absolute; pointer-events: none; z-index: 2; user-select: none; opacity: 0.85;
         }
 
-        .cover-placeholder {
-            position: relative;
-            z-index: 2;
-            opacity: 0.35;
-            font-size: clamp(1rem, 3vw, 1.4rem);
-            font-weight: 300;
-            letter-spacing: 3px;
-            color: rgba(255,255,255,0.7);
+        /* 弹窗样式 */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px); z-index: 50; display: flex;
+            align-items: center; justify-content: center; visibility: hidden; opacity: 0;
+            transition: visibility 0.2s, opacity 0.2s;
+        }
+        .modal-overlay.show { visibility: visible; opacity: 1; }
+        .modal-dialog {
+            background: white; border-radius: 28px; max-width: 620px; width: 90%; max-height: 80vh;
+            box-shadow: 0 16px 32px rgba(0,0,0,0.12); position: relative; z-index: 51;
+            display: flex; flex-direction: column; overflow: hidden;
+            padding: 0;
+        }
+        .modal-top-blur {
+            position: absolute; top: 0; left: 0; right: 0; height: 70px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+            z-index: 5; pointer-events: none;
+        }
+        .modal-bottom-blur {
+            position: absolute; bottom: 0; left: 0; right: 0; height: 70px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            mask-image: linear-gradient(to top, black 0%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to top, black 0%, transparent 100%);
+            z-index: 5; pointer-events: none;
+        }
+        .modal-close-btn {
+            position: absolute; top: 16px; left: 16px; width: 36px; height: 36px;
+            border-radius: 50%; background-color: #e5e5ea; border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background-color 0.2s; z-index: 6; flex-shrink: 0;
+        }
+        .modal-close-btn:hover { background-color: #d1d1d6; }
+        .modal-close-btn svg { width: 16px; height: 16px; stroke: #1d1d1f; stroke-width: 2; }
+
+        .modal-content-area {
+            overflow-y: auto; 
+            padding: 0;
+            scrollbar-width: thin; scrollbar-color: #c8c8ce transparent;
+            z-index: 1;
+        }
+        .modal-content-area::-webkit-scrollbar { width: 6px; }
+        .modal-content-area::-webkit-scrollbar-thumb { background: #c8c8ce; border-radius: 3px; }
+        .modal-title-text {
+            font-size: 1.8rem; font-weight: 700; color: #1d1d1f; margin: 24px 0 4px 48px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        .modal-meta {
+            font-size: 0.9rem; color: #6e6e73; margin: 0 0 20px 48px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        .modal-body, .modal-body * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+        }
+        .modal-body {
+            font-size: 0.95rem; color: #2c2c2e; line-height: 1.7;
+            padding-left: 48px; padding-right: 24px; padding-bottom: 24px;
+        }
+        .modal-body h2 { font-size: 1.4rem; font-weight: 600; margin: 1.5em 0 0.6em; color: #1d1d1f; }
+        .modal-body h3 { font-size: 1.1rem; font-weight: 600; margin: 1.2em 0 0.4em; color: #1d1d1f; }
+        .modal-body p { margin-bottom: 1em; }
+        .modal-body ul, .modal-body ol { margin: 0.5em 0 1em 1.2em; }
+        .modal-body li { margin-bottom: 0.3em; }
+        .modal-body table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.9rem; }
+        .modal-body th, .modal-body td { border: 1px solid #d2d2d7; padding: 6px 10px; text-align: left; }
+        .modal-body th { background-color: #f5f5f7; font-weight: 600; color: #1d1d1f; }
+        .modal-body code {
+            background-color: #f0f0f5;
+            padding: 0.15em 0.4em;
+            border-radius: 3px;
+            font-size: 0.9em;
         }
 
         .content-inner { padding: var(--rubber-section-padding) var(--rubber-section-padding) 0; }
@@ -219,35 +260,63 @@
             font-weight: 700;
             letter-spacing: -0.015em;
             color: #1d1d1f;
-            margin-bottom: clamp(8px, 1.5vw, 12px);
-            padding-bottom: clamp(8px, 1.5vw, 12px);
-            border-bottom: 1px solid rgba(0,0,0,0.07);
-        }
-        .section-title-sub {
-            font-size: clamp(0.85rem, 2.2vw, 0.95rem);
-            font-weight: 440;
-            color: #86868b;
-            letter-spacing: 0.02em;
-            margin-bottom: clamp(20px, 3vw, 28px);
+            margin-bottom: clamp(16px, 2.5vw, 24px);
         }
 
-        .empty-state {
+        /* 用于触发展开的卡片，保留简洁样式 */
+        .single-card {
+            background: white;
+            border-radius: clamp(20px, 3vw, 28px);
+            padding: clamp(18px, 3vw, 24px) clamp(16px, 2.5vw, 22px);
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: clamp(40px, 8vw, 60px) clamp(16px, 3vw, 24px);
-            background: #ffffff;
-            border-radius: clamp(20px, 3vw, 28px);
+            gap: 8px;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
             box-shadow: 0 2px 12px rgba(0,0,0,0.02), 0 8px 24px rgba(0,0,0,0.04);
-            margin-bottom: var(--rubber-card-gap);
             border: 0.5px solid rgba(0,0,0,0.04);
-            gap: clamp(12px, 2vw, 16px);
         }
-        .empty-state-icon { font-size: clamp(2.5rem, 6vw, 3.5rem); opacity: 0.7; }
-        .empty-state-text { font-size: clamp(1rem, 2.5vw, 1.2rem); color: #86868b; font-weight: 450; letter-spacing: 0.02em; }
-        .empty-state-sub { font-size: clamp(0.8rem, 2vw, 0.9rem); color: #8e8e93; font-weight: 400; }
+        .single-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+        }
+
+        .card-icon { font-size: 2rem; margin-bottom: 4px; }
+        .card-category {
+            display: inline-block;
+            font-size: clamp(0.65rem, 1.6vw, 0.75rem);
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #b76e4b;
+            font-weight: 550;
+        }
+        .card-title {
+            font-weight: 700;
+            font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+            color: #1d1d1f;
+            letter-spacing: -0.01em;
+        }
+        .card-desc {
+            font-size: 0.9rem;
+            color: #6e6e73;
+            line-height: 1.5;
+        }
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            border-top: 0.5px solid rgba(0,0,0,0.06);
+            padding-top: clamp(12px, 2vw, 16px);
+            margin-top: auto;
+        }
+        .card-date {
+            color: #86868b;
+            font-size: clamp(0.78rem, 1.8vw, 0.88rem);
+            font-weight: 450;
+            letter-spacing: 0.01em;
+        }
     </style>
 </head>
 <body>
@@ -255,7 +324,7 @@
         <div class="header-title" id="mocTitle" role="button" aria-label="打开导航菜单" tabindex="0">Moc</div>
     </header>
 
-    <!-- 下拉菜单（与最新 index.html 完全一致） -->
+    <!-- 下拉菜单（与主站一致） -->
     <div class="dropdown-menu" id="dropdownMenu" role="navigation" aria-label="站点导航">
         <div class="menu-scroll" id="menuScroll">
             <div class="menu-grid" id="menuGrid">
@@ -302,17 +371,44 @@
     </div>
 
     <div class="main-content" id="mainContent">
-        <div class="cover-card">
-            <span class="cover-placeholder">头条新闻 · 敬请期待</span>
-        </div>
-        <div class="content-inner">
-            <h2 class="section-title">最新动态</h2>
-            <p class="section-title-sub">来自莫猫品牌的最新消息与故事</p>
-            <div class="empty-state">
-                <span class="empty-state-icon">📭</span>
-                <span class="empty-state-text">暂无新闻</span>
-                <span class="empty-state-sub">最新动态正在整理中，敬请期待</span>
+        <!-- 复制自 index.html 的海报，移除了 How It Works 下划线按钮 -->
+        <div class="cover-card" id="coverCard">
+            <div class="cover-top-left">MOC#001</div>
+            <div class="cover-center">
+                <h1 class="cover-nofeed">Nofeed</h1>
+                <div class="cover-actions">
+                    <a href="nofeed" class="card-btn">试用</a>
+                </div>
             </div>
+            <div class="cover-bottom-right">Headline</div>
+        </div>
+
+        <div class="content-inner">
+            <h2 class="section-title">How It Works？</h2>
+
+            <!-- 可点击卡片，触发弹窗 -->
+            <div class="single-card" id="newsTriggerCard">
+                <span class="card-icon">📰</span>
+                <span class="card-category">深度解析</span>
+                <h3 class="card-title">How It Works？#001</h3>
+                <p class="card-desc">Nofeed 简索全技术拆解：从语义引擎到响应式架构</p>
+                <div class="card-footer">
+                    <span class="card-date">2026-04-25</span>
+                    <span class="card-btn">查看详情</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 弹窗 -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-dialog">
+            <div class="modal-top-blur"></div>
+            <div class="modal-bottom-blur"></div>
+            <button class="modal-close-btn" id="modalCloseBtn">
+                <svg viewBox="0 0 14 14" fill="none"><line x1="1" y1="1" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="13" y1="1" x2="1" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="modal-content-area" id="modalContentArea"></div>
         </div>
     </div>
 
@@ -337,14 +433,10 @@
                             }
                         }
                     }, { passive: false });
-                    el.addEventListener('touchstart', (e) => {
-                        startX = e.touches[0].pageX;
-                        scrollLeft = el.scrollLeft;
-                    }, { passive: true });
+                    el.addEventListener('touchstart', (e) => { startX = e.touches[0].pageX; scrollLeft = el.scrollLeft; }, { passive: true });
                     el.addEventListener('touchmove', (e) => {
                         if (!startX) return;
-                        const x = e.touches[0].pageX;
-                        const walk = (startX - x) * 1.5;
+                        const x = e.touches[0].pageX; const walk = (startX - x) * 1.5;
                         el.scrollLeft = scrollLeft + walk;
                     }, { passive: true });
                     el.addEventListener('touchend', () => { startX = null; });
@@ -356,58 +448,171 @@
                 currentDevice: 'desktop',
                 init: function() { this._detectAndApply(); this._bindEvents(); },
                 _detectAndApply: function() {
-                    const width = window.innerWidth;
-                    const body = document.body;
+                    const width = window.innerWidth; const body = document.body;
                     body.classList.remove('rubber-phone', 'rubber-tablet', 'rubber-desktop', 'rubber-wide');
                     let device;
-                    if (width < this.breakpoints.phone) {
-                        body.classList.add('rubber-phone'); device = 'phone';
-                    } else if (width < this.breakpoints.tablet) {
-                        body.classList.add('rubber-tablet'); device = 'tablet';
-                    } else if (width < this.breakpoints.desktop) {
-                        body.classList.add('rubber-desktop'); device = 'desktop';
-                    } else {
-                        body.classList.add('rubber-wide'); device = 'wide';
-                    }
+                    if (width < this.breakpoints.phone) { body.classList.add('rubber-phone'); device = 'phone'; }
+                    else if (width < this.breakpoints.tablet) { body.classList.add('rubber-tablet'); device = 'tablet'; }
+                    else if (width < this.breakpoints.desktop) { body.classList.add('rubber-desktop'); device = 'desktop'; }
+                    else { body.classList.add('rubber-wide'); device = 'wide'; }
                     this.currentDevice = device;
                     body.setAttribute('data-rubber-device', device);
                 },
                 _bindEvents: function() {
                     let resizeTimer;
-                    window.addEventListener('resize', () => {
-                        clearTimeout(resizeTimer);
-                        resizeTimer = setTimeout(() => this._detectAndApply(), 100);
-                    });
-                    window.addEventListener('orientationchange', () => {
-                        setTimeout(() => this._detectAndApply(), 50);
-                    });
+                    window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => this._detectAndApply(), 100); });
+                    window.addEventListener('orientationchange', () => { setTimeout(() => this._detectAndApply(), 50); });
                 }
             };
 
-            SmoothScrollEngine.init();
-            RubberEngine.init();
-
-            const mocTitle = document.getElementById('mocTitle');
-            const dropdownMenu = document.getElementById('dropdownMenu');
-
-            mocTitle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const isMenuOpen = dropdownMenu.classList.contains('show');
-                if (isMenuOpen) {
-                    // 在分页中，再次点击 Moc 按钮跳转到主界面
-                    window.location.href = '/';
-                } else {
-                    dropdownMenu.classList.add('show');
+            // 贴纸装饰
+            function createStickers() {
+                const coverCard = document.getElementById('coverCard');
+                if (!coverCard) return;
+                coverCard.querySelectorAll('.sticker-emoji').forEach(s => s.remove());
+                const emojis = ['😺','🐱','🐶','🐼','🦊','🐸','🐨','🦁','🐮','🐷','🌈','✨','⭐','🌟','💫','🔥','💧','❄️','☀️','🌙','🎈','🎉','🎵','🎨','📚','💡','🔮','🍀','🌸','🌿','🎧','💻','📱','🎭','🚀','🛸','🎯','🧩','🖍️','📌','🫐','🍋','🍊','🥑','🍕','🍜','☕','🧃','🧸','🪴','🕶️','🎒','🧤','📎','✂️','📏','🔋','🧲','🛎️','🎛️'];
+                const shuffled = [...emojis].sort(() => Math.random() - 0.5);
+                const count = Math.floor(Math.random() * 2) + 5;
+                const usedEmojis = shuffled.slice(0, count);
+                const gridPositions = [];
+                for (let row = 0; row < 3; row++) {
+                    for (let col = 0; col < 3; col++) {
+                        gridPositions.push({ row, col });
+                    }
                 }
-            });
+                const selectedGrids = gridPositions.sort(() => Math.random() - 0.5).slice(0, count);
+                usedEmojis.forEach((emoji, index) => {
+                    const span = document.createElement('span');
+                    span.className = 'sticker-emoji'; span.textContent = emoji;
+                    const grid = selectedGrids[index];
+                    const baseTop = (grid.row / 3) * 100;
+                    const baseLeft = (grid.col / 3) * 100;
+                    const offsetTop = (Math.random() * 25 - 12.5);
+                    const offsetLeft = (Math.random() * 25 - 12.5);
+                    const top = Math.min(100, Math.max(0, baseTop + offsetTop));
+                    const left = Math.min(100, Math.max(0, baseLeft + offsetLeft));
+                    const size = (Math.random() * 1.0 + 2.0).toFixed(2);
+                    const angle = Math.floor(Math.random() * 360);
+                    span.style.top = `${top}%`; span.style.left = `${left}%`;
+                    span.style.fontSize = `${size}rem`; span.style.transform = `rotate(${angle}deg)`;
+                    coverCard.appendChild(span);
+                });
+            }
 
-            dropdownMenu.addEventListener('click', e => e.stopPropagation());
-            document.addEventListener('click', function(e) {
-                if (dropdownMenu.classList.contains('show')) {
-                    dropdownMenu.classList.remove('show');
-                }
-            });
+            // 填充弹窗内容（与 index.html 中的 How It Works 内容一致）
+            function fillModalContent() {
+                const contentArea = document.getElementById('modalContentArea');
+                if (!contentArea) return;
+                contentArea.innerHTML = `
+                    <div class="modal-title-text">How It Works？#001</div>
+                    <div class="modal-meta"><span>📅 2026-4-25</span><span>✍️ 作者：MOMOLAB</span></div>
+                    <div class="modal-body">
+                        <p>莫猫实验室发布轻量级“搜跳”工具——Nofeed 简索：用“应用名 + 空格 + 关键词”一次直达 20+ 平台，无 feed、无推荐，只做纯粹的搜索入口。本站独家拆解它的所有功能与实现细节。</p>
+                        <p>2026年4月25日，由 Momocat 推出的 Nofeed 简索悄然上线，这是一款仅由一个 HTML 文件构成的极简工具，定位为“反信息流”的快捷搜索网关。用户只需在可编辑区域输入类似 <code>小红书 美食</code> 或 <code>b站 教程</code> 的短语，按下回车，即可直接抵达对应平台的搜索结果页，完全跳过首页推荐、广告和时间线，把选择权交还给使用者。</p>
+                        <p>以下为 Nofeed 简索的全部功能清单以及底层实现的全技术栈拆解。</p>
+                        <h2>功能一：应用名 + 关键词的语义拆分引擎</h2>
+                        <p>页面中央的 <code>contenteditable</code> 区域是唯一输入口。与普通输入框不同，它使用 <code>div</code> 而非 <code>input</code> 或 <code>textarea</code>，这意味着可以更灵活地控制占位提示与多行纯文本。</p>
+                        <p><strong>输入解析流程（<code>parseInput</code> 函数）</strong><br>
+                        - 获取 <code>div</code> 的 <code>innerText</code> 并去除首尾空白。<br>
+                        - 寻找第一个空格的位置，将字符串切分为“应用匹配串”和“关键词”两部分。<br>
+                        - 如果找不到空格或某一部分为空，返回 <code>null</code>，触发提示“格式: 应用名 关键词”。</p>
+                        <p><strong>触发机制</strong><br>
+                        - 监听 <code>keydown</code> 事件，当 <code>Enter</code> 且非 <code>Shift</code> 组合时，调用 <code>onEnter()</code>。<br>
+                        - 页面加载后自动 <code>focus()</code> 到输入区域，实现“打开即输入”。</p>
+                        <h2>功能二：20+ 平台库与双重匹配系统</h2>
+                        <p>代码内建一个 <code>APPS</code> 数组，每个应用包含：<br>
+                        - <code>name</code>：中文显示名；<br>
+                        - <code>url</code>：搜索 URL，用 <code>{}</code> 作为关键词占位符；<br>
+                        - <code>alias</code>：英文别名数组，降低输入门槛。</p>
+                        <p>支持的平台完整列表：<br>
+                        小红书、淘宝、京东、拼多多、抖音、哔哩哔哩、微博、知乎、美团、大众点评、百度、YouTube、微信、豆瓣、网易云音乐、QQ音乐、饿了么、得物、什么值得买、汽车之家、Chrome搜索、Safari搜索。</p>
+                        <p><strong>匹配策略（<code>resolveApp</code> 函数）</strong><br>
+                        1. 精确匹配别名：将输入的 <code>appPart</code> 转为小写后查询 <code>aliasMap</code>。例如输入 <code>xhs</code> 直接命中“小红书”。<br>
+                        2. 精确匹配应用名：如输入“小红书”本身。<br>
+                        3. 模糊匹配（双向包含）：当精确匹配失败时，遍历所有应用名，查找是否存在“应用名包含输入内容”或“输入内容包含应用名”的项。例如输入“b”会匹配到“哔哩哔哩”（应用名包含“b”），输入“bilibili”也能通过包含关系命中。<br>
+                        若全部未命中，弹出错误提示并建议常用别名。</p>
+                        <p><strong>跳转实现（<code>performSearch</code> 函数）</strong><br>
+                        将最终解析出的 <code>keyword</code> 经过 <code>encodeURIComponent</code> 转码后，替换 <code>url</code> 中的 <code>{}</code>，再使用 <code>window.open(url, "_blank")</code> 在新标签页打开搜索结果。整个过程中不产生任何历史记录污染，不存储搜索词。</p>
+                        <h2>功能三：全局导航菜单与智能返回逻辑</h2>
+                        <p>页面顶部固定一个标题头 <code>Moc</code>，它既是品牌标识也是菜单触发器。</p>
+                        <p><strong>菜单行为</strong><br>
+                        - 单击 <code>Moc</code> 标题时：<br>
+                        &nbsp;&nbsp;- 若菜单（<code>dropdownMenu</code>）当前展开，则直接跳转至主站首页 <code>/</code>。这一设计将“关闭菜单并回首页”合并为一个动作，符合移动端极简交互原则。<br>
+                        &nbsp;&nbsp;- 若菜单未展开，则添加 <code>.show</code> 类，使菜单从上边缘滑入。<br>
+                        - 点击菜单以外的任何区域，菜单自动收起。通过全局 <code>document</code> 的点击监听实现，并在菜单内部阻止冒泡，防止内部链接点击导致菜单关闭。</p>
+                        <p><strong>菜单内容结构</strong><br>
+                        菜单内使用 <code>menu-grid</code> 的 CSS Grid 布局，包含六个栏目：主页、商店、文学、程序、活动、教育。每个栏目下的链接指向对应的 Momocat 子产品，如 <code>nofeed</code> 本身也在“程序”栏目内。所有链接皆为站内相对路径。</p>
+                        <h2>功能四：橡皮泥响应式引擎（RubberEngine）</h2>
+                        <p>为了在手机、平板、桌面、宽屏上提供统一的视觉体验，代码实现了一个轻量级响应式类切换器，称为“橡皮泥引擎”。</p>
+                        <p><strong>工作原理</strong><br>
+                        - 检测 <code>window.innerWidth</code>，根据断点（手机 &lt; 600px，平板 &lt; 1024px，桌面 &lt; 1440px，宽屏 &gt;= 1440px）向 <code>body</code> 添加对应类名：<code>rubber-phone</code>、<code>rubber-tablet</code>、<code>rubber-desktop</code>、<code>rubber-wide</code>。<br>
+                        - CSS 通过 <code>.rubber-phone .menu-grid</code> 等选择器改变 Grid 列数：桌面 4 列，平板 2 列，手机 1 列。<br>
+                        - 所有尺寸相关间距（如 <code>gap</code>、<code>padding</code>）均使用 <code>clamp()</code> 函数，确保无级缩放，而非传统媒体查询的阶梯式跳变。<br>
+                        - <code>resize</code> 和 <code>orientationchange</code> 事件均做了防抖处理，避免频繁重绘。</p>
+                        <p>这种设计思路让整个页面只写一套 CSS，靠动态类名触发不同布局，同时保留浏览器原生滚动性能。</p>
+                        <h2>功能五：滑动惯性引擎（SmoothScrollEngine）</h2>
+                        <p>菜单区域在宽屏下可能溢出，因此配备了横向滚动容器 <code>menu-scroll</code>。为提供类似原生应用的滚动质感，代码注入了自定义惯性：</p>
+                        <p>- <strong>鼠标滚轮</strong>：拦截 <code>wheel</code> 事件，比较 <code>deltaX</code> 和 <code>deltaY</code> 的绝对值，以较大的那个作为横向滚动增量，乘以 0.5 的阻尼系数后驱动 <code>element.scrollLeft</code>。<br>
+                        - <strong>触摸滑动</strong>：记录 <code>touchstart</code> 的横坐标和当前滚动位置，在 <code>touchmove</code> 中计算手指移动距离并施加 1.5 倍加速比，实时跟手滚动。<br>
+                        - 容器本身设置了 <code>overscroll-behavior-x: contain</code> 并隐藏滚动条，防止边缘回弹干扰自定义行为。</p>
+                        <p>这两个引擎（橡皮泥、滑动惯性）均在脚本末尾自动初始化，并且暴露到 <code>window</code> 对象上，方便未来扩展或调试。</p>
+                        <h2>技术亮点总结</h2>
+                        <table>
+                            <tr><th>特性</th><th>实现手段</th></tr>
+                            <tr><td>零依赖单文件架构</td><td>纯 HTML + CSS + 原生 JavaScript，无需构建工具</td></tr>
+                            <tr><td>自然的输入体验</td><td><code>contenteditable</code> 配合 <code>:empty</code> 伪类实现占位提示</td></tr>
+                            <tr><td>高容错匹配</td><td>Map 精确匹配 → 别名匹配 → 双向模糊匹配，三级解析</td></tr>
+                            <tr><td>无 feed 跳转</td><td>直接构造平台搜索 URL，跳过所有推荐流</td></tr>
+                            <tr><td>响应式无级缩放</td><td><code>clamp()</code> 函数 + 动态类名切换</td></tr>
+                            <tr><td>原生级横向滚动</td><td>自定义 wheel 和 touch 事件模拟惯性</td></tr>
+                            <tr><td>极简状态管理</td><td>菜单仅通过 <code>.show</code> 类的添加与移除控制，无内部状态</td></tr>
+                        </table>
+                        <p>Nofeed 简索用 300 行代码构建了一套完整的“搜索跳转协议”，它不依赖后端、不收集数据、不展示内容，却在日益臃肿的 App 和网页入口之间打开了一条快速通道。作为 Momocat 生态中的“反 feed 组件”，它与其旗下的 Momoread（沉浸阅读）、Tyubox（待办盒子）、VisionX（教育工具）共同组成了一套尊重注意力的数字工具集。</p>
+                        <p>该页面已在莫猫主站上线，可通过菜单“程序→Nofeed简索”直接访问。</p>
+                        <p style="color:#6e6e73; font-size:0.85rem; margin-top:1.8em;">*新闻稿来源：Momocat 实验室 / 深度技术观察</p>
+                    </div>
+                `;
+            }
 
+            function init() {
+                SmoothScrollEngine.init();
+                RubberEngine.init();
+                createStickers();
+                fillModalContent();
+
+                const mocTitle = document.getElementById('mocTitle');
+                const dropdownMenu = document.getElementById('dropdownMenu');
+                mocTitle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const isMenuOpen = dropdownMenu.classList.contains('show');
+                    if (isMenuOpen) {
+                        window.location.href = '/';
+                    } else {
+                        dropdownMenu.classList.add('show');
+                    }
+                });
+                dropdownMenu.addEventListener('click', e => e.stopPropagation());
+                document.addEventListener('click', function(e) {
+                    if (dropdownMenu.classList.contains('show') && !dropdownMenu.contains(e.target) && e.target !== mocTitle) {
+                        dropdownMenu.classList.remove('show');
+                    }
+                });
+
+                // 弹窗逻辑
+                const triggerCard = document.getElementById('newsTriggerCard');
+                const modalOverlay = document.getElementById('modalOverlay');
+                const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+                function openModal() { modalOverlay.classList.add('show'); }
+                function closeModal() { modalOverlay.classList.remove('show'); }
+
+                triggerCard.addEventListener('click', openModal);
+                modalCloseBtn.addEventListener('click', closeModal);
+                modalOverlay.addEventListener('click', function(e) { if (e.target === modalOverlay) closeModal(); });
+                document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modalOverlay.classList.contains('show')) closeModal(); });
+            }
+
+            window.addEventListener('load', init);
             window.RubberEngine = RubberEngine;
             window.SmoothScrollEngine = SmoothScrollEngine;
         })();
