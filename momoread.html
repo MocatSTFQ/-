@@ -9,11 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: #fbfbfd;
@@ -45,7 +41,6 @@
             align-items: center;
             justify-content: center;
         }
-
         .header-title {
             font-weight: 700;
             font-size: clamp(1.8rem, 5vw, 2.2rem);
@@ -85,140 +80,194 @@
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
         }
-        .dropdown-menu.show {
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-
+        .dropdown-menu.show { transform: translateY(0); pointer-events: auto; }
         .menu-scroll {
-            overflow-x: auto;
-            overflow-y: visible;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            overscroll-behavior-x: contain;
-            padding-bottom: 4px;
+            overflow-x: auto; overflow-y: visible; scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch; scrollbar-width: none;
+            overscroll-behavior-x: contain; padding-bottom: 4px;
         }
         .menu-scroll::-webkit-scrollbar { display: none; }
-
         .menu-grid {
-            display: grid;
-            gap: clamp(20px, 3vw, 32px);
-            margin: 0 auto;
-            grid-template-columns: repeat(4, 1fr);
-            min-width: max-content;
+            display: grid; gap: clamp(20px, 3vw, 32px); margin: 0 auto;
+            grid-template-columns: repeat(4, 1fr); min-width: max-content;
         }
         .rubber-tablet .menu-grid { grid-template-columns: repeat(2, 1fr); }
         .rubber-phone .menu-grid { grid-template-columns: repeat(1, 1fr); gap: 24px; min-width: 100%; }
         .rubber-desktop .menu-grid, .rubber-wide .menu-grid { max-width: 1400px; margin: 0 auto; }
-
         .menu-section { text-align: left; min-width: 160px; }
         .menu-section h3 {
-            font-size: clamp(1.3rem, 3.5vw, 1.6rem);
-            font-weight: 700;
-            color: #1d1d1f;
-            margin-bottom: 16px;
-            letter-spacing: -0.01em;
-            border-bottom: 1px solid rgba(0,0,0,0.08);
+            font-size: clamp(1.3rem, 3.5vw, 1.6rem); font-weight: 700; color: #1d1d1f;
+            margin-bottom: 16px; letter-spacing: -0.01em; border-bottom: 1px solid rgba(0,0,0,0.08);
             padding-bottom: 10px;
         }
         .menu-section ul { list-style: none; }
         .menu-section li { margin: 10px 0; }
         .menu-section a {
-            text-decoration: none;
-            color: #3a3a3c;
-            font-size: clamp(1rem, 2.5vw, 1.1rem);
-            font-weight: 440;
-            transition: color 0.2s, transform 0.15s;
-            display: inline-block;
-            padding: 4px 0;
-            white-space: nowrap;
+            text-decoration: none; color: #3a3a3c; font-size: clamp(1rem, 2.5vw, 1.1rem);
+            font-weight: 440; transition: color 0.2s, transform 0.15s;
+            display: inline-block; padding: 4px 0; white-space: nowrap;
         }
         .menu-section a:hover { color: #b76e4b; transform: translateX(4px); }
-
         @media (max-width: 600px) {
             .dropdown-menu { top: 60px; max-height: calc(100vh - 60px); padding: 24px 16px; }
             .main-content { top: 60px; height: calc(100vh - 60px); }
         }
 
         .main-content {
-            position: fixed;
-            top: 72px;
-            left: 0;
-            width: 100%;
-            height: calc(100vh - 72px);
-            overflow-y: auto;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            overscroll-behavior-y: contain;
+            position: fixed; top: 72px; left: 0; width: 100%; height: calc(100vh - 72px);
+            overflow-y: auto; scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; overscroll-behavior-y: contain;
             padding-bottom: calc(var(--rubber-section-padding) * 2);
         }
         .main-content::-webkit-scrollbar { display: none; }
 
+        /* 海报卡片 */
         .cover-card {
-            width: 100%;
-            background: linear-gradient(145deg, #0b0b0c 0%, #1a1a1e 40%, #2a2a30 100%);
-            padding: clamp(40px, 8vw, 70px) clamp(20px, 5vw, 40px);
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
+            width: 100%; background-color: #e0e0e5;
+            padding: clamp(50px, 8vw, 80px) clamp(20px, 5vw, 40px);
+            text-align: center; position: relative; overflow: hidden;
             border: 0 solid transparent;
-            border-image: repeating-linear-gradient(
-                45deg,
-                #ff9a9e, #fad0c4, #fad0c4, #a18cd1, #a18cd1, #fbc2eb, #8fd3f4, #8fd3f4, #ff9a9e
-            ) 1;
-            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 20px rgba(160, 200, 255, 0.3), 0 0 40px rgba(200, 160, 255, 0.2);
-            min-height: clamp(180px, 30vw, 280px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border-image: repeating-linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #a18cd1, #a18cd1, #fbc2eb, #8fd3f4, #8fd3f4, #ff9a9e) 1;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.05) inset, 0 0 20px rgba(160, 200, 255, 0.3), 0 0 40px rgba(200, 160, 255, 0.2);
+            min-height: clamp(320px, 40vw, 420px);
+            display: flex; flex-direction: column; justify-content: center; color: #1d1d1f;
         }
         .cover-card::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -20%;
-            width: 140%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.08) 0%, transparent 60%);
-            pointer-events: none;
+            content: ""; position: absolute; top: -50%; left: -20%; width: 140%; height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.15) 0%, transparent 60%);
+            pointer-events: none; z-index: 1;
         }
         .cover-card::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
-            transform: skewX(-20deg);
-            animation: fullShine 5s ease-in-out infinite;
-            pointer-events: none;
-            filter: blur(4px);
+            content: ""; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: skewX(-20deg); animation: fullShine 5s ease-in-out infinite;
+            pointer-events: none; z-index: 1; filter: blur(4px);
         }
         @keyframes fullShine {
-            0% { left: -100%; opacity: 0; }
-            10% { opacity: 1; }
-            30% { left: 120%; opacity: 1; }
-            40% { left: 120%; opacity: 0; }
-            100% { left: -100%; opacity: 0; }
+            0% { left: -100%; opacity: 0; } 10% { opacity: 1; } 30% { left: 120%; opacity: 1; }
+            40% { left: 120%; opacity: 0; } 100% { left: -100%; opacity: 0; }
+        }
+        @keyframes slideX {
+            0% { transform: translateX(-120px); }
+            100% { transform: translateX(calc(100vw + 120px)); }
+        }
+        .cover-top-left {
+            position: absolute; top: clamp(20px, 3vw, 30px); left: clamp(20px, 3vw, 30px);
+            font-size: clamp(0.8rem, 2vw, 1rem); font-weight: 500; color: #86868b; letter-spacing: 1px; z-index: 4;
+        }
+        .cover-bottom-right {
+            position: absolute; bottom: clamp(20px, 3vw, 30px); right: clamp(20px, 3vw, 30px);
+            font-size: clamp(0.7rem, 1.8vw, 0.9rem); color: #86868b; z-index: 4;
+        }
+        .cover-center { position: relative; z-index: 4; }
+        .cover-nofeed {
+            font-size: clamp(3rem, 12vw, 6rem); font-weight: 700; letter-spacing: -0.03em;
+            color: #1d1d1f; margin-bottom: clamp(24px, 4vw, 36px); line-height: 1.1;
+        }
+        .cover-nofeed sup {
+            font-size: 0.4em;
+            color: #003153;
+            margin-left: 4px;
+            font-weight: 600;
+            vertical-align: super;
+        }
+        .cover-actions {
+            display: flex; align-items: center; justify-content: center;
+            gap: clamp(16px, 3vw, 24px); flex-wrap: wrap;
+        }
+        .card-btn {
+            background: transparent; border: 1.5px solid #0071e3; color: #0071e3;
+            padding: clamp(8px, 1.5vw, 12px) clamp(20px, 3vw, 28px);
+            border-radius: 40px; font-weight: 500; font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            text-decoration: none; transition: all 0.2s ease; white-space: nowrap; display: inline-block;
+            cursor: pointer;
+        }
+        .card-btn:hover { background-color: #0071e3; color: white; }
+        .sticker-emoji {
+            position: absolute; pointer-events: none; z-index: 5; user-select: none; opacity: 0.85;
+            white-space: nowrap;
+            animation: slideX var(--slide-speed, 8s) linear var(--slide-delay, 0s) infinite;
+            left: 0;
         }
 
-        .cover-placeholder {
-            position: relative;
-            z-index: 2;
-            opacity: 0.35;
-            font-size: clamp(1rem, 3vw, 1.4rem);
-            font-weight: 300;
-            letter-spacing: 3px;
-            color: rgba(255, 255, 255, 0.7);
+        /* 弹窗样式 */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px); z-index: 50; display: flex;
+            align-items: center; justify-content: center; visibility: hidden; opacity: 0;
+            transition: visibility 0.2s, opacity 0.2s;
         }
+        .modal-overlay.show { visibility: visible; opacity: 1; }
+        .modal-dialog {
+            background: white; border-radius: 28px; max-width: 620px; width: 90%; max-height: 80vh;
+            box-shadow: 0 16px 32px rgba(0,0,0,0.12); position: relative; z-index: 51;
+            display: flex; flex-direction: column; overflow: hidden;
+            padding: 0;
+        }
+        .modal-top-blur {
+            position: absolute; top: 0; left: 0; right: 0; height: 70px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+            z-index: 5; pointer-events: none;
+        }
+        .modal-bottom-blur {
+            position: absolute; bottom: 0; left: 0; right: 0; height: 70px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            mask-image: linear-gradient(to top, black 0%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to top, black 0%, transparent 100%);
+            z-index: 5; pointer-events: none;
+        }
+        .modal-close-btn {
+            position: absolute; top: 16px; left: 16px; width: 36px; height: 36px;
+            border-radius: 50%; background-color: #e5e5ea; border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background-color 0.2s; z-index: 6; flex-shrink: 0;
+        }
+        .modal-close-btn:hover { background-color: #d1d1d6; }
+        .modal-close-btn svg { width: 16px; height: 16px; stroke: #1d1d1f; stroke-width: 2; }
 
-        .content-inner {
-            padding: var(--rubber-section-padding) var(--rubber-section-padding) 0;
+        .modal-content-area {
+            overflow-y: auto;
+            padding: 0;
+            scrollbar-width: thin; scrollbar-color: #c8c8ce transparent;
+            z-index: 1;
         }
+        .modal-content-area::-webkit-scrollbar { width: 6px; }
+        .modal-content-area::-webkit-scrollbar-thumb { background: #c8c8ce; border-radius: 3px; }
+        .modal-title-text {
+            font-size: 1.8rem; font-weight: 700; color: #1d1d1f; margin: 24px 0 4px 48px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        .modal-meta {
+            font-size: 0.9rem; color: #6e6e73; margin: 0 0 20px 48px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        .modal-body, .modal-body * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+        }
+        .modal-body {
+            font-size: 0.95rem; color: #2c2c2e; line-height: 1.7;
+            padding-left: 48px; padding-right: 24px; padding-bottom: 24px;
+        }
+        .modal-body h2 { font-size: 1.4rem; font-weight: 600; margin: 1.5em 0 0.6em; color: #1d1d1f; }
+        .modal-body h3 { font-size: 1.1rem; font-weight: 600; margin: 1.2em 0 0.4em; color: #1d1d1f; }
+        .modal-body p { margin-bottom: 1em; }
+        .modal-body blockquote {
+            margin: 1em 0;
+            padding: 0.8em 1.2em;
+            background: #f9f9fb;
+            border-left: 4px solid #b76e4b;
+            color: #3a3a3c;
+            border-radius: 0 8px 8px 0;
+        }
+        .modal-body ul { margin: 0.5em 0 1em 1.5em; }
+        .modal-body li { margin-bottom: 0.3em; }
+
+        .content-inner { padding: var(--rubber-section-padding) var(--rubber-section-padding) 0; }
 
         .wide-card {
             background: white;
@@ -265,6 +314,7 @@
         <div class="header-title" id="mocTitle" role="button" aria-label="打开导航菜单" tabindex="0">Moc</div>
     </header>
 
+    <!-- 下拉菜单（与主站一致） -->
     <div class="dropdown-menu" id="dropdownMenu" role="navigation" aria-label="站点导航">
         <div class="menu-scroll" id="menuScroll">
             <div class="menu-grid" id="menuGrid">
@@ -311,9 +361,21 @@
     </div>
 
     <div class="main-content" id="mainContent">
-        <div class="cover-card">
-            <span class="cover-placeholder">莫川读书会 · 敬请期待</span>
+        <!-- 海报（动态贴纸+三号线主题） -->
+        <div class="cover-card" id="coverCard">
+            <div class="cover-top-left">Today's Novel Vol.001</div>
+            <div class="cover-center">
+                <h1 class="cover-nofeed">
+                    三号线<sup>#2016</sup>
+                </h1>
+                <div class="cover-actions">
+                    <a href="#" class="card-btn" id="introBtn">查看简介</a>
+                </div>
+            </div>
+            <div class="cover-bottom-right">广告创意</div>
         </div>
+
+        <!-- 下方保留维护中卡片 -->
         <div class="content-inner">
             <div class="wide-card">
                 <div class="wide-card-image img-dark">🔧</div>
@@ -322,6 +384,18 @@
                     <p class="wide-card-desc">该页面暂时不可用，请稍后再来。</p>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- 弹窗（三号线简介） -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-dialog">
+            <div class="modal-top-blur"></div>
+            <div class="modal-bottom-blur"></div>
+            <button class="modal-close-btn" id="modalCloseBtn">
+                <svg viewBox="0 0 14 14" fill="none"><line x1="1" y1="1" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="13" y1="1" x2="1" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="modal-content-area" id="modalContentArea"></div>
         </div>
     </div>
 
@@ -346,14 +420,10 @@
                             }
                         }
                     }, { passive: false });
-                    el.addEventListener('touchstart', (e) => {
-                        startX = e.touches[0].pageX;
-                        scrollLeft = el.scrollLeft;
-                    }, { passive: true });
+                    el.addEventListener('touchstart', (e) => { startX = e.touches[0].pageX; scrollLeft = el.scrollLeft; }, { passive: true });
                     el.addEventListener('touchmove', (e) => {
                         if (!startX) return;
-                        const x = e.touches[0].pageX;
-                        const walk = (startX - x) * 1.5;
+                        const x = e.touches[0].pageX; const walk = (startX - x) * 1.5;
                         el.scrollLeft = scrollLeft + walk;
                     }, { passive: true });
                     el.addEventListener('touchend', () => { startX = null; });
@@ -365,57 +435,165 @@
                 currentDevice: 'desktop',
                 init: function() { this._detectAndApply(); this._bindEvents(); },
                 _detectAndApply: function() {
-                    const width = window.innerWidth;
-                    const body = document.body;
+                    const width = window.innerWidth; const body = document.body;
                     body.classList.remove('rubber-phone', 'rubber-tablet', 'rubber-desktop', 'rubber-wide');
                     let device;
-                    if (width < this.breakpoints.phone) {
-                        body.classList.add('rubber-phone'); device = 'phone';
-                    } else if (width < this.breakpoints.tablet) {
-                        body.classList.add('rubber-tablet'); device = 'tablet';
-                    } else if (width < this.breakpoints.desktop) {
-                        body.classList.add('rubber-desktop'); device = 'desktop';
-                    } else {
-                        body.classList.add('rubber-wide'); device = 'wide';
-                    }
+                    if (width < this.breakpoints.phone) { body.classList.add('rubber-phone'); device = 'phone'; }
+                    else if (width < this.breakpoints.tablet) { body.classList.add('rubber-tablet'); device = 'tablet'; }
+                    else if (width < this.breakpoints.desktop) { body.classList.add('rubber-desktop'); device = 'desktop'; }
+                    else { body.classList.add('rubber-wide'); device = 'wide'; }
                     this.currentDevice = device;
                     body.setAttribute('data-rubber-device', device);
                 },
                 _bindEvents: function() {
                     let resizeTimer;
-                    window.addEventListener('resize', () => {
-                        clearTimeout(resizeTimer);
-                        resizeTimer = setTimeout(() => this._detectAndApply(), 100);
-                    });
-                    window.addEventListener('orientationchange', () => {
-                        setTimeout(() => this._detectAndApply(), 50);
-                    });
+                    window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => this._detectAndApply(), 100); });
+                    window.addEventListener('orientationchange', () => { setTimeout(() => this._detectAndApply(), 50); });
                 }
             };
 
-            SmoothScrollEngine.init();
-            RubberEngine.init();
-
-            const mocTitle = document.getElementById('mocTitle');
-            const dropdownMenu = document.getElementById('dropdownMenu');
-
-            mocTitle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const isMenuOpen = dropdownMenu.classList.contains('show');
-                if (isMenuOpen) {
-                    window.location.href = '/';
-                } else {
-                    dropdownMenu.classList.add('show');
+            // 动态飘浮贴纸
+            function createStickers() {
+                const coverCard = document.getElementById('coverCard');
+                if (!coverCard) return;
+                coverCard.querySelectorAll('.sticker-emoji').forEach(s => s.remove());
+                const emojis = [
+                    '😺','🐱','🐶','🐼','🦊','🐸','🐨','🦁','🐮','🐷',
+                    '🌈','✨','⭐','🌟','💫','🔥','💧','❄️','☀️','🌙',
+                    '🎈','🎉','🎵','🎨','📚','💡','🔮','🍀','🌸','🌿',
+                    '🎧','💻','📱','🎭','🚀','🛸','🎯','🧩','🖍️','📌',
+                    '🫐','🍋','🍊','🥑','🍕','🍜','☕','🧃','🧸','🪴',
+                    '🕶️','🎒','🧤','📎','✂️','📏','🔋','🧲','🛎️','🎛️'
+                ];
+                const shuffled = [...emojis].sort(() => Math.random() - 0.5);
+                const count = Math.floor(Math.random() * 2) + 5;
+                const usedEmojis = shuffled.slice(0, count);
+                for (let i = 0; i < count; i++) {
+                    const span = document.createElement('span');
+                    span.className = 'sticker-emoji';
+                    span.textContent = usedEmojis[i];
+                    const top = (Math.random() * 80 + 10).toFixed(1);
+                    const size = (Math.random() * 1.5 + 2.0).toFixed(2);
+                    const speed = (Math.random() * 12 + 8).toFixed(1);
+                    const delay = (Math.random() * 6).toFixed(1);
+                    span.style.top = `${top}%`;
+                    span.style.fontSize = `${size}rem`;
+                    span.style.setProperty('--slide-speed', `${speed}s`);
+                    span.style.setProperty('--slide-delay', `-${delay}s`);
+                    coverCard.appendChild(span);
                 }
-            });
+            }
 
-            dropdownMenu.addEventListener('click', e => e.stopPropagation());
-            document.addEventListener('click', function(e) {
-                if (dropdownMenu.classList.contains('show')) {
-                    dropdownMenu.classList.remove('show');
-                }
-            });
+            // 填充弹窗内容：三号线完整新闻稿
+            function fillModalContent() {
+                const contentArea = document.getElementById('modalContentArea');
+                if (!contentArea) return;
+                contentArea.innerHTML = `
+                    <div class="modal-title-text">《三号线》#2016</div>
+                    <div class="modal-meta"><span>✍️ 作者：莫川</span><span>📅 2026年完结</span><span>📖 约16万字</span></div>
+                    <div class="modal-body">
+                        <h2>当末班车驶入时间的裂缝：三个陌生人，一场无法醒来的循环</h2>
+                        <p>由莫川创作的长篇悬疑小说《三号线》，已于2026年正式完结。这部历时五个月构思与打磨的作品，以约16万字的篇幅，构建了一座虚实交织的地下迷宫——在这里，时间不会前进，记忆无法信任，而一列早已停运的地铁，却日复一日地搭载着那些“舍不得走的人”。</p>
 
+                        <h3>故事概述：一列不属于任何时刻的列车</h3>
+                        <p>《三号线》的故事始于一个再普通不过的夜晚。程序员向北像往常一样加完班，赶上了城市地铁三号线的末班车。他在车上睡着，醒来后发现自己坐在终点站的长椅上，手机屏幕显示的日期却是三天前。起初他以为是既视感，但当他连续三次坐上同一班车、经历同一段旅程后，他不得不承认一个荒谬的事实：他被困在了一个以“三天”为单位的时间循环里。</p>
+                        <p>真正让事情变得不一样的，是他在末班车上遇到的两个人。</p>
+                        <p>向南，一个几乎不出门的自由插画师。她从小就能“看见”别人看不见的东西——颜色、情绪、模糊的轮廓，那些碎片会强行涌入她的意识，迫使她画下她无法理解的画面。她以为这是病。</p>
+                        <p>向东，一个沉默寡言的快递员，退伍军人，有着超乎常人的记忆力。他能记住每一次循环的每一个细节——不仅是自己的，还有别人的。他记得向南十岁时扎马尾辫的样子，记得向北十七岁穿校服的背影。因为他记得，他比任何人都更早意识到：他们三个人，很久以前就坐过同一班车。</p>
+                        <p>而车厢最远的角落里，永远坐着一个穿红色外套的女人。她从不说话，脸无法被记住。向北靠近她时，会觉得心脏被什么东西攥紧——那是他失踪了三个月的女友，林晚。</p>
+                        <p>三个人，三个方向，一列不该存在的列车。他们必须弄清这辆车的真相，才能在记忆彻底消失之前，找到出口。</p>
+
+                        <h3>人物群像：三种执念，一扇共同的门</h3>
+                        <p><strong>向北</strong>：程序员，理性、克制，习惯用数据解释一切。他的手机里存着与女友林晚的三千四百二十七条聊天记录，一条未删。他坐上末班车的理由很简单——林晚在这班车上消失了，他不肯承认她已经离开。</p>
+                        <p><strong>向南</strong>：插画师，敏感、孤独，从小被自己“看见”的能力折磨。她的速写本里画满了她不该知道的东西：一个废弃的站台、一只刻字的怀表、一个穿红衣服的女人。她以为自己在预见未来，却不知道那都是被遗忘的过去。</p>
+                        <p><strong>向东</strong>：快递员，沉默、坚韧，唯一拥有完整记忆的人。他每晚乘坐末班车，是为了寻找去世的奶奶——奶奶曾告诉他，“这条线会记住所有舍不得走的人”。他把自己锚定在循环里，也成了另外两人不会彻底迷失的“锚点”。</p>
+                        <p><strong>林晚/红衣女人</strong>：向北的女友，已经在三号线上遭遇事故身亡。但她“舍不得走”，于是以记忆的形态留在了这辆车上，成为所有人必须面对的最后一道选择题。</p>
+
+                        <h3>故事亮点：当悬疑遇见心理，当科幻回归情感</h3>
+                        <p><strong>1. 独特的循环设定，层层递进的规则探索</strong><br>与传统“时间循环”题材不同，《三号线》的循环规则并非一次性交代，而是随着向北的每一次回溯逐步揭露：下车会被强制重置、中途站无法真正离开、红衣女人每轮向车头移动一个座位……读者将与主角一同推理，感受“靠近真相又差一步”的张力。</p>
+                        <p><strong>2. 记忆与身份的哲学追问</strong><br>小说深刻探讨了“记忆即身份”的主题。当向北开始忘记林晚说话的语气，当向南发现自己的“预见”其实是童年记忆的变形，当向东背负着所有人的过去——读者会被迫思考：如果记忆可以被覆盖、被篡改、被遗忘，那我还是我吗？</p>
+                        <p><strong>3. 三条人物弧光，最终交汇于“告别”</strong><br>向北从“不肯承认林晚已死”到“学会让她走”；向南从“恐惧自己的不同”到“接受差异是天赋而非诅咒”；向东从“沉溺于寻找”到“允许自己往前走”。三个人的成长线相互映照，使故事在悬疑外壳下拥有了温暖的情感内核。</p>
+                        <p><strong>4. 密集的伏笔与意象系统</strong><br>怀表、糖、速写本、红色外套、银杏树、三个颜色的按钮……每一个反复出现的意象都在最后形成闭环。许多读者在二刷时会发现，早在第一章就埋下了指向结局的线索。</p>
+
+                        <h3>试读章节：第一章《末班车》节选</h3>
+                        <blockquote>
+                            <p>向北已经记不清这是第几次了。</p>
+                            <p>他的公寓在城市的东边，一套四十平米的开间，窗户正对着高架桥。每天晚上十一点，他会准时关掉电脑，把桌上的外卖盒收进垃圾袋，然后站在洗手台前刷牙。镜子里的人眼睛下面是青黑色的，颧骨比三个月前突出了不少。他以前不这样——以前他的作息很规律，十一点睡觉，七点起床，午休时去公司楼下的健身房跑半小时。那是“以前”。以前有很多东西，现在都没有了。</p>
+                            <p>他拿起桌上的手机，看了一眼屏幕。没有新消息。他明知道不会有，但还是每天都看。手机里有一个聊天窗口，最后一条消息停留在三个月前的晚上八点十七分。林晚说：“我到了，你在哪？”他没有回复。不是不想回，是没来得及。等他看到这条消息的时候，已经过了四个小时，一切都来不及了。</p>
+                            <p>聊天记录他一条都没有删。从两年前的第一句“你好，我是林晚”到最后一句“你在哪”，一共三千四百二十七条。他有时候会从头翻到尾，像读一本他已经能背下来的书。</p>
+                            <p>……</p>
+                            <p>十一点五十八分，他到达了终点站。</p>
+                            <p>闸机在他身后关闭，发出沉闷的金属撞击声，在空旷的候车区里回荡了很久。白炽灯在头顶嗡嗡作响，那种声音很低，像有什么东西在墙壁里面爬。三号线的终点站和其他地铁站不一样——这里没有广告牌，没有电子屏，没有工作人员。只有一排排白色的灯管，把整个候车区照得惨白。向北有时候觉得这里不像地铁站，更像一个手术室。干净，冰冷，没有多余的东西。</p>
+                            <p>他站在站台边缘，看着轨道深处的黑暗。列车还没有来。轨道里有一股风，从隧道深处吹出来，带着铁锈和灰尘的味道。</p>
+                            <p>远处传来列车进站的声音。那种声音很特别——不是现代地铁的电动音，而是更古老的、机械的声音，像铁轮碾过铁轨，像齿轮咬合。声音由远及近，越来越大，从隧道深处传出来，在空旷的站台上来回反射，变成一种低沉的轰鸣。</p>
+                            <p>车头的灯光刺破黑暗，像一只缓缓睁开的眼睛。</p>
+                            <p>向北看着那束光，没有眨眼。</p>
+                            <p>列车进站。车门打开。</p>
+                            <p>他走进去。</p>
+                            <p>车厢里的灯光比站台上还要白，白得几乎失真。座椅是浅蓝色的塑料，扶手是银色的金属杆，地板上有一层薄薄的灰。这辆车看起来像正常的地铁，但又有什么地方不对——太安静了。没有广播报站的声音，没有列车运行的晃动，甚至没有车轮和铁轨摩擦的噪音。它只是在移动，安静地、匀速地移动，像一艘在真空里航行的船。</p>
+                            <p>（更多精彩，请阅读完整作品）</p>
+                        </blockquote>
+
+                        <h3>创作背景：从“如果地铁不再到站”开始</h3>
+                        <p>据作者莫川自述，《三号线》的灵感源于一次深夜加班后赶末班地铁的经历。“站在空荡荡的站台上，我突然想：如果这班车永远不到站，我会怎样？我的手机里还留着没回复的消息，没吃完的晚饭，没说完的话。”这个念头逐渐发酵，最终演变成了“循环 + 记忆 + 告别”的三重主题。</p>
+                        <p>小说的写作过程跨越了两年。作者曾在采访中提及，最难写的章节是第十四章《怀表打开》，那一段关于向北刻表盖、林晚出事的闪回，他改了七稿。“不是技术上的难，是心理上的。你必须让自己进入那个‘来不及’的情绪里。”</p>
+
+                        <h3>读者反馈与作品定位</h3>
+                        <p>自连载以来，《三号线》在站内收获了超过两千条读者评论。有读者表示“这是近年来读过最让人心痛的悬疑小说”，也有读者评价“表面是科幻，内核是治愈”。作品在悬疑氛围、人物塑造和情感张力之间找到了平衡，被部分读者列为“年度必读长篇”。</p>
+
+                        <div style="background:#f9f9fb; border-radius:16px; padding:1.2rem; margin:1.5em 0;">
+                            <p style="font-weight:600; margin-bottom:0.8em;">📌 作品信息</p>
+                            <p style="margin-bottom:0.3em;"><strong>书名：</strong>《三号线》</p>
+                            <p style="margin-bottom:0.3em;"><strong>作者：</strong>莫川</p>
+                            <p style="margin-bottom:0.3em;"><strong>标签：</strong>悬疑 / 心理 / 都市 / 治愈</p>
+                            <p style="margin-bottom:0.3em;"><strong>状态：</strong>已完结</p>
+                            <p style="margin-bottom:0;"><strong>字数：</strong>约16万字</p>
+                        </div>
+
+                        <p style="color:#6e6e73; font-size:0.85rem; margin-top:1.8em;">*本简介由 Momocat 文学编辑部撰写，更多内容请访问 Momoread。</p>
+                    </div>
+                `;
+            }
+
+            function init() {
+                SmoothScrollEngine.init();
+                RubberEngine.init();
+                createStickers();
+                fillModalContent();
+
+                const mocTitle = document.getElementById('mocTitle');
+                const dropdownMenu = document.getElementById('dropdownMenu');
+                mocTitle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const isMenuOpen = dropdownMenu.classList.contains('show');
+                    if (isMenuOpen) {
+                        window.location.href = '/';
+                    } else {
+                        dropdownMenu.classList.add('show');
+                    }
+                });
+                dropdownMenu.addEventListener('click', e => e.stopPropagation());
+                document.addEventListener('click', function(e) {
+                    if (dropdownMenu.classList.contains('show') && !dropdownMenu.contains(e.target) && e.target !== mocTitle) {
+                        dropdownMenu.classList.remove('show');
+                    }
+                });
+
+                // 弹窗逻辑
+                const introBtn = document.getElementById('introBtn');
+                const modalOverlay = document.getElementById('modalOverlay');
+                const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+                function openModal(e) { e.preventDefault(); modalOverlay.classList.add('show'); }
+                function closeModal() { modalOverlay.classList.remove('show'); }
+
+                introBtn.addEventListener('click', openModal);
+                modalCloseBtn.addEventListener('click', closeModal);
+                modalOverlay.addEventListener('click', function(e) { if (e.target === modalOverlay) closeModal(); });
+                document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modalOverlay.classList.contains('show')) closeModal(); });
+            }
+
+            window.addEventListener('load', init);
             window.RubberEngine = RubberEngine;
             window.SmoothScrollEngine = SmoothScrollEngine;
         })();
