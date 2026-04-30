@@ -119,228 +119,153 @@
         }
         .main-content::-webkit-scrollbar { display: none; }
 
-        /* 发布会预告动画容器 */
-        .cinema {
-            width: 100%;
-            background: #000000;
-            overflow: hidden;
+        /* 海报 */
+        .cover-card {
+            width: 100%; background-color: #e0e0e5;
+            padding: clamp(50px, 8vw, 80px) clamp(20px, 5vw, 40px);
+            text-align: center; position: relative; overflow: hidden;
+            border: 0 solid transparent;
+            border-image: repeating-linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #a18cd1, #a18cd1, #fbc2eb, #8fd3f4, #8fd3f4, #ff9a9e) 1;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.05) inset, 0 0 20px rgba(160, 200, 255, 0.3), 0 0 40px rgba(200, 160, 255, 0.2);
+            min-height: clamp(320px, 40vw, 420px);
+            display: flex; flex-direction: column; justify-content: center; color: #1d1d1f;
         }
-        .stage {
-            position: relative;
-            aspect-ratio: 16 / 9;
-            background: #000;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .cover-card::before {
+            content: ""; position: absolute; top: -50%; left: -20%; width: 140%; height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.15) 0%, transparent 60%);
+            pointer-events: none; z-index: 1;
         }
-        .scene-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            color: white;
-            text-align: center;
-            background: radial-gradient(circle at center, #0a0c18 0%, #000000 100%);
+        .cover-card::after {
+            content: ""; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: skewX(-20deg); animation: fullShine 5s ease-in-out infinite;
+            pointer-events: none; z-index: 1; filter: blur(4px);
         }
-        .scene-title {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            max-width: 85%;
-            margin: 0 auto;
+        @keyframes fullShine {
+            0% { left: -100%; opacity: 0; } 10% { opacity: 1; } 30% { left: 120%; opacity: 1; }
+            40% { left: 120%; opacity: 0; } 100% { left: -100%; opacity: 0; }
         }
-        .sub {
-            font-size: 1.2rem;
-            opacity: 0.8;
-            margin-top: 1rem;
-            font-weight: 400;
+        @keyframes slideX {
+            0% { transform: translateX(-120px); }
+            100% { transform: translateX(calc(100vw + 120px)); }
         }
-        @keyframes floatIn {
-            0% { opacity: 0; transform: scale(0.9) translateY(20px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
+        .cover-top-left {
+            position: absolute; top: clamp(20px, 3vw, 30px); left: clamp(20px, 3vw, 30px);
+            font-size: clamp(0.8rem, 2vw, 1rem); font-weight: 500; color: #86868b; letter-spacing: 1px; z-index: 4;
         }
-        .envelope {
-            font-size: 6rem;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
-            animation: floatIn 0.8s ease-out forwards;
+        .cover-bottom-right {
+            position: absolute; bottom: clamp(20px, 3vw, 30px); right: clamp(20px, 3vw, 30px);
+            font-size: clamp(0.7rem, 1.8vw, 0.9rem); color: #86868b; z-index: 4;
         }
-        .calendar-box {
-            background: rgba(255,255,240,0.9);
-            padding: 1.5rem 2rem;
-            border-radius: 48px;
-            box-shadow: 0 20px 30px rgba(0,0,0,0.3);
-            backdrop-filter: blur(4px);
+        .cover-center { position: relative; z-index: 4; }
+        .cover-nofeed {
+            font-size: clamp(3rem, 12vw, 6rem); font-weight: 700; letter-spacing: -0.03em;
+            color: #1d1d1f; margin-bottom: clamp(24px, 4vw, 36px); line-height: 1.1;
         }
-        .calendar-date {
-            font-size: 3.2rem;
-            font-weight: 800;
-            font-family: monospace;
-            color: #1e2a3a;
-            letter-spacing: 2px;
+        .cover-actions {
+            display: flex; align-items: center; justify-content: center;
+            gap: clamp(16px, 3vw, 24px); flex-wrap: wrap;
         }
-        .cards-row {
-            display: flex;
-            gap: 1.2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            padding: 0 1rem;
+        .card-btn {
+            background: transparent; border: 1.5px solid #0071e3; color: #0071e3;
+            padding: clamp(8px, 1.5vw, 12px) clamp(20px, 3vw, 28px);
+            border-radius: 40px; font-weight: 500; font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            text-decoration: none; transition: all 0.2s ease; white-space: nowrap; display: inline-block;
         }
-        .card-item {
-            background: rgba(20, 30, 45, 0.85);
+        .card-btn:hover { background-color: #0071e3; color: white; }
+        .underline-btn {
+            display: inline-flex; align-items: center; gap: 6px; color: #0071e3;
+            font-weight: 500; font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            text-decoration: none; border-bottom: 1.5px solid transparent;
+            transition: border-color 0.2s, color 0.2s; padding-bottom: 2px; white-space: nowrap;
+        }
+        .underline-btn:hover { border-bottom-color: #0071e3; }
+        .share-icon { display: inline-flex; align-items: center; margin-left: 2px; }
+
+        /* 动画贴纸 */
+        .sticker-emoji {
+            position: absolute; pointer-events: none; z-index: 5; user-select: none; opacity: 0.85;
+            white-space: nowrap;
+            animation: slideX var(--slide-speed, 8s) linear var(--slide-delay, 0s) infinite;
+            left: 0; /* 起始由关键帧控制 */
+        }
+
+        /* 弹窗 */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px); z-index: 50; display: flex;
+            align-items: center; justify-content: center; visibility: hidden; opacity: 0;
+            transition: visibility 0.2s, opacity 0.2s;
+        }
+        .modal-overlay.show { visibility: visible; opacity: 1; }
+        .modal-dialog {
+            background: white; border-radius: 28px; max-width: 620px; width: 90%; max-height: 80vh;
+            box-shadow: 0 16px 32px rgba(0,0,0,0.12); position: relative; z-index: 51;
+            display: flex; flex-direction: column; overflow: hidden;
+            padding: 0;
+        }
+        .modal-top-blur {
+            position: absolute; top: 0; left: 0; right: 0; height: 70px;
             backdrop-filter: blur(12px);
-            border-radius: 28px;
-            padding: 1rem 1.8rem;
-            font-weight: 600;
-            font-size: 1.2rem;
-            border: 1px solid rgba(255,215,0,0.4);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            transform: scale(0.8);
-            opacity: 0;
-            animation: cardPop 0.4s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
+            -webkit-backdrop-filter: blur(12px);
+            mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+            z-index: 5; pointer-events: none;
         }
-        .card-item:nth-child(1) { animation-delay: 0.05s; background: #2c3e66; }
-        .card-item:nth-child(2) { animation-delay: 0.2s; background: #8b5a2b; }
-        .card-item:nth-child(3) { animation-delay: 0.35s; background: #2c5a3e; }
-        @keyframes cardPop {
-            0% { opacity: 0; transform: scale(0.7) translateY(30px);}
-            100% { opacity: 1; transform: scale(1) translateY(0);}
+        .modal-bottom-blur {
+            position: absolute; bottom: 0; left: 0; right: 0; height: 70px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            mask-image: linear-gradient(to top, black 0%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to top, black 0%, transparent 100%);
+            z-index: 5; pointer-events: none;
         }
-        .keyword-strip {
-            display: flex;
-            gap: 1.8rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            font-size: 1.8rem;
-            font-weight: bold;
-            background: rgba(0,0,0,0.6);
-            padding: 2rem 2rem;
-            border-radius: 60px;
-            backdrop-filter: blur(8px);
+        .modal-close-btn {
+            position: absolute; top: 16px; left: 16px; width: 36px; height: 36px;
+            border-radius: 50%; background-color: #e5e5ea; border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background-color 0.2s; z-index: 6; flex-shrink: 0;
         }
-        .keyword {
-            background: #f5c542;
-            color: #1e1a0c;
-            padding: 0.4rem 1.2rem;
-            border-radius: 60px;
-            font-size: 1.3rem;
-            font-weight: 600;
-            opacity: 0;
-            animation: wordFlash 0.6s ease-in-out forwards;
+        .modal-close-btn:hover { background-color: #d1d1d6; }
+        .modal-close-btn svg { width: 16px; height: 16px; stroke: #1d1d1f; stroke-width: 2; }
+
+        .modal-content-area {
+            overflow-y: auto; 
+            padding: 0;
+            scrollbar-width: thin; scrollbar-color: #c8c8ce transparent;
+            z-index: 1;
         }
-        @keyframes wordFlash {
-            0% { opacity: 0; transform: scale(0.7); }
-            70% { opacity: 1; transform: scale(1.1);}
-            100% { opacity: 1; transform: scale(1);}
+        .modal-content-area::-webkit-scrollbar { width: 6px; }
+        .modal-content-area::-webkit-scrollbar-thumb { background: #c8c8ce; border-radius: 3px; }
+        .modal-title-text {
+            font-size: 1.8rem; font-weight: 700; color: #1d1d1f; margin: 24px 0 4px 48px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
-        .book-cover {
-            background: linear-gradient(145deg, #e9e3d5, #c9bfa7);
-            padding: 1.5rem 3rem;
-            border-radius: 18px;
-            box-shadow: 0 20px 30px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,200,0.8);
-            transform: rotate(-2deg);
+        .modal-meta {
+            font-size: 0.9rem; color: #6e6e73; margin: 0 0 20px 48px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
-        .book-cover span {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #2d2418;
-            letter-spacing: 2px;
+        .modal-body, .modal-body * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
         }
-        .reminder-box {
-            background: black;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
+        .modal-body {
+            font-size: 0.95rem; color: #2c2c2e; line-height: 1.7;
+            padding-left: 48px; padding-right: 24px; padding-bottom: 24px;
         }
-        .reminder-text {
-            color: white;
-            font-size: 2rem;
-            font-weight: 500;
-            background: rgba(255,255,255,0.05);
-            padding: 1rem 2rem;
-            border-left: 4px solid gold;
-            max-width: 80%;
-        }
-        .caption-area {
-            background: #111216;
-            padding: 1.2rem 2rem;
-            border-top: 1px solid #2a2e3a;
-            color: #ddd9ce;
-            font-size: 1.1rem;
-            font-weight: 400;
-            line-height: 1.4;
-            text-align: center;
-            letter-spacing: 0.3px;
-            min-height: 85px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(2px);
-        }
-        .controls {
-            background: #0b0d12;
-            padding: 1rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-        .time-info {
-            font-family: monospace;
-            font-size: 1.2rem;
-            font-weight: 500;
-            background: #1f2128;
-            padding: 0.3rem 0.9rem;
-            border-radius: 40px;
-            color: #e5c28e;
-        }
-        .progress-bar-container {
-            flex: 3;
-            min-width: 150px;
-            height: 6px;
-            background: #2c2f38;
-            border-radius: 6px;
-            cursor: pointer;
-            position: relative;
-        }
-        .progress-fill {
-            width: 0%;
-            height: 100%;
-            background: #e5b53c;
-            border-radius: 6px;
-            transition: width 0.05s linear;
-        }
-        button {
-            background: #2c2f3a;
-            border: none;
-            color: #f0e6c5;
-            font-size: 1rem;
-            padding: 0.4rem 1rem;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: 0.2s;
-        }
-        button:hover {
-            background: #4a4f5e;
-            color: white;
-        }
-        .play-btn {
-            background: #4f3b1c;
-            color: #ffeaac;
-        }
-        .reset-btn {
-            background: #2a2a2a;
+        .modal-body h2 { font-size: 1.4rem; font-weight: 600; margin: 1.5em 0 0.6em; color: #1d1d1f; }
+        .modal-body h3 { font-size: 1.1rem; font-weight: 600; margin: 1.2em 0 0.4em; color: #1d1d1f; }
+        .modal-body p { margin-bottom: 1em; }
+        .modal-body ul, .modal-body ol { margin: 0.5em 0 1em 1.2em; }
+        .modal-body li { margin-bottom: 0.3em; }
+        .modal-body table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.9rem; }
+        .modal-body th, .modal-body td { border: 1px solid #d2d2d7; padding: 6px 10px; text-align: left; }
+        .modal-body th { background-color: #f5f5f7; font-weight: 600; color: #1d1d1f; }
+        .modal-body code {
+            background-color: #f0f0f5;
+            padding: 0.15em 0.4em;
+            border-radius: 3px;
+            font-size: 0.9em;
         }
 
         .content-inner { padding: var(--rubber-section-padding) var(--rubber-section-padding) 0; }
@@ -364,13 +289,6 @@
         }
         .wide-card-title { font-size: clamp(1.8rem, 6vw, 2.8rem); font-weight: 600; letter-spacing: -0.02em; color: #1d1d1f; margin-bottom: clamp(16px, 3vw, 24px); }
         .wide-card-desc { color: #6e6e73; font-size: clamp(1rem, 3vw, 1.2rem); margin-bottom: 24px; }
-        .card-btn {
-            background: transparent; border: 1.5px solid #0071e3; color: #0071e3;
-            padding: clamp(8px, 1.5vw, 12px) clamp(20px, 3vw, 28px);
-            border-radius: 40px; font-weight: 500; font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-            text-decoration: none; transition: all 0.2s ease; white-space: nowrap; display: inline-block;
-        }
-        .card-btn:hover { background-color: #0071e3; color: white; }
 
         .card-grid {
             display: grid; gap: var(--rubber-card-gap); margin: 0 auto;
@@ -416,25 +334,23 @@
     </div>
 
     <div class="main-content" id="mainContent">
-        <!-- 发布会预告动画（嵌入自 deepseek_html_20260426_2813b7.html） -->
-        <div class="cinema">
-            <div class="stage" id="stage">
-                <div class="scene-container" id="sceneContainer">
-                    <div id="dynamicScene" style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column;">
-                        <div class="envelope">✉️</div>
-                        <div class="sub" style="margin-top:0.8rem;">莫川读书会</div>
-                    </div>
+        <div class="cover-card" id="coverCard">
+            <div class="cover-top-left">MOC#001</div>
+            <div class="cover-center">
+                <h1 class="cover-nofeed">Nofeed</h1>
+                <div class="cover-actions">
+                    <a href="nofeed" class="card-btn">试用</a>
+                    <a href="#" class="underline-btn" id="howItWorksBtn">
+                        How It Works?
+                        <span class="share-icon">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.5 4.5L3.5 10.5M3.5 4.5H8.5V9.5M3.5 1.5H12.5V10.5V12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                    </a>
                 </div>
             </div>
-            <div class="caption-area" id="captionText">莫川读书会……要变了。</div>
-            <div class="controls">
-                <div class="time-info" id="timeDisplay">00.0s / 50.0s</div>
-                <div class="progress-bar-container" id="progressBar">
-                    <div class="progress-fill" id="progressFill"></div>
-                </div>
-                <button class="play-btn" id="playBtn">▶ 播放</button>
-                <button class="reset-btn" id="resetBtn">↺ 重置</button>
-            </div>
+            <div class="cover-bottom-right">Headline</div>
         </div>
 
         <div class="content-inner">
@@ -467,6 +383,18 @@
                     </div>
                 </a>
             </div>
+        </div>
+    </div>
+
+    <!-- 弹窗 -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-dialog">
+            <div class="modal-top-blur"></div>
+            <div class="modal-bottom-blur"></div>
+            <button class="modal-close-btn" id="modalCloseBtn">
+                <svg viewBox="0 0 14 14" fill="none"><line x1="1" y1="1" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="13" y1="1" x2="1" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <div class="modal-content-area" id="modalContentArea"></div>
         </div>
     </div>
 
@@ -532,334 +460,125 @@
                 }
             };
 
-            // ======================= 时间轴关键帧 =======================
-            const timeline = [
-                { start: 0, end: 5, type: "envelope", caption: "莫川读书会……要变了。" },
-                { start: 5, end: 15, type: "calendar", caption: "从今年7月1日起，一个全新的订阅时代即将开启。" },
-                { start: 15, end: 25, type: "cards", caption: "不是涨价，而是透明。不是折腾，而是选择。" },
-                { start: 25, end: 35, type: "keywords", caption: "你会是哪一档？你的权益会发生什么变化？" },
-                { start: 35, end: 45, type: "book", caption: "6月1日，莫川读书会 · 全新订阅制度正式发布。不见不散。" },
-                { start: 45, end: 50, type: "reminder", caption: "" }
-            ];
-
-            let animationId = null;
-            let isPlaying = false;
-            let currentTime = 0;
-            let activeInterval = null;
-            let keywordInterval = null;
-            let currentSceneType = "";
-
-            const dynamicSceneDiv = document.getElementById("dynamicScene");
-            const captionDiv = document.getElementById("captionText");
-            const timeDisplaySpan = document.getElementById("timeDisplay");
-            const progressFill = document.getElementById("progressFill");
-            const playBtn = document.getElementById("playBtn");
-            const resetBtn = document.getElementById("resetBtn");
-            const progressContainer = document.getElementById("progressBar");
-
-            function clearAllIntervals() {
-                if (activeInterval) { clearInterval(activeInterval); activeInterval = null; }
-                if (keywordInterval) { clearInterval(keywordInterval); keywordInterval = null; }
-            }
-
-            function killSceneAnimations() {
-                clearAllIntervals();
-            }
-
-            function renderSceneByType(type, currentSec) {
-                dynamicSceneDiv.innerHTML = "";
-                dynamicSceneDiv.style.justifyContent = "center";
-                dynamicSceneDiv.style.alignItems = "center";
-                dynamicSceneDiv.style.flexDirection = "column";
-
-                const sceneContainer = document.getElementById("sceneContainer");
-                if (type === "reminder") {
-                    sceneContainer.style.background = "#000000";
-                } else {
-                    sceneContainer.style.background = "radial-gradient(circle at center, #0a0c18 0%, #000000 100%)";
-                }
-
-                switch (type) {
-                    case "envelope":
-                        const envelopeWrap = document.createElement("div");
-                        envelopeWrap.className = "envelope";
-                        envelopeWrap.innerHTML = "✉️✉️";
-                        envelopeWrap.style.fontSize = "5.5rem";
-                        envelopeWrap.style.animation = "floatIn 0.6s ease-out";
-                        const textHint = document.createElement("div");
-                        textHint.innerText = "新规则 · 即将揭晓";
-                        textHint.style.marginTop = "20px";
-                        textHint.style.fontSize = "1.2rem";
-                        textHint.style.opacity = "0.8";
-                        dynamicSceneDiv.appendChild(envelopeWrap);
-                        dynamicSceneDiv.appendChild(textHint);
-                        break;
-                    case "calendar":
-                        const calendarContainer = document.createElement("div");
-                        calendarContainer.className = "calendar-box";
-                        const dateDisplay = document.createElement("div");
-                        dateDisplay.className = "calendar-date";
-                        dateDisplay.id = "flickerDate";
-                        dateDisplay.innerText = "2026.01.01";
-                        calendarContainer.appendChild(dateDisplay);
-                        const subHint = document.createElement("div");
-                        subHint.innerText = "📅 新章程倒计时";
-                        subHint.style.marginTop = "12px";
-                        subHint.style.fontSize = "1rem";
-                        subHint.style.color = "#333";
-                        calendarContainer.appendChild(subHint);
-                        dynamicSceneDiv.appendChild(calendarContainer);
-                        
-                        if (activeInterval) clearInterval(activeInterval);
-                        let step = 0;
-                        const maxSteps = 18;
-                        const intervalTime = 120;
-                        activeInterval = setInterval(() => {
-                            if (!isPlaying || currentSceneType !== "calendar") {
-                                if (currentSceneType !== "calendar") {
-                                    clearInterval(activeInterval);
-                                    activeInterval = null;
-                                    return;
-                                }
-                            }
-                            if (step < maxSteps) {
-                                let randMonth = Math.floor(Math.random() * 6);
-                                let randDay = Math.floor(Math.random() * 28) + 1;
-                                let showDate = `2026.${(randMonth+1).toString().padStart(2,'0')}.${randDay.toString().padStart(2,'0')}`;
-                                const dateElem = document.getElementById("flickerDate");
-                                if (dateElem) dateElem.innerText = showDate;
-                                step++;
-                            } else {
-                                const finalElem = document.getElementById("flickerDate");
-                                if (finalElem) finalElem.innerText = "2026.07.01";
-                                clearInterval(activeInterval);
-                                activeInterval = null;
-                            }
-                        }, intervalTime);
-                        break;
-                    case "cards":
-                        const cardsContainer = document.createElement("div");
-                        cardsContainer.className = "cards-row";
-                        const cardNames = ["一般读者", "26se (VIP)", "mailse"];
-                        cardNames.forEach(name => {
-                            const card = document.createElement("div");
-                            card.className = "card-item";
-                            card.innerText = name;
-                            cardsContainer.appendChild(card);
-                        });
-                        dynamicSceneDiv.appendChild(cardsContainer);
-                        const subCard = document.createElement("div");
-                        subCard.innerText = "三档权益 · 各取所需";
-                        subCard.style.marginTop = "25px";
-                        subCard.style.fontSize = "0.9rem";
-                        subCard.style.opacity = "0.7";
-                        dynamicSceneDiv.appendChild(subCard);
-                        break;
-                    case "keywords":
-                        const kwContainer = document.createElement("div");
-                        kwContainer.className = "keyword-strip";
-                        const keywordsList = ["纸质", "邮费", "粮包", "投票", "新作", "折扣", "专属补偿"];
-                        const innerSpan = document.createElement("div");
-                        innerSpan.style.display = "flex";
-                        innerSpan.style.gap = "1rem";
-                        innerSpan.style.flexWrap = "wrap";
-                        innerSpan.style.justifyContent = "center";
-                        kwContainer.appendChild(innerSpan);
-                        dynamicSceneDiv.appendChild(kwContainer);
-                        
-                        let kwIndex = 0;
-                        const updateKeywords = () => {
-                            if (!isPlaying || currentSceneType !== "keywords") {
-                                if (keywordInterval) clearInterval(keywordInterval);
-                                return;
-                            }
-                            const showList = keywordsList.slice(kwIndex, kwIndex+3);
-                            if (showList.length < 3) showList.push(...keywordsList.slice(0, 3-showList.length));
-                            innerSpan.innerHTML = "";
-                            showList.forEach(word => {
-                                const tag = document.createElement("span");
-                                tag.className = "keyword";
-                                tag.innerText = word;
-                                tag.style.animation = "wordFlash 0.4s ease-out";
-                                innerSpan.appendChild(tag);
-                            });
-                            kwIndex = (kwIndex + 1) % keywordsList.length;
-                        };
-                        updateKeywords();
-                        if (keywordInterval) clearInterval(keywordInterval);
-                        keywordInterval = setInterval(updateKeywords, 800);
-                        break;
-                    case "book":
-                        const bookDiv = document.createElement("div");
-                        bookDiv.className = "book-cover";
-                        const bookText = document.createElement("span");
-                        bookText.innerText = "📖 6月1日 正式发布 📖";
-                        bookDiv.appendChild(bookText);
-                        dynamicSceneDiv.appendChild(bookDiv);
-                        const bookFooter = document.createElement("div");
-                        bookFooter.innerText = "莫川读书会 · 全新订阅制度";
-                        bookFooter.style.marginTop = "20px";
-                        bookFooter.style.fontSize = "1rem";
-                        bookFooter.style.opacity = "0.7";
-                        dynamicSceneDiv.appendChild(bookFooter);
-                        break;
-                    case "reminder":
-                        const reminderDiv = document.createElement("div");
-                        reminderDiv.className = "reminder-box";
-                        const remindMsg = document.createElement("div");
-                        remindMsg.className = "reminder-text";
-                        remindMsg.innerText = "预约提醒？关注莫川，即可第一时间收到。";
-                        reminderDiv.appendChild(remindMsg);
-                        dynamicSceneDiv.appendChild(reminderDiv);
-                        break;
-                    default: break;
-                }
-            }
-
-            function updateUIByTime(seconds) {
-                let t = Math.min(50, Math.max(0, seconds));
-                currentTime = t;
-                
-                timeDisplaySpan.innerText = `${t.toFixed(1)}s / 50.0s`;
-                const progressPercent = (t / 50) * 100;
-                progressFill.style.width = `${progressPercent}%`;
-                
-                let activeSegment = null;
-                for (let seg of timeline) {
-                    if (t >= seg.start && t < seg.end) {
-                        activeSegment = seg;
-                        break;
+            function createStickers() {
+                const coverCard = document.getElementById('coverCard');
+                if (!coverCard) return;
+                coverCard.querySelectorAll('.sticker-emoji').forEach(s => s.remove());
+                const emojis = [
+                    '😺','🐱','🐶','🐼','🦊','🐸','🐨','🦁','🐮','🐷',
+                    '🌈','✨','⭐','🌟','💫','🔥','💧','❄️','☀️','🌙',
+                    '🎈','🎉','🎵','🎨','📚','💡','🔮','🍀','🌸','🌿',
+                    '🎧','💻','📱','🎭','🚀','🛸','🎯','🧩','🖍️','📌',
+                    '🫐','🍋','🍊','🥑','🍕','🍜','☕','🧃','🧸','🪴',
+                    '🕶️','🎒','🧤','📎','✂️','📏','🔋','🧲','🛎️','🎛️'
+                ];
+                const shuffled = [...emojis].sort(() => Math.random() - 0.5);
+                const count = Math.floor(Math.random() * 2) + 5;
+                const usedEmojis = shuffled.slice(0, count);
+                const gridPositions = [];
+                for (let row = 0; row < 3; row++) {
+                    for (let col = 0; col < 3; col++) {
+                        gridPositions.push({ row, col });
                     }
                 }
-                if (t >= 49.99 && t <= 50) {
-                    activeSegment = timeline[timeline.length-1];
-                }
-                if (activeSegment) {
-                    if (activeSegment.caption && activeSegment.caption !== "") {
-                        captionDiv.innerText = activeSegment.caption;
-                        captionDiv.style.opacity = "1";
-                    } else {
-                        captionDiv.innerText = "✨ 敬请期待 ✨";
-                        captionDiv.style.opacity = "0.7";
-                    }
-                    if (currentSceneType !== activeSegment.type) {
-                        killSceneAnimations();
-                        currentSceneType = activeSegment.type;
-                        renderSceneByType(currentSceneType, t);
-                    }
-                } else {
-                    captionDiv.innerText = "感谢等待，不见不散。";
-                    if (currentSceneType !== "reminder") {
-                        killSceneAnimations();
-                        currentSceneType = "reminder";
-                        renderSceneByType("reminder", t);
-                    }
-                }
+                const selectedGrids = gridPositions.sort(() => Math.random() - 0.5).slice(0, count);
+                usedEmojis.forEach((emoji, index) => {
+                    const span = document.createElement('span');
+                    span.className = 'sticker-emoji'; span.textContent = emoji;
+                    const grid = selectedGrids[index];
+                    const baseTop = (grid.row / 3) * 100;
+                    const offsetTop = (Math.random() * 25 - 12.5);
+                    const top = Math.min(100, Math.max(0, baseTop + offsetTop));
+                    const size = (Math.random() * 1.0 + 2.0).toFixed(2);
+                    const speed = (Math.random() * 12 + 8).toFixed(1); // 8-20秒
+                    const delay = (Math.random() * 6).toFixed(1); // 0-6秒延迟
+                    span.style.top = `${top}%`;
+                    span.style.fontSize = `${size}rem`;
+                    span.style.setProperty('--slide-speed', `${speed}s`);
+                    span.style.setProperty('--slide-delay', `-${delay}s`);
+                    coverCard.appendChild(span);
+                });
             }
 
-            function play() {
-                if (isPlaying) return;
-                if (currentTime >= 49.99) {
-                    reset();
-                }
-                isPlaying = true;
-                playBtn.innerText = "⏸ 暂停";
-                if (animationId) cancelAnimationFrame(animationId);
-                let startBase = performance.now() - currentTime * 1000;
-                function frame(now) {
-                    if (!isPlaying) {
-                        animationId = null;
-                        return;
-                    }
-                    let elapsed = (now - startBase) / 1000;
-                    let newTime = Math.min(50, Math.max(0, elapsed));
-                    if (newTime >= 50) {
-                        newTime = 50;
-                        updateUIByTime(newTime);
-                        isPlaying = false;
-                        playBtn.innerText = "▶ 播放";
-                        if (animationId) cancelAnimationFrame(animationId);
-                        animationId = null;
-                        return;
-                    }
-                    updateUIByTime(newTime);
-                    animationId = requestAnimationFrame(frame);
-                }
-                if (animationId) cancelAnimationFrame(animationId);
-                animationId = requestAnimationFrame(frame);
+            function fillModalContent() {
+                const contentArea = document.getElementById('modalContentArea');
+                if (!contentArea) return;
+                contentArea.innerHTML = `
+                    <div class="modal-title-text">How It Works？#001</div>
+                    <div class="modal-meta"><span>📅 2026-4-25</span><span>✍️ 作者：MOMOLAB</span></div>
+                    <div class="modal-body">
+                        <p>莫猫实验室发布轻量级“搜跳”工具——Nofeed 简索：用“应用名 + 空格 + 关键词”一次直达 20+ 平台，无 feed、无推荐，只做纯粹的搜索入口。本站独家拆解它的所有功能与实现细节。</p>
+                        <p>2026年4月25日，由 Momocat 推出的 Nofeed 简索悄然上线，这是一款仅由一个 HTML 文件构成的极简工具，定位为“反信息流”的快捷搜索网关。用户只需在可编辑区域输入类似 <code>小红书 美食</code> 或 <code>b站 教程</code> 的短语，按下回车，即可直接抵达对应平台的搜索结果页，完全跳过首页推荐、广告和时间线，把选择权交还给使用者。</p>
+                        <p>以下为 Nofeed 简索的全部功能清单以及底层实现的全技术栈拆解。</p>
+                        <h2>功能一：应用名 + 关键词的语义拆分引擎</h2>
+                        <p>页面中央的 <code>contenteditable</code> 区域是唯一输入口。与普通输入框不同，它使用 <code>div</code> 而非 <code>input</code> 或 <code>textarea</code>，这意味着可以更灵活地控制占位提示与多行纯文本。</p>
+                        <p><strong>输入解析流程（<code>parseInput</code> 函数）</strong><br>
+                        - 获取 <code>div</code> 的 <code>innerText</code> 并去除首尾空白。<br>
+                        - 寻找第一个空格的位置，将字符串切分为“应用匹配串”和“关键词”两部分。<br>
+                        - 如果找不到空格或某一部分为空，返回 <code>null</code>，触发提示“格式: 应用名 关键词”。</p>
+                        <p><strong>触发机制</strong><br>
+                        - 监听 <code>keydown</code> 事件，当 <code>Enter</code> 且非 <code>Shift</code> 组合时，调用 <code>onEnter()</code>。<br>
+                        - 页面加载后自动 <code>focus()</code> 到输入区域，实现“打开即输入”。</p>
+                        <h2>功能二：20+ 平台库与双重匹配系统</h2>
+                        <p>代码内建一个 <code>APPS</code> 数组，每个应用包含：<br>
+                        - <code>name</code>：中文显示名；<br>
+                        - <code>url</code>：搜索 URL，用 <code>{}</code> 作为关键词占位符；<br>
+                        - <code>alias</code>：英文别名数组，降低输入门槛。</p>
+                        <p>支持的平台完整列表：<br>
+                        小红书、淘宝、京东、拼多多、抖音、哔哩哔哩、微博、知乎、美团、大众点评、百度、YouTube、微信、豆瓣、网易云音乐、QQ音乐、饿了么、得物、什么值得买、汽车之家、Chrome搜索、Safari搜索。</p>
+                        <p><strong>匹配策略（<code>resolveApp</code> 函数）</strong><br>
+                        1. 精确匹配别名：将输入的 <code>appPart</code> 转为小写后查询 <code>aliasMap</code>。例如输入 <code>xhs</code> 直接命中“小红书”。<br>
+                        2. 精确匹配应用名：如输入“小红书”本身。<br>
+                        3. 模糊匹配（双向包含）：当精确匹配失败时，遍历所有应用名，查找是否存在“应用名包含输入内容”或“输入内容包含应用名”的项。例如输入“b”会匹配到“哔哩哔哩”（应用名包含“b”），输入“bilibili”也能通过包含关系命中。<br>
+                        若全部未命中，弹出错误提示并建议常用别名。</p>
+                        <p><strong>跳转实现（<code>performSearch</code> 函数）</strong><br>
+                        将最终解析出的 <code>keyword</code> 经过 <code>encodeURIComponent</code> 转码后，替换 <code>url</code> 中的 <code>{}</code>，再使用 <code>window.open(url, "_blank")</code> 在新标签页打开搜索结果。整个过程中不产生任何历史记录污染，不存储搜索词。</p>
+                        <h2>功能三：全局导航菜单与智能返回逻辑</h2>
+                        <p>页面顶部固定一个标题头 <code>Moc</code>，它既是品牌标识也是菜单触发器。</p>
+                        <p><strong>菜单行为</strong><br>
+                        - 单击 <code>Moc</code> 标题时：<br>
+                        &nbsp;&nbsp;- 若菜单（<code>dropdownMenu</code>）当前展开，则直接跳转至主站首页 <code>/</code>。这一设计将“关闭菜单并回首页”合并为一个动作，符合移动端极简交互原则。<br>
+                        &nbsp;&nbsp;- 若菜单未展开，则添加 <code>.show</code> 类，使菜单从上边缘滑入。<br>
+                        - 点击菜单以外的任何区域，菜单自动收起。通过全局 <code>document</code> 的点击监听实现，并在菜单内部阻止冒泡，防止内部链接点击导致菜单关闭。</p>
+                        <p><strong>菜单内容结构</strong><br>
+                        菜单内使用 <code>menu-grid</code> 的 CSS Grid 布局，包含六个栏目：主页、商店、文学、程序、活动、教育。每个栏目下的链接指向对应的 Momocat 子产品，如 <code>nofeed</code> 本身也在“程序”栏目内。所有链接皆为站内相对路径。</p>
+                        <h2>功能四：橡皮泥响应式引擎（RubberEngine）</h2>
+                        <p>为了在手机、平板、桌面、宽屏上提供统一的视觉体验，代码实现了一个轻量级响应式类切换器，称为“橡皮泥引擎”。</p>
+                        <p><strong>工作原理</strong><br>
+                        - 检测 <code>window.innerWidth</code>，根据断点（手机 &lt; 600px，平板 &lt; 1024px，桌面 &lt; 1440px，宽屏 &gt;= 1440px）向 <code>body</code> 添加对应类名：<code>rubber-phone</code>、<code>rubber-tablet</code>、<code>rubber-desktop</code>、<code>rubber-wide</code>。<br>
+                        - CSS 通过 <code>.rubber-phone .menu-grid</code> 等选择器改变 Grid 列数：桌面 4 列，平板 2 列，手机 1 列。<br>
+                        - 所有尺寸相关间距（如 <code>gap</code>、<code>padding</code>）均使用 <code>clamp()</code> 函数，确保无级缩放，而非传统媒体查询的阶梯式跳变。<br>
+                        - <code>resize</code> 和 <code>orientationchange</code> 事件均做了防抖处理，避免频繁重绘。</p>
+                        <p>这种设计思路让整个页面只写一套 CSS，靠动态类名触发不同布局，同时保留浏览器原生滚动性能。</p>
+                        <h2>功能五：滑动惯性引擎（SmoothScrollEngine）</h2>
+                        <p>菜单区域在宽屏下可能溢出，因此配备了横向滚动容器 <code>menu-scroll</code>。为提供类似原生应用的滚动质感，代码注入了自定义惯性：</p>
+                        <p>- <strong>鼠标滚轮</strong>：拦截 <code>wheel</code> 事件，比较 <code>deltaX</code> 和 <code>deltaY</code> 的绝对值，以较大的那个作为横向滚动增量，乘以 0.5 的阻尼系数后驱动 <code>element.scrollLeft</code>。<br>
+                        - <strong>触摸滑动</strong>：记录 <code>touchstart</code> 的横坐标和当前滚动位置，在 <code>touchmove</code> 中计算手指移动距离并施加 1.5 倍加速比，实时跟手滚动。<br>
+                        - 容器本身设置了 <code>overscroll-behavior-x: contain</code> 并隐藏滚动条，防止边缘回弹干扰自定义行为。</p>
+                        <p>这两个引擎（橡皮泥、滑动惯性）均在脚本末尾自动初始化，并且暴露到 <code>window</code> 对象上，方便未来扩展或调试。</p>
+                        <h2>技术亮点总结</h2>
+                        <table>
+                            <tr><th>特性</th><th>实现手段</th></tr>
+                            <tr><td>零依赖单文件架构</td><td>纯 HTML + CSS + 原生 JavaScript，无需构建工具</td></tr>
+                            <tr><td>自然的输入体验</td><td><code>contenteditable</code> 配合 <code>:empty</code> 伪类实现占位提示</td></tr>
+                            <tr><td>高容错匹配</td><td>Map 精确匹配 → 别名匹配 → 双向模糊匹配，三级解析</td></tr>
+                            <tr><td>无 feed 跳转</td><td>直接构造平台搜索 URL，跳过所有推荐流</td></tr>
+                            <tr><td>响应式无级缩放</td><td><code>clamp()</code> 函数 + 动态类名切换</td></tr>
+                            <tr><td>原生级横向滚动</td><td>自定义 wheel 和 touch 事件模拟惯性</td></tr>
+                            <tr><td>极简状态管理</td><td>菜单仅通过 <code>.show</code> 类的添加与移除控制，无内部状态</td></tr>
+                        </table>
+                        <p>Nofeed 简索用 300 行代码构建了一套完整的“搜索跳转协议”，它不依赖后端、不收集数据、不展示内容，却在日益臃肿的 App 和网页入口之间打开了一条快速通道。作为 Momocat 生态中的“反 feed 组件”，它与其旗下的 Momoread（沉浸阅读）、Tyubox（待办盒子）、VisionX（教育工具）共同组成了一套尊重注意力的数字工具集。</p>
+                        <p>该页面已在莫猫主站上线，可通过菜单“程序→Nofeed简索”直接访问。</p>
+                        <p style="color:#6e6e73; font-size:0.85rem; margin-top:1.8em;">*新闻稿来源：Momocat 实验室 / 深度技术观察</p>
+                    </div>
+                `;
             }
-
-            function pause() {
-                if (!isPlaying) return;
-                isPlaying = false;
-                playBtn.innerText = "▶ 播放";
-                if (animationId) {
-                    cancelAnimationFrame(animationId);
-                    animationId = null;
-                }
-            }
-
-            function reset() {
-                pause();
-                killSceneAnimations();
-                currentTime = 0;
-                currentSceneType = "";
-                updateUIByTime(0);
-                const firstSeg = timeline[0];
-                currentSceneType = firstSeg.type;
-                renderSceneByType(currentSceneType, 0);
-                captionDiv.innerText = firstSeg.caption;
-                progressFill.style.width = "0%";
-                timeDisplaySpan.innerText = "0.0s / 50.0s";
-                playBtn.innerText = "▶ 播放";
-                isPlaying = false;
-                if (animationId) {
-                    cancelAnimationFrame(animationId);
-                    animationId = null;
-                }
-            }
-
-            function seekTo(percent) {
-                if (isPlaying) pause();
-                let newTime = (percent / 100) * 50;
-                newTime = Math.min(49.99, Math.max(0, newTime));
-                currentTime = newTime;
-                killSceneAnimations();
-                let active = null;
-                for (let seg of timeline) {
-                    if (newTime >= seg.start && newTime < seg.end) active = seg;
-                }
-                if (!active && newTime >= 49.9) active = timeline[timeline.length-1];
-                if (active) {
-                    currentSceneType = active.type;
-                    renderSceneByType(currentSceneType, newTime);
-                    captionDiv.innerText = active.caption || "✨ 敬请期待 ✨";
-                } else {
-                    currentSceneType = "reminder";
-                    renderSceneByType("reminder", newTime);
-                    captionDiv.innerText = "";
-                }
-                updateUIByTime(newTime);
-            }
-
-            progressContainer.addEventListener("click", (e) => {
-                const rect = progressContainer.getBoundingClientRect();
-                let clickX = e.clientX - rect.left;
-                let percent = (clickX / rect.width) * 100;
-                percent = Math.min(100, Math.max(0, percent));
-                seekTo(percent);
-            });
-
-            playBtn.addEventListener("click", () => {
-                if (isPlaying) pause();
-                else play();
-            });
-            resetBtn.addEventListener("click", reset);
 
             function init() {
                 SmoothScrollEngine.init();
                 RubberEngine.init();
-                reset();
+                createStickers();
+                fillModalContent();
 
                 const mocTitle = document.getElementById('mocTitle');
                 const dropdownMenu = document.getElementById('dropdownMenu');
@@ -877,6 +596,16 @@
                 });
                 dropdownMenu.addEventListener('click', e => e.stopPropagation());
                 document.addEventListener('click', () => { if (dropdownMenu.classList.contains('show')) dropdownMenu.classList.remove('show'); });
+
+                const howItWorksBtn = document.getElementById('howItWorksBtn');
+                const modalOverlay = document.getElementById('modalOverlay');
+                const modalCloseBtn = document.getElementById('modalCloseBtn');
+                function openModal(e) { e.preventDefault(); modalOverlay.classList.add('show'); }
+                function closeModal() { modalOverlay.classList.remove('show'); }
+                howItWorksBtn.addEventListener('click', openModal);
+                modalCloseBtn.addEventListener('click', closeModal);
+                modalOverlay.addEventListener('click', function(e) { if (e.target === modalOverlay) closeModal(); });
+                document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modalOverlay.classList.contains('show')) closeModal(); });
             }
 
             window.addEventListener('load', init);
