@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>MOMOREAD · 莫川读书会 全新订阅制度</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #fbfbfd;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            color: #1d1d1f;
+        }
+        .site-header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            padding: 12px clamp(16px, 4vw, 32px);
+            background: rgba(251, 251, 253, 0.78);
+            backdrop-filter: blur(25px) saturate(180%);
+            border-bottom: 0.6px solid rgba(0, 0, 0, 0.06);
+            z-index: 30;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #1d1d1f;
+        }
+        .logo span {
+            font-weight: 400;
+            color: #86868b;
+            font-size: 0.9rem;
+            margin-left: 8px;
+        }
+        .badge {
+            background: #e6f0fa;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #0071e3;
+        }
+        .main-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+        .hero {
+            text-align: center;
+            margin: 2rem 0 3rem 0;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #1e3c2c, #0071e3);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #5f5f66;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+        .hero .date-highlight {
+            margin-top: 1rem;
+            font-weight: 500;
+            background: #f0f2f5;
+            display: inline-block;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.03);
+            padding: 2rem 1.8rem;
+            margin-bottom: 2.5rem;
+            border: 0.5px solid rgba(0, 0, 0, 0.04);
+            transition: box-shadow 0.2s;
+        }
+        .card:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-sub {
+            color: #6e6e73;
+            border-left: 3px solid #0071e3;
+            padding-left: 16px;
+            margin-bottom: 1.8rem;
+            font-size: 1rem;
+        }
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 1.2rem 0;
+        }
+        .member-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            min-width: 640px;
+        }
+        .member-table th, .member-table td {
+            border: 1px solid #e4e8ed;
+            padding: 12px 10px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .member-table th {
+            background: #f8fafc;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #1f3b4c;
+        }
+        .member-table td:first-child {
+            background: #fefcf7;
+            font-weight: 600;
+            text-align: left;
+            color: #2c4c3b;
+        }
+        .check {
+            color: #2a7f3e;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .cross {
+            color: #b91c1c;
+            font-size: 1rem;
+        }
+        .price-em {
+            font-weight: 700;
+            color: #c3641e;
+        }
+        .small-note {
+            font-size: 0.7rem;
+            color: #7d7d82;
+            display: block;
+            margin-top: 4px;
+        }
+        .unified-rules {
+            background: #fcfaf5;
+            border-radius: 28px;
+            padding: 1.5rem 1.8rem;
+            margin-top: 1.8rem;
+            border: 1px solid #efe6d5;
+        }
+        .unified-rules p {
+            margin: 0.8rem 0;
+            line-height: 1.45;
+        }
+        .unified-rules .pill {
+            display: inline-block;
+            background: #eef3fa;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-right: 8px;
+            margin-top: 6px;
+        }
+        .unified-rules strong {
+            color: #2c5a3e;
+        }
+        .price-list-inline {
+            margin: 0.6rem 0 0.2rem 0;
+            padding-left: 0.5rem;
+            border-left: 3px solid #d0a853;
+        }
+        .works-section {
+            margin: 2rem 0 2rem;
+        }
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .work-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid #eef2f5;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+        .work-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06);
+            border-color: #e0e6ed;
+        }
+        .work-card-header {
+            padding: 1.2rem 1.2rem 0.6rem 1.2rem;
+        }
+        .work-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+            color: #1d1d1f;
+            margin-bottom: 0.25rem;
+        }
+        .work-price {
+            font-size: 0.8rem;
+            color: #c3641e;
+            font-weight: 500;
+            background: #fef3e8;
+            display: inline-block;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            margin-top: 6px;
+        }
+        .work-summary {
+            padding: 0 1.2rem 1rem 1.2rem;
+            font-size: 0.85rem;
+            color: #6e6e73;
+            line-height: 1.4;
+        }
+        .footer-cta {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: #f6f6f9;
+            border-radius: 40px;
+        }
+        .notice {
+            background: #f9e9d1;
+            border-radius: 28px;
+            padding: 1rem 1.8rem;
+            margin: 2rem 0 1rem;
+            font-size: 0.9rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        /* 弹窗样式 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.2s, opacity 0.2s;
+        }
+        .modal-overlay.show {
+            visibility: visible;
+            opacity: 1;
+        }
+        .modal-dialog {
+            background: white;
+            border-radius: 32px;
+            max-width: 560px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            padding: 1.8rem 1.8rem 2rem;
+        }
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 26px;
+            cursor: pointer;
+            color: #aaa;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            color: #1d1d1f;
+        }
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            padding-right: 28px;
+        }
+        .modal-price {
+            display: inline-block;
+            background: #fef3e8;
+            color: #c3641e;
+            font-weight: 500;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        .modal-body {
+            color: #2c2c2e;
+            line-height: 1.55;
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+        .modal-body p {
+            margin: 0.8rem 0;
+        }
+        @media (max-width: 680px) {
+            .main-container {
+                padding: 1rem 1rem 3rem;
+            }
+            .card {
+                padding: 1.2rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .unified-rules {
+                padding: 1rem;
+            }
+            .works-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-dialog {
+                padding: 1.5rem;
+            }
+            .modal-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="site-header">
+    <div class="logo">MOMOREAD<span>莫川读书会</span></div>
+    <div class="badge">2026 新订阅制 · 透明契约</div>
+</header>
+<main class="main-container">
+    <div class="hero">
+        <h1>阅读，是一场稳定的见面</h1>
+        <p>从2026年7月1日起，莫川读书会迈入全透明订阅时代。<br>三档会员 · 清晰权益 · 灵活选择 · 补偿承诺</p>
+        <div class="date-highlight">📅 制度有效期：2026.7.1 – 2026.12.31 (半年不变价)</div>
+    </div>
+
+    <!-- 核心表格卡片 -->
+    <div class="card">
+        <div class="section-title">📋 三档会员制度 · 权益速览</div>
+        <div class="section-sub">一般读者 / 26se（VIP）/ mailse —— 清晰对比，按需订阅</div>
+        <div class="table-wrapper">
+            <table class="member-table">
+                <thead><tr><th>权益 / 费用</th><th>一般读者</th><th>26se（VIP）</th><th>mailse</th></tr></thead>
+                <tbody>
+                    <tr><td>纸质</td><td>normal</td><td>good</td><td>normal</td></tr>
+                    <tr><td>打印费 (每封信)</td><td>2元</td><td>1元</td><td>2元</td></tr>
+                    <tr><td>信封</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td></tr>
+                    <tr><td>广告纸</td><td class="check">✅</td><td class="cross">❌</td><td class="check">✅</td></tr>
+                    <tr><td>每周一信</td><td class="check">✅</td><td class="check">✅</td><td class="cross">❌</td></tr>
+                    <tr><td>小赠品</td><td class="check">✅</td><td class="check">✅</td><td class="cross">❌</td></tr>
+                    <tr><td>附赠短篇小说</td><td class="cross">❌</td><td class="check">✅</td><td class="cross">❌</td></tr>
+                    <tr><td>投稿资格</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td></tr>
+                    <tr><td>投票权</td><td class="cross">❌</td><td class="check">✅</td><td class="cross">❌</td></tr>
+                    <tr><td>优惠折扣</td><td>无</td><td class="price-em">8折</td><td class="price-em">9.5折</td></tr>
+                    <tr><td>每月会费</td><td class="price-em">0.99元</td><td class="price-em">3.99元</td><td class="price-em">1.99元</td></tr>
+                    <tr><td>邮费</td><td>自取</td><td>送达 (免费)</td><td>需支付50%邮费<br><span class="small-note">每月一邮寄</span></td></tr>
+                    <tr><td>社群</td><td class="check">✅</td><td class="cross">❌</td><td class="check">✅</td></tr>
+                    <tr><td>新作优先看</td><td class="cross">❌</td><td class="check">✅</td><td class="cross">❌</td></tr>
+                    <tr><td>下午茶 (额外福利)</td><td class="check">✅</td><td class="check">✅</td><td class="cross">❌</td></tr>
+                    <tr><td>剩余天数“赈灾粮包”</td><td class="cross">❌</td><td class="check">✅</td><td class="cross">❌</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="unified-rules">
+            <p>✉️ <strong>发送频率：</strong>所有信件每月发送四次（前四个七天：1–7日、8–14日、15–21日、22–28日）。</p>
+            <p>🎁 <strong>赈灾粮包：</strong>剩余天数（29、30、31日）仅 <strong>VIP会员</strong> 可享用专属“粮包”（额外读物/小礼）。</p>
+            <div class="price-list-inline">
+                <strong>📚 单部作品购买价格（非会员或额外选购）：</strong><br>
+                • 《非正式小组》《唐人探案》《崔氏二小生》 —— <strong>0.75元/章</strong><br>
+                • 《三号线》《来自1999的信》《无解命题》 —— <strong>0.50元/章</strong><br>
+                • 《德州金夫妻》《我的朋友不是人》 —— <strong>0.25元/章</strong>
+            </div>
+            <div style="margin: 0.6rem 0 0.2rem;"><span class="pill">100%原创</span> <span class="pill">版权清晰</span></div>
+            <p>⏳ <strong>制度有效期：</strong>2026年7月1日 – 2026年12月31日（半年价格与核心规则稳定不变）。</p>
+        </div>
+        <div style="margin-top: 20px; font-size: 0.8rem; color: #86868b; border-top: 1px solid #eef2f5; padding-top: 16px; text-align: center;">
+            * 过去纸张破损、临时停更等问题，新制度下严格执行破损补寄、停更补偿、提前告知规则，绝不让你白等。
+        </div>
+    </div>
+
+    <!-- 九部作品卡片区域 (已按价格从高到低排序) -->
+    <div class="works-section">
+        <div class="section-title">📚 原创作品集 · 点击卡片查看简介</div>
+        <div class="section-sub">九部风格各异的原创故事，每周连载，会员畅读</div>
+        <div class="works-grid" id="worksGrid"></div>
+    </div>
+
+    <!-- 新作宣传 -->
+    <div class="notice">
+        <div><strong>🌟 《非正式小组2》暑期重磅发布</strong> — 更多欢笑，更高脑洞，敬请期待！</div>
+    </div>
+
+    <div class="footer-cta">
+        <div style="font-size: 1.2rem; font-weight: 500; margin-bottom: 8px;">📢 感谢你支持原创创意事业</div>
+        <p style="margin-bottom: 10px;">如果喜欢莫川的故事，恳请你帮我们宣传给身边的朋友。<br>一次转发，一份推荐，都是原创写作者继续前进的光。</p>
+        <p style="margin-top: 16px; font-size: 0.8rem; color: #6e6e73;">
+            💡 VIP 专享优先新作 + 8折全站优惠 + 无广告纸 + 每月粮包<br>
+            一般读者 / mailse 也可享受社群交流、投稿资格、下午茶福利
+        </p>
+    </div>
+</main>
+
+<!-- 全局弹窗 -->
+<div id="workModal" class="modal-overlay">
+    <div class="modal-dialog">
+        <button class="modal-close" id="modalCloseBtn">&times;</button>
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-price" id="modalPrice"></div>
+        <div class="modal-body" id="modalBody"></div>
+    </div>
+</div>
+
+<script>
+    // 作品数据 - 按价格从高到低排序（0.75 -> 0.5 -> 0.25），每组内保留原顺序
+    // 原顺序：非正式小组、唐人探案、崔氏二小生、我在明朝当书童、三号线、寄往1999的信、无解命题、德州金夫妻、我的朋友不是人
+    // 价格：0.75: 非正式小组、唐人探案、崔氏二小生、我在明朝当书童
+    //       0.5: 三号线、寄往1999的信、无解命题
+    //       0.25: 德州金夫妻、我的朋友不是人
+    const worksData = [
+        { 
+            title: "非正式小组", 
+            priceCategory: "0.75元/章", 
+            summary: "初三学生意外闯入旧校舍地下石室，开启跨越二十年的时空谜团。", 
+            hasDetail: true,
+            detail: "初三学生周毅、周静、赵晓阳、林小小，在台风夜被困教室，一封匿名信将他们引向旧校舍地下石室。古老的星图、失踪少女的影像、“溯光社”的徽章……四人作为新一代“继承者”，必须集齐三块共鸣水晶碎片，救出困在时空断层中的少女。在一次次“初心试炼”中，他们直面内心的恐惧与隔阂，学会信任与共情。\n\n类型：都市奇幻 · 成长共鸣 · 连载中"
+        },
+        { 
+            title: "唐人探案", 
+            priceCategory: "0.75元/章", 
+            summary: "该作品尚未成型，敬请期待完整大纲。", 
+            hasDetail: false,
+            detail: "该作品尚未成型，敬请期待完整大纲。"
+        },
+        { 
+            title: "崔氏二小生", 
+            priceCategory: "0.75元/章", 
+            summary: "该作品尚未成型，敬请期待完整大纲。", 
+            hasDetail: false,
+            detail: "该作品尚未成型，敬请期待完整大纲。"
+        },
+        { 
+            title: "我在明朝当书童", 
+            priceCategory: "0.75元/章", 
+            summary: "该作品尚未成型，敬请期待完整大纲。", 
+            hasDetail: false,
+            detail: "该作品尚未成型，敬请期待完整大纲。"
+        },
+        { 
+            title: "三号线", 
+            priceCategory: "0.50元/章", 
+            summary: "一列永远重复的末班地铁，三个被困者，一个必须放下的秘密。", 
+            hasDetail: true,
+            detail: "向北每晚重复坐上同一列末班三号线地铁。直到他遇见同样“清醒”的向南和向东——一个能预见碎片画面的女孩，一个记得十年前停运秘密的退伍兵。驾驶室里只有三个按钮，车头坐着永远不会下车的红衣女人。随着记忆碎片拼合，他们发现：这列车不是地铁，而是一个人逃避现实的避难所。要离开，必须学会“放下”。\n\n类型：心理悬疑 · 时空循环 · 长篇已完结"
+        },
+        { 
+            title: "寄往1999的信", 
+            priceCategory: "0.50元/章", 
+            summary: "该作品尚未成型，敬请期待完整大纲。", 
+            hasDetail: false,
+            detail: "该作品尚未成型，敬请期待完整大纲。"
+        },
+        { 
+            title: "无解命题", 
+            priceCategory: "0.50元/章", 
+            summary: "该作品尚未成型，敬请期待完整大纲。", 
+            hasDetail: false,
+            detail: "该作品尚未成型，敬请期待完整大纲。"
+        },
+        { 
+            title: "德州金夫妻", 
+            priceCategory: "0.25元/章", 
+            summary: "因一盏老旧壁灯相遇的工程师与自由灵魂，从创业到建家的真实历程。", 
+            hasDetail: true,
+            detail: "休斯顿的务实工程师科尔姆，与奥斯汀的自由灵魂西尔维，因一盏老旧的德州星形壁灯而相遇。从跳蚤市场的针锋相对，到共同创业“孤星重铸”，他们在翻修老屋、对抗家庭压力、经历破产危机中，学会与彼此及世界谈判。这不是一个简单的爱情故事，而是关于如何亲手建造一个“不完美但真实的家”。\n\n类型：现实主义 · 创业成长 · 长篇已完结"
+        },
+        { 
+            title: "我的朋友不是人", 
+            priceCategory: "0.25元/章", 
+            summary: "该作品尚未成型，敬请期待完整大纲。", 
+            hasDetail: false,
+            detail: "该作品尚未成型，敬请期待完整大纲。"
+        }
+    ];
+
+    // 渲染卡片
+    const gridContainer = document.getElementById('worksGrid');
+    function buildCards() {
+        gridContainer.innerHTML = '';
+        worksData.forEach((work, idx) => {
+            const card = document.createElement('div');
+            card.className = 'work-card';
+            card.setAttribute('data-index', idx);
+            
+            const header = document.createElement('div');
+            header.className = 'work-card-header';
+            header.innerHTML = `<div class="work-title">${work.title}</div><div class="work-price">${work.priceCategory}</div>`;
+            
+            const summaryDiv = document.createElement('div');
+            summaryDiv.className = 'work-summary';
+            summaryDiv.innerText = work.summary;
+            
+            card.appendChild(header);
+            card.appendChild(summaryDiv);
+            
+            // 点击卡片弹窗
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openModal(work);
+            });
+            
+            gridContainer.appendChild(card);
+        });
+    }
+    
+    // 弹窗逻辑
+    const modalOverlay = document.getElementById('workModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalPrice = document.getElementById('modalPrice');
+    const modalBody = document.getElementById('modalBody');
+    const closeModalBtn = document.getElementById('modalCloseBtn');
+    
+    function openModal(work) {
+        modalTitle.innerText = work.title;
+        modalPrice.innerText = work.priceCategory;
+        // 对于没有详细大纲的作品，只显示一句提示
+        let displayText = work.detail;
+        if (!work.hasDetail) {
+            displayText = "该作品尚未成型，敬请期待完整大纲。";
+        }
+        const detailHtml = displayText.replace(/\n/g, '<br>');
+        modalBody.innerHTML = `<p>${detailHtml}</p>`;
+        modalOverlay.classList.add('show');
+    }
+    
+    function closeModal() {
+        modalOverlay.classList.remove('show');
+    }
+    
+    closeModalBtn.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalOverlay.classList.contains('show')) {
+            closeModal();
+        }
+    });
+    
+    buildCards();
+</script>
+</body>
+</html>
