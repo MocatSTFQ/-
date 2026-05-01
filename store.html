@@ -3,140 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>商店 - Momocat 莫猫</title>
-    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <title>MOMOREAD 独家实体订阅 - Moc商店</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, .main-content, .modal-dialog, .works-grid, .dropdown-menu {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        body::-webkit-scrollbar, .main-content::-webkit-scrollbar,
+        .modal-dialog::-webkit-scrollbar, .works-grid::-webkit-scrollbar,
+        .dropdown-menu::-webkit-scrollbar {
+            display: none;
+        }
         body {
-            background-color: #fbfbfd;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f5f5f7;
+            font-family: 'Inter', -apple-system, 'SF Pro Text', sans-serif;
             -webkit-font-smoothing: antialiased;
             height: 100vh;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
             overflow: hidden;
             color: #1d1d1f;
-            --rubber-card-gap: clamp(16px, 2vw, 24px);
-            --rubber-section-padding: clamp(16px, 3vw, 32px);
         }
-
         .site-header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: clamp(10px, 2vw, 12px) clamp(16px, 3vw, 24px);
-            background-color: rgba(251, 251, 253, 0.65);
-            backdrop-filter: blur(25px) saturate(180%);
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border-bottom: 0.8px solid rgba(0, 0, 0, 0.06);
-            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(20px);
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.06);
             z-index: 30;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: background 0.2s;
         }
-
         .header-title {
             font-weight: 700;
-            font-size: clamp(1.8rem, 5vw, 2.2rem);
+            font-size: 1.8rem;
             letter-spacing: -0.02em;
-            color: #1d1d1f;
-            cursor: pointer;
-            padding: clamp(6px, 1.5vw, 8px) clamp(20px, 4vw, 28px);
+            /* 移除交互，仅保留外观 */
+            cursor: default;
+            padding: 6px 24px;
             border-radius: 40px;
-            transition: background-color 0.2s, color 0.2s, transform 0.1s;
-            min-height: 44px;
-            display: flex;
-            align-items: center;
             user-select: none;
-            -webkit-tap-highlight-color: transparent;
         }
-        .header-title:hover {
-            background-color: rgba(0,0,0,0.03);
-            color: #b76e4b;
-            transform: scale(1.02);
-        }
-
+        /* 保留菜单结构但不显示（完全不显示） */
         .dropdown-menu {
-            position: fixed;
-            top: 72px;
-            left: 0;
-            width: 100%;
-            max-height: calc(100vh - 72px);
-            overflow-y: auto;
-            background-color: #ffffff;
-            border-bottom: 0.5px solid rgba(0, 0, 0, 0.06);
-            z-index: 29;
-            padding: clamp(28px, 5vw, 40px) clamp(16px, 3vw, 24px);
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
-            pointer-events: none;
-            box-shadow: 0 12px 32px -12px rgba(0,0,0,0.08);
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
+            display: none;
         }
-        .dropdown-menu.show {
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-
-        .menu-scroll {
-            overflow-x: auto;
-            overflow-y: visible;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            overscroll-behavior-x: contain;
-            padding-bottom: 4px;
-        }
-        .menu-scroll::-webkit-scrollbar { display: none; }
-
-        .menu-grid {
-            display: grid;
-            gap: clamp(20px, 3vw, 32px);
-            margin: 0 auto;
-            grid-template-columns: repeat(4, 1fr);
-            min-width: max-content;
-        }
-        .rubber-tablet .menu-grid { grid-template-columns: repeat(2, 1fr); }
-        .rubber-phone .menu-grid { grid-template-columns: repeat(1, 1fr); gap: 24px; min-width: 100%; }
-        .rubber-desktop .menu-grid, .rubber-wide .menu-grid { max-width: 1400px; margin: 0 auto; }
-
-        .menu-section { text-align: left; min-width: 160px; }
-        .menu-section h3 {
-            font-size: clamp(1.3rem, 3.5vw, 1.6rem);
-            font-weight: 700;
-            color: #1d1d1f;
-            margin-bottom: 16px;
-            letter-spacing: -0.01em;
-            border-bottom: 1px solid rgba(0,0,0,0.08);
-            padding-bottom: 10px;
-        }
-        .menu-section ul { list-style: none; }
-        .menu-section li { margin: 10px 0; }
-        .menu-section a {
-            text-decoration: none;
-            color: #3a3a3c;
-            font-size: clamp(1rem, 2.5vw, 1.1rem);
-            font-weight: 440;
-            transition: color 0.2s, transform 0.15s;
-            display: inline-block;
-            padding: 4px 0;
-            white-space: nowrap;
-        }
-        .menu-section a:hover { color: #b76e4b; transform: translateX(4px); }
-
-        @media (max-width: 600px) {
-            .dropdown-menu { top: 60px; max-height: calc(100vh - 60px); padding: 24px 16px; }
-            .main-content { top: 60px; height: calc(100vh - 60px); }
-        }
-
         .main-content {
             position: fixed;
             top: 72px;
@@ -144,443 +66,807 @@
             width: 100%;
             height: calc(100vh - 72px);
             overflow-y: auto;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            overscroll-behavior-y: contain;
-            padding-bottom: calc(var(--rubber-section-padding) * 2);
+            padding: 24px 20px 48px;
         }
-        .main-content::-webkit-scrollbar { display: none; }
-
         .store-hero {
-            background: #ffffff;
-            border-bottom: 0.5px solid rgba(0,0,0,0.06);
-            padding: clamp(32px, 5vw, 48px) var(--rubber-section-padding);
             text-align: center;
-            margin-bottom: var(--rubber-section-padding);
+            margin-bottom: 36px;
+            animation: fadeUp 0.6s ease-out;
         }
         .store-hero-title {
-            font-size: clamp(2rem, 6vw, 3rem);
+            font-size: 2.8rem;
             font-weight: 700;
-            letter-spacing: -0.02em;
-            color: #1d1d1f;
-            margin-bottom: clamp(8px, 1.5vw, 12px);
+            background: linear-gradient(135deg, #1e3c2c, #0071e3);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
         }
         .store-hero-desc {
-            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-            color: #86868b;
-            font-weight: 450;
-            letter-spacing: 0.01em;
+            font-size: 1.1rem;
+            color: #6e6e73;
+            margin-top: 8px;
         }
-
-        .content-inner { padding: 0 var(--rubber-section-padding); }
-
-        .product-grid {
-            display: grid;
-            gap: var(--rubber-card-gap);
-            grid-template-columns: repeat(4, 1fr);
-        }
-        .rubber-desktop .product-grid { grid-template-columns: repeat(3, 1fr); }
-        .rubber-tablet .product-grid { grid-template-columns: repeat(2, 1fr); }
-        .rubber-phone .product-grid { grid-template-columns: repeat(1, 1fr); }
-
-        .product-card {
+        .subscription-card {
+            max-width: 520px;
+            margin: 0 auto;
             background: white;
-            border-radius: clamp(20px, 3vw, 28px);
-            overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.02), 0 8px 24px rgba(0,0,0,0.04);
+            border-radius: 48px;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.06);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
             cursor: pointer;
-            height: 100%;
+            overflow: hidden;
         }
-        .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
-        .product-card:active { transform: translateY(-2px); }
-
-        .product-image {
-            height: clamp(180px, 24vw, 240px);
-            background: #f5f5f7;
+        .subscription-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 48px rgba(0,0,0,0.12);
+        }
+        .card-image {
+            background: #f2f2f5;
+            height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 0.5px solid rgba(0,0,0,0.05);
-            transition: background 0.3s ease;
+            font-size: 5rem;
+            transition: background 0.3s;
         }
-        .product-card:hover .product-image { background: #eeeeef; }
-        .product-image-placeholder {
-            font-size: clamp(3rem, 7vw, 4rem);
-            opacity: 0.3;
-            color: #8e8e93;
-            transition: transform 0.3s ease, opacity 0.3s ease;
+        .subscription-card:hover .card-image {
+            background: #e8e8ed;
         }
-        .product-card:hover .product-image-placeholder { transform: scale(1.08); opacity: 0.5; }
-
-        .product-card-body {
-            padding: clamp(18px, 3vw, 24px) clamp(16px, 2.5vw, 22px);
-            flex: 1;
-            display: flex;
-            flex-direction: column;
+        .card-body {
+            padding: 32px 28px;
+            text-align: center;
         }
-
-        .product-card-category {
-            display: inline-block;
-            font-size: clamp(0.65rem, 1.6vw, 0.75rem);
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
+        .card-category {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
             color: #b76e4b;
-            font-weight: 550;
-            margin-bottom: clamp(8px, 1.5vw, 12px);
+            text-transform: uppercase;
+            margin-bottom: 12px;
         }
-
-        .product-card-title {
-            font-size: clamp(1.1rem, 2.8vw, 1.35rem);
-            font-weight: 600;
-            letter-spacing: -0.015em;
-            color: #1d1d1f;
-            margin-bottom: clamp(4px, 1vw, 8px);
-            line-height: 1.3;
-            flex: 0 0 auto;
+        .card-title {
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin-bottom: 12px;
         }
-
-        .product-card-desc {
+        .card-desc {
             color: #6e6e73;
-            font-size: clamp(0.85rem, 2vw, 0.95rem);
-            line-height: 1.5;
-            flex: 1;
-            margin-bottom: clamp(14px, 2.5vw, 18px);
+            margin-bottom: 24px;
+            line-height: 1.4;
         }
-
-        .product-card-footer {
+        .card-price {
+            font-weight: 600;
+            color: #c3641e;
+            font-size: 1.2rem;
+            margin-bottom: 24px;
+        }
+        .btn-large {
+            background: #0071e3;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .btn-large:hover { background: #005bb5; transform: scale(0.98); }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            z-index: 200;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            flex-wrap: wrap;
-            border-top: 0.5px solid rgba(0,0,0,0.06);
-            padding-top: clamp(12px, 2vw, 16px);
-            margin-top: auto;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.2s, opacity 0.25s;
         }
-
-        .product-price-placeholder { color: #86868b; font-weight: 450; font-style: italic; font-size: clamp(0.85rem, 2vw, 1rem); }
-
-        .card-btn {
-            background: transparent;
-            border: 1.5px solid #0071e3;
-            color: #0071e3;
-            padding: clamp(6px, 1.5vw, 8px) clamp(16px, 3vw, 20px);
+        .modal-overlay.show {
+            visibility: visible;
+            opacity: 1;
+        }
+        .modal-dialog {
+            background: white;
             border-radius: 40px;
-            font-weight: 500;
-            font-size: clamp(0.85rem, 2.2vw, 0.95rem);
-            text-decoration: none;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-            display: inline-block;
-            cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
+            max-width: 780px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 28px 24px 32px;
+            transform: scale(0.96);
+            transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
-        .card-btn:hover { background-color: #0071e3; color: white; }
-        .card-btn:active { transform: scale(0.96); }
-
-        .rubber-phone .product-card-footer { flex-direction: column; align-items: stretch; gap: 10px; }
-        .rubber-phone .product-card-footer .card-btn { text-align: center; width: 100%; }
-
-        .placeholder-label {
+        .modal-overlay.show .modal-dialog {
+            transform: scale(1);
+        }
+        .modal-close {
             position: absolute;
-            bottom: 12px;
-            right: 16px;
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(4px);
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            color: #8e8e93;
-            letter-spacing: 0.5px;
+            top: 20px;
+            right: 24px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #aaa;
+            transition: color 0.2s;
+        }
+        .modal-close:hover { color: #1d1d1f; }
+        .modal-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-right: 32px;
+        }
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin: 24px 0;
+        }
+        .work-card {
+            background: white;
+            border-radius: 28px;
+            border: 1.5px solid #eceef2;
+            padding: 18px 12px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .work-card:hover {
+            transform: translateY(-5px);
+            border-color: #0071e3;
+            box-shadow: 0 16px 28px rgba(0,0,0,0.08);
+        }
+        .work-card.selected {
+            border-color: #0071e3;
+            background: #f5faff;
+        }
+        .check-circle {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            width: 24px;
+            height: 24px;
+            border-radius: 30px;
+            background: white;
+            border: 2px solid #c6c6c8;
+            transition: all 0.2s;
+        }
+        .work-card.selected .check-circle {
+            background: #0071e3;
+            border-color: #0071e3;
+        }
+        .work-card.selected .check-circle::after {
+            content: "✓";
+            display: block;
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            line-height: 20px;
+            font-weight: bold;
+        }
+        .work-emoji { font-size: 2.8rem; text-align: center; margin: 12px 0 8px; }
+        .work-name { font-weight: 600; text-align: center; }
+        .work-price { font-size: 0.8rem; color: #c3641e; text-align: center; margin-bottom: 14px; }
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 6px;
+        }
+        .qty-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 38px;
+            background: #f2f2f5;
+            border: none;
+            font-size: 1.3rem;
             font-weight: 500;
-            pointer-events: none;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .qty-btn:hover {
+            background: #e0e0e5;
+            transform: scale(1.05);
+        }
+        .qty-btn:active {
+            transform: scale(0.95);
+        }
+        .membership-option {
+            border: 1.5px solid #e9e9ef;
+            border-radius: 28px;
+            padding: 14px 18px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .membership-option:hover {
+            transform: translateX(6px);
+            border-color: #b0b0bc;
+            background: #fafafc;
+        }
+        .membership-option.selected {
+            border-color: #0071e3;
+            background: #f0f7ff;
+            transform: scale(1.01);
+        }
+        /* 月份选择器：统一外形、等宽网格 */
+        .month-picker {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 12px 0;
+        }
+        .month-card {
+            background: #f8f8fc;
+            border-radius: 28px;
+            padding: 12px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+            font-weight: 500;
+            /* 统一宽度由grid自动分配 */
+        }
+        .month-card:hover {
+            background: #eef0f5;
+            transform: translateY(-2px);
+        }
+        .month-card.selected {
+            border-color: #0071e3;
+            background: #eef4fe;
+            transform: scale(0.98);
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+            text-align: left;
+        }
+        .form-group label { font-weight: 500; display: block; margin-bottom: 6px; }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 30px;
+            border: 1px solid #d4d4dc;
+            font-size: 0.95rem;
+            transition: border 0.2s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #0071e3;
+        }
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin: 8px 0;
+        }
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .radio-item:hover { opacity: 0.8; }
+        .invoice {
+            background: #f8f8fc;
+            border-radius: 28px;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+        .btn-primary {
+            background: #0071e3;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 60px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .btn-primary:hover { background: #005bb5; transform: scale(0.98); }
+        .btn-secondary {
+            background: #e8e8ed;
+            color: #1d1d1f;
+            border: none;
+            padding: 12px;
+            border-radius: 60px;
+            font-weight: 500;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: background 0.2s;
+        }
+        .btn-secondary:hover { background: #d9d9df; }
+        .wechat-card {
+            background: #eef5e9;
+            border-radius: 28px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            transition: transform 0.2s;
+        }
+        .wechat-card:hover {
+            transform: scale(1.01);
+        }
+        .wechat-id {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #2a6e3b;
+            letter-spacing: 1px;
+            margin: 12px 0;
+        }
+        .order-summary {
+            background: #f2f2f5;
+            border-radius: 24px;
+            padding: 14px;
+            margin: 16px 0;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 0.85rem;
+            border: 1px solid #ddd;
+        }
+        hr { margin: 18px 0; }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-15px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .animate-step {
+            animation: slideIn 0.3s ease-out;
         }
     </style>
 </head>
 <body>
-    <header class="site-header">
-        <div class="header-title" id="mocTitle" role="button" aria-label="打开导航菜单" tabindex="0">Moc</div>
-    </header>
-
-    <!-- 下拉菜单（与最新 index.html 完全一致） -->
-    <div class="dropdown-menu" id="dropdownMenu" role="navigation" aria-label="站点导航">
-        <div class="menu-scroll" id="menuScroll">
-            <div class="menu-grid" id="menuGrid">
-                <div class="menu-section">
-                    <h3>主页</h3>
-                    <ul>
-                        <li><a href="newsroom">新闻室</a></li>
-                    </ul>
-                </div>
-                <div class="menu-section">
-                    <h3>商店</h3>
-                    <ul>
-                        <li><a href="store">购买项目</a></li>
-                    </ul>
-                </div>
-                <div class="menu-section">
-                    <h3>文学</h3>
-                    <ul>
-                        <li><a href="momoread">Momoread</a></li>
-                    </ul>
-                </div>
-                <div class="menu-section">
-                    <h3>程序</h3>
-                    <ul>
-                        <li><a href="tyubox">Tyubox待办盒子</a></li>
-                        <li><a href="nofeed">Nofeed简索</a></li>
-                    </ul>
-                </div>
-                <div class="menu-section">
-                    <h3>活动</h3>
-                    <ul>
-                        <li><a href="mocon27">MOConference27</a></li>
-                    </ul>
-                </div>
-                <div class="menu-section">
-                    <h3>教育</h3>
-                    <ul>
-                        <li><a href="visionx">VisionX</a></li>
-                        <li><a href="visionlive">在线教育社区</a></li>
-                    </ul>
-                </div>
-            </div>
+<header class="site-header"><div class="header-title">Moc</div></header>
+<!-- 删除下拉菜单，保留空div以防影响 -->
+<div class="main-content">
+    <div class="store-hero"><h1 class="store-hero-title">Moc 商店</h1><p class="store-hero-desc">MOMOREAD 独家实体订阅 · 纸间温度</p></div>
+    <div class="subscription-card" id="startCard">
+        <div class="card-image">📮✨</div>
+        <div class="card-body">
+            <div class="card-category">文学 · 独家实体</div>
+            <div class="card-title">莫川读书会 · 纸间订阅</div>
+            <div class="card-desc">每周一封手写信件 + 原创小说 + 专属赠品<br>三档会员 · 按月寄送</div>
+            <div class="card-price">0.99元 起 / 月</div>
+            <button class="btn-large" id="openSubscribeBtn">开始订阅旅程 →</button>
         </div>
     </div>
+</div>
 
-    <div class="main-content" id="mainContent">
-        <div class="store-hero">
-            <h1 class="store-hero-title">Moc 商店</h1>
-            <p class="store-hero-desc">全部商品将陆续上架，敬请期待</p>
-        </div>
+<div id="subscribeModal" class="modal-overlay"><div class="modal-dialog" id="modalDialog"><button class="modal-close" id="modalCloseBtn">✕</button><div id="modalContent"></div></div></div>
 
-        <div class="content-inner">
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-image-placeholder">📦</span>
-                        <span class="placeholder-label">占位</span>
-                    </div>
-                    <div class="product-card-body">
-                        <span class="product-card-category">商品分类</span>
-                        <h3 class="product-card-title">商品 1</h3>
-                        <p class="product-card-desc">商品描述占位</p>
-                        <div class="product-card-footer">
-                            <span class="product-price-placeholder">价格待定</span>
-                            <span class="card-btn">预购</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-image-placeholder">📦</span>
-                        <span class="placeholder-label">占位</span>
-                    </div>
-                    <div class="product-card-body">
-                        <span class="product-card-category">商品分类</span>
-                        <h3 class="product-card-title">商品 2</h3>
-                        <p class="product-card-desc">商品描述占位</p>
-                        <div class="product-card-footer">
-                            <span class="product-price-placeholder">价格待定</span>
-                            <span class="card-btn">预购</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-image-placeholder">📦</span>
-                        <span class="placeholder-label">占位</span>
-                    </div>
-                    <div class="product-card-body">
-                        <span class="product-card-category">商品分类</span>
-                        <h3 class="product-card-title">商品 3</h3>
-                        <p class="product-card-desc">商品描述占位</p>
-                        <div class="product-card-footer">
-                            <span class="product-price-placeholder">价格待定</span>
-                            <span class="card-btn">预购</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-image-placeholder">📦</span>
-                        <span class="placeholder-label">占位</span>
-                    </div>
-                    <div class="product-card-body">
-                        <span class="product-card-category">商品分类</span>
-                        <h3 class="product-card-title">商品 4</h3>
-                        <p class="product-card-desc">商品描述占位</p>
-                        <div class="product-card-footer">
-                            <span class="product-price-placeholder">价格待定</span>
-                            <span class="card-btn">预购</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-image-placeholder">📦</span>
-                        <span class="placeholder-label">占位</span>
-                    </div>
-                    <div class="product-card-body">
-                        <span class="product-card-category">商品分类</span>
-                        <h3 class="product-card-title">商品 5</h3>
-                        <p class="product-card-desc">商品描述占位</p>
-                        <div class="product-card-footer">
-                            <span class="product-price-placeholder">价格待定</span>
-                            <span class="card-btn">预购</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-image-placeholder">📦</span>
-                        <span class="placeholder-label">占位</span>
-                    </div>
-                    <div class="product-card-body">
-                        <span class="product-card-category">商品分类</span>
-                        <h3 class="product-card-title">商品 6</h3>
-                        <p class="product-card-desc">商品描述占位</p>
-                        <div class="product-card-footer">
-                            <span class="product-price-placeholder">价格待定</span>
-                            <span class="card-btn">预购</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-image-placeholder">📦</span>
-                        <span class="placeholder-label">占位</span>
-                    </div>
-                    <div class="product-card-body">
-                        <span class="product-card-category">商品分类</span>
-                        <h3 class="product-card-title">商品 7</h3>
-                        <p class="product-card-desc">商品描述占位</p>
-                        <div class="product-card-footer">
-                            <span class="product-price-placeholder">价格待定</span>
-                            <span class="card-btn">预购</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <span class="product-image-placeholder">📦</span>
-                        <span class="placeholder-label">占位</span>
-                    </div>
-                    <div class="product-card-body">
-                        <span class="product-card-category">商品分类</span>
-                        <h3 class="product-card-title">商品 8</h3>
-                        <p class="product-card-desc">商品描述占位</p>
-                        <div class="product-card-footer">
-                            <span class="product-price-placeholder">价格待定</span>
-                            <span class="card-btn">预购</span>
-                        </div>
+<script>
+(function(){
+    const works = [
+        { name: "非正式小组", price: 0.75, emoji: "🔍" },
+        { name: "唐人探案", price: 0.75, emoji: "🐉" },
+        { name: "崔氏二小生", price: 0.75, emoji: "👨‍🎓" },
+        { name: "三号线", price: 0.50, emoji: "🚇" },
+        { name: "德州金夫妻", price: 0.25, emoji: "💰" }
+    ];
+    const memberships = [
+        { name: "一般读者", price: 0.99, printFee: 2 },
+        { name: "26se (VIP)", price: 3.99, printFee: 1 },
+        { name: "mailse", price: 1.99, printFee: 2, wechatOnly: true }
+    ];
+    const availableMonths = [
+        { label: "2026年7月", value: "2026-07", year:2026, month:7 },
+        { label: "2026年8月", value: "2026-08", year:2026, month:8 },
+        { label: "2026年9月", value: "2026-09", year:2026, month:9 },
+        { label: "2026年10月", value: "2026-10", year:2026, month:10 },
+        { label: "2026年11月", value: "2026-11", year:2026, month:11 },
+        { label: "2026年12月", value: "2026-12", year:2026, month:12 }
+    ];
+
+    let step = 'works';
+    let selectedWorks = [];
+    let selectedMembership = null;
+    let selectedStartMonth = null;
+    let subscriptionMonths = 1;
+    let deliveryMethod = 'address';
+    let userInfo = { name: '', address: '', email: '' };
+
+    const modal = document.getElementById('subscribeModal');
+    const modalContent = document.getElementById('modalContent');
+    const closeModalBtn = document.getElementById('modalCloseBtn');
+
+    function closeModal() {
+        modal.classList.remove('show');
+        step = 'works';
+        selectedWorks = [];
+        selectedMembership = null;
+        selectedStartMonth = null;
+        subscriptionMonths = 1;
+        deliveryMethod = 'address';
+        userInfo = { name: '', address: '', email: '' };
+    }
+
+    function openModal() {
+        step = 'works';
+        selectedWorks = [];
+        selectedMembership = null;
+        selectedStartMonth = null;
+        subscriptionMonths = 1;
+        deliveryMethod = 'address';
+        userInfo = { name: '', address: '', email: '' };
+        renderStep();
+        modal.classList.add('show');
+    }
+
+    // 每个作品数量是否为4的倍数
+    function isEachWorkMultipleOfFour() {
+        for (let w of selectedWorks) {
+            if (w.quantity % 4 !== 0) return false;
+        }
+        return true;
+    }
+    function isTotalQuantityValid() {
+        let total = selectedWorks.reduce((s,w)=>s+w.quantity,0);
+        return total > 0 && isEachWorkMultipleOfFour();
+    }
+
+    function calcWorksTotal() {
+        return selectedWorks.reduce((sum, w) => sum + w.price * w.quantity, 0);
+    }
+    function calcMembershipTotal() {
+        if (!selectedMembership) return 0;
+        return selectedMembership.price * subscriptionMonths;
+    }
+    function calcPrintTotal() {
+        if (!selectedMembership) return 0;
+        return selectedMembership.printFee * subscriptionMonths;
+    }
+    function calcGrandTotal() {
+        return calcWorksTotal() + calcMembershipTotal() + calcPrintTotal();
+    }
+
+    // 校验结束时间：起始月份 + 订阅月数 - 1 个月 <= 2026-12-31
+    function isEndDateValid() {
+        if (!selectedStartMonth) return true;
+        const [year, month] = selectedStartMonth.split('-').map(Number);
+        let endYear = year;
+        let endMonth = month + subscriptionMonths - 1;
+        if (endMonth > 12) {
+            endYear += Math.floor((endMonth - 1) / 12);
+            endMonth = ((endMonth - 1) % 12) + 1;
+        }
+        if (endYear > 2026) return false;
+        if (endYear === 2026 && endMonth > 12) return false;
+        return true;
+    }
+
+    function renderWorksStep() {
+        let worksHtml = `<div class="modal-title animate-step">📖 选择作品 (每个作品数量须为4的倍数)</div>`;
+        worksHtml += `<div class="works-grid">`;
+        works.forEach(work => {
+            const selected = selectedWorks.find(w => w.name === work.name);
+            const qty = selected ? selected.quantity : 0;
+            const isSelected = qty > 0;
+            worksHtml += `
+                <div class="work-card ${isSelected ? 'selected' : ''}" data-name="${work.name}" data-price="${work.price}">
+                    <div class="check-circle"></div>
+                    <div class="work-emoji">${work.emoji}</div>
+                    <div class="work-name">${work.name}</div>
+                    <div class="work-price">${work.price}元/章</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn minus" data-name="${work.name}">-</button>
+                        <span class="qty-num" data-name="${work.name}">${qty}</span>
+                        <button class="qty-btn plus" data-name="${work.name}">+</button>
                     </div>
                 </div>
+            `;
+        });
+        worksHtml += `</div>`;
+        let totalQty = selectedWorks.reduce((s,w)=>s+w.quantity,0);
+        let allValid = isEachWorkMultipleOfFour() && totalQty > 0;
+        worksHtml += `<div style="text-align:right; font-size:0.85rem; margin-bottom:12px;">总章节：${totalQty} 章 | ${allValid ? '✅ 有效' : '❌ 每个作品数量需为4的倍数且总数>0'}</div>`;
+        worksHtml += `<button id="nextToMembershipBtn" class="btn-primary" ${!allValid ? 'disabled style="opacity:0.5;"' : ''}>下一步：选择会员 →</button>`;
+        worksHtml += `<button id="cancelWorksBtn" class="btn-secondary">取消</button>`;
+        return worksHtml;
+    }
+
+    function renderMembershipStep() {
+        let html = `<div class="modal-title animate-step">⭐ 选择会员 & 订阅时长</div>`;
+        memberships.forEach(m => {
+            const isSelected = selectedMembership && selectedMembership.name === m.name;
+            html += `
+                <div class="membership-option ${isSelected ? 'selected' : ''}" data-mem="${m.name}" data-price="${m.price}" data-print="${m.printFee}" data-wechat="${m.wechatOnly || false}">
+                    <div style="display:flex; justify-content:space-between;">
+                        <span class="membership-name">${m.name}</span>
+                        <span class="membership-price">${m.price}元/月 + 打印费${m.printFee}元/月</span>
+                    </div>
+                </div>
+            `;
+        });
+        html += `<div class="form-group"><label>📅 选择起始月份（2026年7月-12月）</label><div class="month-picker" id="monthPicker"></div></div>`;
+        html += `<div class="form-group"><label>⏱️ 订阅月数（1-6个月，结束不得晚于2026年12月）</label><input type="number" id="monthsCount" min="1" max="12" value="${subscriptionMonths}" step="1" style="border-radius:30px;"></div>`;
+        html += `<div id="monthWarning" style="color:#c3641e; font-size:0.8rem; margin:6px 0;"></div>`;
+        html += `<button id="nextToAddressBtn" class="btn-primary">下一步：填写信息 →</button>`;
+        html += `<button id="backToWorksFromMem" class="btn-secondary">返回修改作品</button>`;
+        return html;
+    }
+
+    function populateMonthPicker() {
+        const container = document.getElementById('monthPicker');
+        if (!container) return;
+        container.innerHTML = '';
+        availableMonths.forEach(m => {
+            const div = document.createElement('div');
+            div.className = `month-card ${selectedStartMonth === m.value ? 'selected' : ''}`;
+            div.innerText = m.label;
+            div.setAttribute('data-month', m.value);
+            div.onclick = () => {
+                selectedStartMonth = m.value;
+                renderStep();
+            };
+            container.appendChild(div);
+        });
+    }
+
+    function updateMonthWarning() {
+        const warnSpan = document.getElementById('monthWarning');
+        if (!warnSpan) return;
+        if (selectedStartMonth && !isEndDateValid()) {
+            warnSpan.innerText = '⚠️ 订阅结束时间超出了2026年12月31日，请减少月数或更换起始月';
+        } else {
+            warnSpan.innerText = '';
+        }
+    }
+
+    function renderWechatStep() {
+        return `
+            <div class="modal-title animate-step">📱 联系客服完成订阅</div>
+            <div class="wechat-card">
+                <div style="font-size:1.2rem; margin-bottom:8px;">由于 mailse 会员为特殊线下支持计划，请添加客服微信办理：</div>
+                <div class="wechat-id">Yu2025boy</div>
+                <div style="font-size:0.85rem; color:#4a6741;">添加时请备注“MOMOREAD mailse订阅”</div>
+                <div style="margin-top:16px;">🔹 客服将协助您完成作品选择、地址确认及支付</div>
             </div>
-        </div>
-    </div>
+            <button id="closeWechatBtn" class="btn-primary">关闭窗口</button>
+        `;
+    }
 
-    <script>
-        (function() {
-            "use strict";
+    function renderAddressStep() {
+        let html = `<div class="modal-title animate-step">✍️ 你的专属信件地址</div>`;
+        html += `<div class="form-group"><label>收货姓名</label><input type="text" id="fullName" placeholder="真实姓名" value="${userInfo.name}"></div>`;
+        html += `<div class="form-group"><label>📬 接收方式</label><div class="radio-group" id="deliveryRadio">`;
+        html += `<label class="radio-item"><input type="radio" name="delivery" value="address" ${deliveryMethod === 'address' ? 'checked' : ''}> 📮 送至地址</label>`;
+        html += `<label class="radio-item"><input type="radio" name="delivery" value="pickup" ${deliveryMethod === 'pickup' ? 'checked' : ''}> 🏢 线下传递（自取点）</label>`;
+        html += `</div></div>`;
+        html += `<div id="addressField" style="${deliveryMethod === 'address' ? 'display:block' : 'display:none'}"><div class="form-group"><label>详细地址</label><input type="text" id="address" placeholder="省/市/区 街道门牌" value="${userInfo.address}"></div></div>`;
+        html += `<div class="form-group"><label>电子邮箱（送达提醒）</label><input type="email" id="email" placeholder="your@email.com" value="${userInfo.email}"></div>`;
+        html += `<button id="toPaymentBtn" class="btn-primary">确认信息，添加客服付款 →</button>`;
+        html += `<button id="backToMembershipFromAddr" class="btn-secondary">返回修改会员</button>`;
+        return html;
+    }
 
-            const SmoothScrollEngine = {
-                init: function() {
-                    const menuScroll = document.getElementById('menuScroll');
-                    if (menuScroll) this._applyInertiaToElement(menuScroll, 'horizontal');
-                },
-                _applyInertiaToElement: function(el, direction) {
-                    if (!el) return;
-                    let startX, scrollLeft;
-                    el.addEventListener('wheel', (e) => {
-                        if (direction === 'horizontal') {
-                            const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-                            if (Math.abs(delta) > 2) {
-                                e.preventDefault();
-                                el.scrollLeft += delta * 0.5;
-                            }
+    function attachAddressEvents() {
+        const radios = document.querySelectorAll('input[name="delivery"]');
+        radios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                deliveryMethod = e.target.value;
+                const addressDiv = document.getElementById('addressField');
+                if (addressDiv) addressDiv.style.display = deliveryMethod === 'address' ? 'block' : 'none';
+            });
+        });
+    }
+
+    function renderPaymentStep() {
+        const worksTotal = calcWorksTotal();
+        const membershipTotal = calcMembershipTotal();
+        const printTotal = calcPrintTotal();
+        const grandTotal = calcGrandTotal();
+
+        const worksList = selectedWorks.map(w => `${w.name} x${w.quantity}章`).join('；');
+        const remark = `【MOMOREAD实体订阅订单】
+作品清单：${worksList}
+会员档位：${selectedMembership.name} （${selectedMembership.price}元/月）
+打印费：${selectedMembership.printFee}元/月
+订阅周期：从 ${selectedStartMonth} 起，共 ${subscriptionMonths} 个月
+作品费用：${worksTotal.toFixed(2)}元
+会员费总计：${membershipTotal.toFixed(2)}元
+打印费总计：${printTotal.toFixed(2)}元
+总金额：${grandTotal.toFixed(2)}元
+送达方式：${deliveryMethod === 'address' ? `送至地址：${userInfo.address}` : '线下传递（自取）'}
+联系人：${userInfo.name} / 邮箱：${userInfo.email}`;
+
+        let html = `<div class="modal-title animate-step">💳 添加客服微信完成付款</div>`;
+        html += `<div class="invoice"><strong>费用明细</strong><br>作品: ${worksTotal.toFixed(2)}元<br>会员+打印: ${(membershipTotal+printTotal).toFixed(2)}元<br><strong>总计：${grandTotal.toFixed(2)}元</strong></div>`;
+        html += `<div class="wechat-card"><div style="font-weight:600;">客服微信</div><div class="wechat-id">Yu2025boy</div><div>请复制上方订单信息，添加好友时发送给客服</div></div>`;
+        // 订单信息展示框（只展示，无复制按钮）
+        html += `<div class="order-summary">${remark.replace(/\n/g, '<br>')}</div>`;
+        html += `<button id="closePaymentBtn" class="btn-primary">关闭</button>`;
+        return html;
+    }
+
+    function attachPaymentEvents() {
+        const closeBtn = document.getElementById('closePaymentBtn');
+        if (closeBtn) closeBtn.onclick = closeModal;
+    }
+
+    function renderStep() {
+        if (selectedMembership && selectedMembership.wechatOnly && step !== 'wechat' && step !== 'works' && step !== 'membership') {
+            step = 'wechat';
+        }
+        let html = '';
+        if (step === 'works') html = renderWorksStep();
+        else if (step === 'membership') html = renderMembershipStep();
+        else if (step === 'wechat') html = renderWechatStep();
+        else if (step === 'address') html = renderAddressStep();
+        else if (step === 'payment') html = renderPaymentStep();
+        modalContent.innerHTML = html;
+        if (step === 'membership') {
+            populateMonthPicker();
+            const monthsInput = document.getElementById('monthsCount');
+            if (monthsInput) {
+                monthsInput.addEventListener('change', (e) => {
+                    let val = parseInt(e.target.value);
+                    if (isNaN(val)) val = 1;
+                    subscriptionMonths = Math.min(12, Math.max(1, val));
+                    if (!isEndDateValid()) {
+                        while (subscriptionMonths > 1 && !isEndDateValid()) {
+                            subscriptionMonths--;
                         }
-                    }, { passive: false });
-                    el.addEventListener('touchstart', (e) => {
-                        startX = e.touches[0].pageX;
-                        scrollLeft = el.scrollLeft;
-                    }, { passive: true });
-                    el.addEventListener('touchmove', (e) => {
-                        if (!startX) return;
-                        const x = e.touches[0].pageX;
-                        const walk = (startX - x) * 1.5;
-                        el.scrollLeft = scrollLeft + walk;
-                    }, { passive: true });
-                    el.addEventListener('touchend', () => { startX = null; });
-                }
-            };
-
-            const RubberEngine = {
-                breakpoints: { phone: 600, tablet: 1024, desktop: 1440 },
-                currentDevice: 'desktop',
-                init: function() { this._detectAndApply(); this._bindEvents(); },
-                _detectAndApply: function() {
-                    const width = window.innerWidth;
-                    const body = document.body;
-                    body.classList.remove('rubber-phone', 'rubber-tablet', 'rubber-desktop', 'rubber-wide');
-                    let device;
-                    if (width < this.breakpoints.phone) {
-                        body.classList.add('rubber-phone'); device = 'phone';
-                    } else if (width < this.breakpoints.tablet) {
-                        body.classList.add('rubber-tablet'); device = 'tablet';
-                    } else if (width < this.breakpoints.desktop) {
-                        body.classList.add('rubber-desktop'); device = 'desktop';
-                    } else {
-                        body.classList.add('rubber-wide'); device = 'wide';
+                        monthsInput.value = subscriptionMonths;
                     }
-                    this.currentDevice = device;
-                    body.setAttribute('data-rubber-device', device);
-                },
-                _bindEvents: function() {
-                    let resizeTimer;
-                    window.addEventListener('resize', () => {
-                        clearTimeout(resizeTimer);
-                        resizeTimer = setTimeout(() => this._detectAndApply(), 100);
-                    });
-                    window.addEventListener('orientationchange', () => {
-                        setTimeout(() => this._detectAndApply(), 50);
-                    });
+                    updateMonthWarning();
+                    renderStep();
+                });
+            }
+            updateMonthWarning();
+        }
+        if (step === 'address') attachAddressEvents();
+        if (step === 'payment') attachPaymentEvents();
+        attachStepEvents();
+    }
+
+    function attachStepEvents() {
+        // 作品卡片：加减每次 ±4
+        document.querySelectorAll('.work-card').forEach(card => {
+            const name = card.getAttribute('data-name');
+            const price = parseFloat(card.getAttribute('data-price'));
+            const minus = card.querySelector('.minus');
+            const plus = card.querySelector('.plus');
+            const qtySpan = card.querySelector('.qty-num');
+            const update = () => {
+                const existing = selectedWorks.find(w => w.name === name);
+                const qty = existing ? existing.quantity : 0;
+                if (qtySpan) qtySpan.innerText = qty;
+                if (qty > 0) card.classList.add('selected'); else card.classList.remove('selected');
+                const nextBtn = document.getElementById('nextToMembershipBtn');
+                if (nextBtn) {
+                    const valid = isTotalQuantityValid();
+                    nextBtn.disabled = !valid;
+                    nextBtn.style.opacity = valid ? '1' : '0.5';
+                }
+                const totalDiv = document.querySelector('.works-grid')?.parentElement?.querySelector('div[style*="text-align:right"]');
+                if (totalDiv) {
+                    let total = selectedWorks.reduce((s,w)=>s+w.quantity,0);
+                    let allValid = isEachWorkMultipleOfFour() && total > 0;
+                    totalDiv.innerHTML = `总章节：${total} 章 | ${allValid ? '✅ 有效' : '❌ 每个作品数量需为4的倍数且总数>0'}`;
                 }
             };
-
-            SmoothScrollEngine.init();
-            RubberEngine.init();
-
-            const mocTitle = document.getElementById('mocTitle');
-            const dropdownMenu = document.getElementById('dropdownMenu');
-
-            mocTitle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const isMenuOpen = dropdownMenu.classList.contains('show');
-                if (isMenuOpen) {
-                    // 在分页中，再次点击 Moc 按钮跳转到主界面
-                    window.location.href = '/';
+            if (minus) {
+                minus.onclick = (e) => {
+                    e.stopPropagation();
+                    const existing = selectedWorks.find(w => w.name === name);
+                    if (existing && existing.quantity >= 4) {
+                        existing.quantity -= 4;
+                        if (existing.quantity === 0) {
+                            const idx = selectedWorks.findIndex(w => w.name === name);
+                            selectedWorks.splice(idx, 1);
+                        }
+                    }
+                    update();
+                };
+            }
+            if (plus) {
+                plus.onclick = (e) => {
+                    e.stopPropagation();
+                    const existing = selectedWorks.find(w => w.name === name);
+                    if (existing) existing.quantity += 4;
+                    else selectedWorks.push({ name, price, quantity: 4 });
+                    update();
+                };
+            }
+            card.onclick = (e) => {
+                if (e.target.classList && (e.target.classList.contains('qty-btn') || e.target.classList.contains('qty-num'))) return;
+                const existing = selectedWorks.find(w => w.name === name);
+                if (existing) {
+                    const idx = selectedWorks.findIndex(w => w.name === name);
+                    selectedWorks.splice(idx, 1);
                 } else {
-                    dropdownMenu.classList.add('show');
+                    selectedWorks.push({ name, price, quantity: 4 });
                 }
-            });
+                update();
+            };
+        });
 
-            dropdownMenu.addEventListener('click', e => e.stopPropagation());
-            document.addEventListener('click', function(e) {
-                if (dropdownMenu.classList.contains('show')) {
-                    dropdownMenu.classList.remove('show');
+        const nextMembership = document.getElementById('nextToMembershipBtn');
+        if (nextMembership) {
+            nextMembership.onclick = () => {
+                if (!isTotalQuantityValid()) {
+                    alert("每个作品数量必须是4的倍数且总章节数大于0，请调整。");
+                    return;
                 }
-            });
+                step = 'membership';
+                renderStep();
+            };
+        }
+        const cancelWorks = document.getElementById('cancelWorksBtn');
+        if (cancelWorks) cancelWorks.onclick = closeModal;
 
-            window.RubberEngine = RubberEngine;
-            window.SmoothScrollEngine = SmoothScrollEngine;
-        })();
-    </script>
+        document.querySelectorAll('.membership-option').forEach(opt => {
+            opt.onclick = (e) => {
+                const name = opt.getAttribute('data-mem');
+                const price = parseFloat(opt.getAttribute('data-price'));
+                const printFee = parseInt(opt.getAttribute('data-print'));
+                const wechatOnly = opt.getAttribute('data-wechat') === 'true';
+                selectedMembership = { name, price, printFee, wechatOnly };
+                if (wechatOnly) {
+                    step = 'wechat';
+                    renderStep();
+                } else {
+                    renderStep();
+                }
+            };
+        });
+
+        const nextAddr = document.getElementById('nextToAddressBtn');
+        if (nextAddr) {
+            nextAddr.onclick = () => {
+                if (!selectedMembership) { alert("请选择会员制度"); return; }
+                if (!selectedStartMonth) { alert("请选择起始月份"); return; }
+                if (!isEndDateValid()) { alert("订阅结束时间不能超过2026年12月31日，请调整月数或起始月"); return; }
+                step = 'address';
+                renderStep();
+            };
+        }
+        const backToWorks = document.getElementById('backToWorksFromMem');
+        if (backToWorks) backToWorks.onclick = () => { step = 'works'; renderStep(); };
+        const backToMembership = document.getElementById('backToMembershipFromAddr');
+        if (backToMembership) backToMembership.onclick = () => { step = 'membership'; renderStep(); };
+        const toPayment = document.getElementById('toPaymentBtn');
+        if (toPayment) {
+            toPayment.onclick = () => {
+                const name = document.getElementById('fullName')?.value;
+                const email = document.getElementById('email')?.value;
+                if (!name || !email) { alert("请填写姓名和邮箱"); return; }
+                userInfo.name = name;
+                userInfo.email = email;
+                if (deliveryMethod === 'address') {
+                    const addr = document.getElementById('address')?.value;
+                    if (!addr) { alert("请填写详细地址"); return; }
+                    userInfo.address = addr;
+                } else {
+                    userInfo.address = "线下自取";
+                }
+                step = 'payment';
+                renderStep();
+            };
+        }
+        const closeWechat = document.getElementById('closeWechatBtn');
+        if (closeWechat) closeWechat.onclick = closeModal;
+    }
+
+    document.getElementById('openSubscribeBtn').addEventListener('click', openModal);
+    closeModalBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('show')) closeModal(); });
+})();
+</script>
 </body>
 </html>
