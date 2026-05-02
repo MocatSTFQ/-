@@ -14,8 +14,7 @@
             background-color: #fbfbfd;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             -webkit-font-smoothing: antialiased;
-            height: 100vh;
-            display: flex; align-items: flex-start; justify-content: center;
+            height: 100vh; display: flex; align-items: flex-start; justify-content: center;
             overflow: hidden; color: #1d1d1f;
             --rubber-card-gap: clamp(16px, 2vw, 24px);
             --rubber-section-padding: clamp(16px, 3vw, 32px);
@@ -95,10 +94,10 @@
         }
         @media (min-width: 1024px) {
             .content-inner { grid-template-columns: 1fr 1fr; max-width: 1400px; margin: 0 auto; }
-            .poster-card, .new-rule-card, .store-card { max-width: 100%; width: 100%; }
+            .poster-card, .new-rule-card, .store-card, .redeem-card { max-width: 100%; width: 100%; }
         }
 
-        .poster-card, .new-rule-card, .store-card {
+        .poster-card, .new-rule-card, .store-card, .redeem-card {
             width: 100%; max-width: 640px; margin: 0 auto; aspect-ratio: 16 / 9;
             background: #ffffff; border-radius: clamp(20px, 3vw, 28px);
             box-shadow: 0 2px 12px rgba(0,0,0,0.02), 0 8px 24px rgba(0,0,0,0.04);
@@ -106,9 +105,9 @@
             border: 0.5px solid rgba(0,0,0,0.04);
         }
         .poster-card { background: #0D5C3A; }
-        .poster-card:hover, .new-rule-card:hover, .store-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
+        .poster-card:hover, .new-rule-card:hover, .store-card:hover, .redeem-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
 
-        .poster-center, .new-rule-center, .store-center {
+        .poster-center, .new-rule-center, .store-center, .redeem-center {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             text-align: center; z-index: 2;
         }
@@ -123,8 +122,12 @@
             font-size: clamp(2.5rem, 8vw, 3.5rem); font-weight: 700; letter-spacing: -0.02em;
             color: #1d1d1f; line-height: 1.2; margin-bottom: 8px;
         }
+        .redeem-center .new-rule-title {
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            max-width: 90%;
+        }
 
-        .poster-btn, .new-rule-btn, .store-btn {
+        .poster-btn, .new-rule-btn, .store-btn, .redeem-btn {
             position: absolute; bottom: clamp(16px, 3vw, 24px); right: clamp(16px, 3vw, 24px);
             background-color: #0071e3; border: none; color: white;
             width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
@@ -136,11 +139,13 @@
         .poster-btn:hover { background: #ffffff; color: #0D5C3A; }
         .store-btn { background: transparent; border: 1.5px solid #C4A882; color: #C4A882; box-shadow: none; }
         .store-btn:hover { background: #C4A882; color: #ffffff; }
-        .poster-btn:hover, .new-rule-btn:hover, .store-btn:hover {
+        .redeem-btn { background: transparent; border: 1.5px solid #C4A882; color: #C4A882; box-shadow: none; }
+        .redeem-btn:hover { background: #C4A882; color: #ffffff; }
+        .poster-btn:hover, .new-rule-btn:hover, .store-btn:hover, .redeem-btn:hover {
             width: auto; border-radius: 40px; padding: 0 24px; transform: scale(1.08); box-shadow: 0 6px 18px rgba(0,0,0,0.15);
         }
-        .poster-btn span, .new-rule-btn span, .store-btn span { display: none; margin-left: 4px; }
-        .poster-btn:hover span, .new-rule-btn:hover span, .store-btn:hover span { display: inline; }
+        .poster-btn span, .new-rule-btn span, .store-btn span, .redeem-btn span { display: none; margin-left: 4px; }
+        .poster-btn:hover span, .new-rule-btn:hover span, .store-btn:hover span, .redeem-btn:hover span { display: inline; }
 
         .train-track {
             position: absolute; bottom: 56px; left: 10%; width: 80%; height: 1.5px;
@@ -159,7 +164,6 @@
             0% { left: -90px; opacity: 0; } 5% { opacity: 1; } 95% { opacity: 1; } 100% { left: calc(100% + 90px); opacity: 0; }
         }
 
-        /* 在线商店卡片铺满背景文字 */
         .store-bg-text {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 0; pointer-events: auto;
@@ -280,6 +284,14 @@
                 <div class="store-center"><div class="new-rule-title" style="text-shadow: 0 2px 10px rgba(255,255,255,0.8);">在线商店</div></div>
                 <a href="store" class="store-btn" id="storeVisitBtn"><span style="display:inline;">🛒</span><span class="btn-text">去看看</span></a>
             </div>
+
+            <!-- 新增：兑换码卡片 -->
+            <div class="redeem-card" id="redeemCard">
+                <div class="redeem-center">
+                    <div class="new-rule-title">使用兑换码兑换<br>在Moc Store里面购买的兑换码</div>
+                </div>
+                <a href="#" class="redeem-btn" id="redeemStoreBtn"><span style="display:inline;">🎟️</span><span class="btn-text">兑换</span></a>
+            </div>
         </div>
     </div>
 
@@ -350,17 +362,19 @@
                 RubberEngine.init();
                 generateStoreBgText();
 
+                const validCodes = ['mcnstt039_d7', 'mcnstt039_e9', 'mcnstt039_q3', 'mcnstt039_a5'];
+
+                // 三号线试读弹窗
                 const trialReadBtn = document.getElementById('trialReadBtn');
                 const modalOverlay = document.getElementById('modalOverlay');
                 const modalCloseBtn = document.getElementById('modalCloseBtn');
                 const modalDialog = document.getElementById('modalDialog');
                 const contentArea = document.getElementById('modalContentArea');
-                const validCodes = ['mcnstt039_d7', 'mcnstt039_e9', 'mcnstt039_q3', 'mcnstt039_a5'];
 
-                function renderRedeemView() {
+                function renderRedeemView(title, onSubmit) {
                     contentArea.innerHTML = `
                         <div style="padding: 40px 32px 32px; text-align: center;">
-                            <div class="modal-title-text" style="margin: 0 0 24px; padding: 0; text-align: center;">请输入兑换码</div>
+                            <div class="modal-title-text" style="margin: 0 0 24px; padding: 0; text-align: center;">${title}</div>
                             <input type="text" id="redeemInput" class="redeem-input" placeholder="在此处输入moc提供给你的兑换码" autocomplete="off">
                             <button id="redeemBtn" class="redeem-btn">确认兑换</button>
                             <div id="redeemFeedback" class="redeem-feedback"></div>
@@ -375,7 +389,7 @@
                             redeemFeedback.textContent = '✅ 兑换成功！';
                             redeemFeedback.style.color = '#34c759';
                             redeemInput.disabled = true; redeemBtn.disabled = true; redeemBtn.style.opacity = '0.5';
-                            setTimeout(() => showDownloadView(), 600);
+                            if (onSubmit) onSubmit();
                         } else {
                             redeemFeedback.textContent = '❌ 兑换码无效，请重试。';
                             redeemFeedback.style.color = '#ff3b30';
@@ -403,7 +417,7 @@
                     e.preventDefault();
                     modalDialog.style.maxWidth = '800px'; modalDialog.style.maxHeight = '85vh'; modalDialog.style.height = '';
                     modalDialog.classList.add('novel-theme');
-                    renderRedeemView();
+                    renderRedeemView('请输入兑换码', showDownloadView);
                     modalOverlay.classList.add('show');
                 }
                 function closeTrial() { modalOverlay.classList.remove('show'); modalDialog.classList.remove('novel-theme'); }
@@ -412,6 +426,20 @@
                 modalOverlay.addEventListener('click', function(e) { if (e.target === modalOverlay) closeTrial(); });
                 document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modalOverlay.classList.contains('show')) closeTrial(); });
 
+                // 兑换码卡片弹窗
+                const redeemStoreBtn = document.getElementById('redeemStoreBtn');
+                function openRedeemStore(e) {
+                    e.preventDefault();
+                    modalDialog.style.maxWidth = '800px'; modalDialog.style.maxHeight = '85vh'; modalDialog.style.height = '';
+                    modalDialog.classList.add('novel-theme');
+                    renderRedeemView('使用兑换码兑换在Moc Store购买的兑换码', () => {
+                        showDownloadView();
+                    });
+                    modalOverlay.classList.add('show');
+                }
+                redeemStoreBtn.addEventListener('click', openRedeemStore);
+
+                // 新制度弹窗
                 const detailBtn = document.getElementById('detailBtn');
                 const rulesOverlay = document.getElementById('rulesModalOverlay');
                 const rulesCloseBtn = document.getElementById('rulesCloseBtn');
@@ -553,6 +581,7 @@
                     }
                 });
 
+                // 预告视频弹窗
                 const trailerBtn = document.getElementById('trailerBtn');
                 const trailerOverlay = document.getElementById('trailerModalOverlay');
                 const trailerCloseBtn = document.getElementById('trailerCloseBtn');
