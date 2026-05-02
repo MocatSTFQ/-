@@ -96,23 +96,25 @@
         }
         @media (min-width: 1024px) {
             .content-inner { grid-template-columns: 1fr 1fr; max-width: 1400px; margin: 0 auto; }
-            .poster-card, .new-rule-card, .store-card, .redeem-card { max-width: 100%; width: 100%; }
+            .poster-card, .new-rule-card, .store-card, .redeem-card, .novel-new-card { max-width: 100%; width: 100%; }
         }
 
-        .poster-card, .new-rule-card, .store-card, .redeem-card {
+        .poster-card, .new-rule-card, .store-card, .redeem-card, .novel-new-card {
             width: 100%; max-width: 640px; margin: 0 auto; aspect-ratio: 16 / 9;
-            background: #ffffff; border-radius: clamp(20px, 3vw, 28px);
+            border-radius: clamp(20px, 3vw, 28px);
             box-shadow: 0 2px 12px rgba(0,0,0,0.02), 0 8px 24px rgba(0,0,0,0.04);
             position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 0.5px solid rgba(0,0,0,0.04); cursor: pointer;
         }
         .poster-card { background: #0D5C3A; }
-        .poster-card:hover, .new-rule-card:hover, .store-card:hover, .redeem-card:hover {
+        .poster-card:hover, .new-rule-card:hover, .store-card:hover, .redeem-card:hover, .novel-new-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 28px rgba(0,0,0,0.08);
         }
+        .redeem-card { background: #FFB7C5; } /* 樱花粉 */
+        .novel-new-card { background: linear-gradient(135deg, #FFA500, #FFD700); } /* 橙黄色渐变 */
 
-        .poster-center, .new-rule-center, .store-center, .redeem-center {
+        .poster-center, .new-rule-center, .store-center, .redeem-center, .novel-center {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             text-align: center; z-index: 2; pointer-events: none;
         }
@@ -132,6 +134,11 @@
         .redeem-center .new-rule-title {
             font-size: clamp(1.6rem, 4vw, 2.4rem);
             max-width: 90%;
+            color: #ffffff; /* 白色文字 */
+        }
+        .novel-center .new-rule-title {
+            color: #ffffff;
+            font-size: clamp(2.5rem, 8vw, 3.5rem);
         }
 
         .train-track {
@@ -217,22 +224,6 @@
         }
         .rules-content::-webkit-scrollbar { width: 6px; }
         .rules-content::-webkit-scrollbar-thumb { background: #c8c8ce; border-radius: 3px; }
-
-        .trailer-modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px); z-index: 52; display: flex;
-            align-items: center; justify-content: center; visibility: hidden; opacity: 0;
-            transition: visibility 0.2s, opacity 0.2s;
-        }
-        .trailer-modal-overlay.show { visibility: visible; opacity: 1; }
-        .trailer-modal-dialog {
-            background: white; border-radius: 28px; max-width: 800px; width: 90%; max-height: 85vh;
-            box-shadow: 0 16px 32px rgba(0,0,0,0.12); position: relative; z-index: 53;
-            display: flex; flex-direction: column; overflow: hidden; padding: 0;
-        }
-        .trailer-video-wrapper { position: relative; width: 100%; border-radius: 16px; overflow: hidden; background: #000; }
-        .trailer-video-wrapper video { width: 100%; display: block; }
     </style>
 </head>
 <body>
@@ -243,7 +234,7 @@
             <div class="cover-top-left">新Headline</div>
             <div class="cover-center">
                 <h1 class="cover-title">线上活动</h1>
-                <a href="#" class="card-btn" id="trailerBtn">看个究竟</a>
+                <a href="https://www.bilibili.com/video/BV1heRjBiE36" target="_blank" class="card-btn">看个究竟</a>
             </div>
         </div>
 
@@ -267,7 +258,14 @@
 
             <div class="redeem-card" id="redeemCard">
                 <div class="redeem-center">
-                    <div class="new-rule-title">使用兑换码兑换<br>在Moc Store里面购买的兑换码</div>
+                    <div class="new-rule-title">兑换在 Moc Store 购买的电子作品 - Beta</div>
+                </div>
+            </div>
+
+            <!-- 新增卡片 -->
+            <div class="novel-new-card" id="novelNewCard">
+                <div class="novel-center">
+                    <div class="new-rule-title">新小说<br>寄往1999年的信</div>
                 </div>
             </div>
         </div>
@@ -284,19 +282,6 @@
         <div class="rules-modal-dialog" id="rulesModalDialog">
             <button class="modal-close-btn" id="rulesCloseBtn" style="position:absolute; top:16px; left:16px; z-index:5;"><svg viewBox="0 0 14 14" fill="none"><line x1="1" y1="1" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="13" y1="1" x2="1" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
             <div class="rules-content" id="rulesContent"></div>
-        </div>
-    </div>
-
-    <div class="trailer-modal-overlay" id="trailerModalOverlay">
-        <div class="trailer-modal-dialog" id="trailerModalDialog">
-            <button class="modal-close-btn" id="trailerCloseBtn"><svg viewBox="0 0 14 14" fill="none"><line x1="1" y1="1" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="13" y1="1" x2="1" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
-            <div class="modal-content-area" id="trailerContentArea">
-                <div style="padding: 60px 32px 40px; position: relative;">
-                    <div style="margin: 0 0 8px 0; padding: 0; font-weight:700; color:#1d1d1f; font-size:1.8rem; font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;">线上活动</div>
-                    <div style="color: #86868b; font-size:0.9rem; margin-bottom: 24px;">2026.5.30</div>
-                    <div id="trailerVideoContainer"></div>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -348,11 +333,11 @@
 
                 function renderRedeemView(title, onSubmit) {
                     contentArea.innerHTML = `
-                        <div style="padding: 40px 32px 32px; text-align: center;">
-                            <div style="margin: 0 0 24px; padding: 0; text-align: center; font-weight:700; color:#1d1d1f; font-size:1.8rem; font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;">${title}</div>
+                        <div style="padding: 40px 32px 32px; text-align: center; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">
+                            <div style="margin: 0 0 24px; padding: 0; font-weight:700; color:#1d1d1f; font-size:1.8rem; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">${title}</div>
                             <input type="text" id="redeemInput" class="redeem-input" placeholder="在此处输入moc提供给你的兑换码" autocomplete="off">
                             <button id="redeemBtn" class="redeem-btn-inner">确认兑换</button>
-                            <div id="redeemFeedback" class="redeem-feedback"></div>
+                            <div id="redeemFeedback" class="redeem-feedback" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;"></div>
                         </div>
                     `;
                     const redeemInput = document.getElementById('redeemInput');
@@ -378,9 +363,9 @@
                 function showDownloadView() {
                     modalDialog.style.maxWidth = '620px'; modalDialog.style.maxHeight = '85vh'; modalDialog.style.height = '';
                     contentArea.innerHTML = `
-                        <div style="padding: 40px 32px 32px;">
-                            <div style="margin: 0 0 8px 0; padding: 0; text-align: center; font-weight:700; color:#1d1d1f; font-size:1.8rem; font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;">📥 下载《三号线》</div>
-                            <p style="text-align: center; color: #6e6e73; margin-bottom: 28px; font-size: 0.95rem;">请点击下方按钮下载对应章节（docx格式）</p>
+                        <div style="padding: 40px 32px 32px; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">
+                            <div style="margin: 0 0 8px 0; padding: 0; text-align: center; font-weight:700; color:#1d1d1f; font-size:1.8rem; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">📥 下载《三号线》</div>
+                            <p style="text-align: center; color: #6e6e73; margin-bottom: 28px; font-size: 0.95rem; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">请点击下方按钮下载对应章节（docx格式）</p>
                             <a href="1.docx" class="download-btn" download>📖 第一章 · 末班车 <small>1.docx</small></a>
                             <a href="2.docx" class="download-btn" download>📖 第二章 · 红衣女人 <small>2.docx</small></a>
                             <a href="3.docx" class="download-btn" download>📖 第三章 · 十年前 <small>3.docx</small></a>
@@ -408,7 +393,7 @@
                 function buildRulesPage() {
                     rulesContent.innerHTML = `
                         <style>
-                            .site-header-rules { position: sticky; top: 0; width: 100%; padding: 12px clamp(16px, 4vw, 32px); background: rgba(251, 251, 253, 0.78); backdrop-filter: blur(25px) saturate(180%); border-bottom: 0.6px solid rgba(0,0,0,0.06); z-index: 30; display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; }
+                            .site-header-rules { position: sticky; top: 0; width: 100%; padding: 12px clamp(16px, 4vw, 32px); background: rgba(251, 251, 253, 0.78); backdrop-filter: blur(25px) saturate(180%); border-bottom: 0.6px solid rgba(0,0,0,0.06); z-index: 30; display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
                             .logo-rules { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; color: #1d1d1f; }
                             .badge-rules { background: #e6f0fa; padding: 6px 14px; border-radius: 40px; font-size: 0.85rem; font-weight: 500; color: #0071e3; }
                             .main-container-rules { max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
@@ -540,30 +525,9 @@
                 document.getElementById('storeCard').addEventListener('click', () => { window.location.href = 'store'; });
                 document.getElementById('redeemCard').addEventListener('click', () => {
                     modalDialog.style.maxWidth = '800px'; modalDialog.style.maxHeight = '85vh'; modalDialog.style.height = '';
-                    renderRedeemView('使用兑换码兑换在Moc Store购买的兑换码', showDownloadView);
+                    renderRedeemView('兑换在 Moc Store 购买的电子作品 - Beta', showDownloadView);
                     modalOverlay.classList.add('show');
                 });
-
-                const trailerBtn = document.getElementById('trailerBtn');
-                const trailerOverlay = document.getElementById('trailerModalOverlay');
-                const trailerCloseBtn = document.getElementById('trailerCloseBtn');
-                const trailerVideoContainer = document.getElementById('trailerVideoContainer');
-                const targetDate = new Date('2026-05-30T00:00:00');
-                let currentVideo = null;
-                function getVideoInfo() { const now = new Date(); if (now < targetDate) return { file: 'pre.mp4' }; else if (now.toDateString() === targetDate.toDateString()) return { file: 'event.mp4' }; else return { file: 're.mp4' }; }
-                function updateTrailerVideo() {
-                    if (currentVideo) { currentVideo.pause(); currentVideo.remove(); currentVideo = null; }
-                    const { file } = getVideoInfo();
-                    trailerVideoContainer.innerHTML = `<div class="trailer-video-wrapper"><video src="${file}" autoplay playsinline loop style="width:100%; display:block; border-radius:16px;"></video></div>`;
-                    const video = trailerVideoContainer.querySelector('video');
-                    if (video) { currentVideo = video; video.muted = false; video.play().catch(() => {}); video.addEventListener('keydown', e => e.preventDefault()); }
-                }
-                function openTrailer(e) { e.preventDefault(); updateTrailerVideo(); trailerOverlay.classList.add('show'); }
-                function closeTrailer() { if (currentVideo) { currentVideo.pause(); currentVideo.remove(); currentVideo = null; } trailerOverlay.classList.remove('show'); }
-                trailerBtn.addEventListener('click', openTrailer);
-                trailerCloseBtn.addEventListener('click', closeTrailer);
-                trailerOverlay.addEventListener('click', function(e) { if (e.target === trailerOverlay) closeTrailer(); });
-                document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && trailerOverlay.classList.contains('show')) closeTrailer(); });
             }
 
             window.addEventListener('load', init);

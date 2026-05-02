@@ -38,43 +38,17 @@
             -moz-appearance: textfield;
             appearance: textfield;
         }
-        /* 全局过渡变量 */
         :root {
             --transition-fast: 0.15s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             --transition-normal: 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             --hover-lift: -5px;
-            --active-shrink: scale(0.97);
         }
-        .site-header {
+        .main-content {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 12px 24px;
-            background: rgba(255, 255, 255, 0.72);
-            backdrop-filter: blur(20px);
-            border-bottom: 0.5px solid rgba(0, 0, 0, 0.06);
-            z-index: 30;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .header-title {
-            font-weight: 700;
-            font-size: 1.8rem;
-            letter-spacing: -0.02em;
-            cursor: default;
-            padding: 6px 24px;
-            border-radius: 40px;
-            user-select: none;
-            transition: all var(--transition-fast);
-        }
-        .main-content {
-            position: fixed;
-            top: 72px;
-            left: 0;
-            width: 100%;
-            height: calc(100vh - 72px);
+            height: 100vh;
             overflow-y: auto;
             padding: 24px 20px 48px;
             display: flex;
@@ -87,17 +61,19 @@
             animation: fadeUp 0.6s cubic-bezier(0.2, 0.8, 0.4, 1) forwards;
         }
         .store-hero-title {
-            font-size: 2.8rem;
+            font-size: 3.8rem;
             font-weight: 700;
             background: linear-gradient(135deg, #1e3c2c, #0071e3);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
+            letter-spacing: -0.02em;
         }
         .store-hero-desc {
             font-size: 1.1rem;
-            color: #6e6e73;
+            color: #cd7a32;
             margin-top: 8px;
+            font-weight: 500;
         }
         .cards-container {
             display: flex;
@@ -185,9 +161,7 @@
             transition: background var(--transition-fast), transform var(--transition-fast);
         }
         .btn-large:hover { background: #005bb5; transform: scale(0.98); }
-        .btn-large:active { transform: scale(0.96); transition-duration: 0.05s; }
-        
-        /* 弹窗 */
+        .btn-large:active { transform: scale(0.96); }
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -241,7 +215,6 @@
             margin-bottom: 20px;
             padding-right: 32px;
         }
-        /* 作品网格 */
         .works-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -321,7 +294,6 @@
         }
         .qty-btn:active {
             transform: scale(0.92);
-            transition-duration: 0.05s;
         }
         .membership-option {
             background: white;
@@ -417,7 +389,6 @@
             padding: 20px;
             margin: 20px 0;
             font-size: 0.95rem;
-            transition: all var(--transition-fast);
         }
         .btn-primary {
             background: #0071e3;
@@ -429,7 +400,6 @@
             width: 100%;
             cursor: pointer;
             margin-top: 12px;
-            font-family: 'Inter', sans-serif;
             transition: background var(--transition-fast), transform var(--transition-fast);
         }
         .btn-primary:hover { background: #005bb5; transform: scale(0.98); }
@@ -493,7 +463,6 @@
             font-size: 0.7rem;
             cursor: pointer;
             margin-top: 8px;
-            font-family: 'Inter', sans-serif;
             transition: background var(--transition-fast), transform var(--transition-fast);
         }
         .copy-btn-inside:hover {
@@ -527,11 +496,10 @@
     </style>
 </head>
 <body>
-<header class="site-header"><div class="header-title">Moc</div></header>
 <div class="main-content">
     <div class="store-hero">
         <h1 class="store-hero-title">Moc 商店</h1>
-        <p class="store-hero-desc">MOMOREAD 独家订阅 · 纸间温度 & 数字便捷</p>
+        <p class="store-hero-desc">春季已上新 欢迎来交友</p>
     </div>
     <div class="cards-container">
         <div class="subscription-card" id="physicalCard">
@@ -549,8 +517,8 @@
             <div class="card-body">
                 <div class="card-category">文学 · 线上订阅</div>
                 <div class="card-title">莫川读书会 · 数字订阅</div>
-                <div class="card-desc">每周邮件推送 + 原创小说电子版 + 兑换码<br>三档会员 · 即订即读</div>
-                <div class="card-price">0.99元 起 / 月</div>
+                <div class="card-desc">每周邮件推送 + 原创小说电子版 + 兑换码<br>无会员费 · 即订即读</div>
+                <div class="card-price">纯作品费用</div>
                 <button class="btn-large" id="openDigitalBtn">开始线上订阅 →</button>
             </div>
         </div>
@@ -569,9 +537,9 @@
         { name: "德州金夫妻", price: 0.25, emoji: "💰" }
     ];
     const memberships = [
-        { name: "一般读者", price: 0.99, printFee: 2 },
-        { name: "26se (VIP)", price: 3.99, printFee: 1 },
-        { name: "mailse", price: 1.99, printFee: 2, wechatOnly: true }
+        { name: "一般读者", price: 0.99, discount: 1.00, printFee: 2 },
+        { name: "26se (VIP)", price: 3.99, discount: 0.80, printFee: 1 },
+        { name: "mailse", price: 1.99, discount: 0.95, printFee: 2, wechatOnly: true }
     ];
     const availableMonths = [
         { label: "2026年7月", value: "2026-07", year:2026, month:7 },
@@ -642,7 +610,18 @@
     function calcTotalWorksFee() {
         return calcMonthlyWorksFee() * subscriptionMonths;
     }
-    function calcMembershipTotal() {
+    function calcTotalChapters() {
+        let monthly = selectedWorks.reduce((s,w)=>s+w.perMonthQuantity,0);
+        return monthly * subscriptionMonths;
+    }
+    // 平均每章价格：总计(最终应付) / 总章节数
+    function calcAveragePricePerChapter() {
+        let totalFee = (subscriptionType === 'digital') ? calcTotalWorksFee() : calcGrandTotal();
+        let chapters = calcTotalChapters();
+        if (chapters === 0) return 0;
+        return totalFee / chapters;
+    }
+    function calcMembershipOriginalTotal() {
         if (!selectedMembership) return 0;
         return selectedMembership.price * subscriptionMonths;
     }
@@ -651,15 +630,23 @@
         if (!selectedMembership) return 0;
         return selectedMembership.printFee * subscriptionMonths;
     }
+    function calcBaseTotal() {
+        return calcTotalWorksFee() + calcMembershipOriginalTotal() + calcPrintTotal();
+    }
     function calcGrandTotal() {
-        return calcTotalWorksFee() + calcMembershipTotal() + calcPrintTotal();
+        if (subscriptionType === 'digital') return calcTotalWorksFee();
+        if (!selectedMembership) return 0;
+        return calcBaseTotal() * selectedMembership.discount;
     }
     function isEndDateValid() {
         if (!selectedStartMonth) return true;
         const [year, month] = selectedStartMonth.split('-').map(Number);
         let endYear = year;
         let endMonth = month + subscriptionMonths - 1;
-        if (endMonth > 12) { endYear += Math.floor((endMonth-1)/12); endMonth = ((endMonth-1)%12)+1; }
+        if (endMonth > 12) {
+            endYear += Math.floor((endMonth-1)/12);
+            endMonth = ((endMonth-1)%12)+1;
+        }
         if (endYear > 2026) return false;
         if (endYear === 2026 && endMonth > 12) return false;
         return true;
@@ -676,7 +663,7 @@
         let totalMonthly = selectedWorks.reduce((s,w)=>s+w.perMonthQuantity,0);
         let allValid = isEachWorkMultipleOfFour() && totalMonthly > 0;
         worksHtml += `<div style="text-align:right; font-size:0.85rem; margin-bottom:12px;">每月总章节：${totalMonthly} 章 | ${allValid ? '✅ 有效' : '❌ 每个作品数量需为4的倍数且每月总数>0'}</div>`;
-        worksHtml += `<button id="nextToMembershipBtn" class="btn-primary" ${!allValid ? 'disabled' : ''}>下一步：选择会员 →</button><button id="cancelWorksBtn" class="btn-secondary">取消</button>`;
+        worksHtml += `<button id="nextStepBtn" class="btn-primary" ${!allValid ? 'disabled' : ''}>下一步 →</button><button id="cancelWorksBtn" class="btn-secondary">取消</button>`;
         return worksHtml;
     }
 
@@ -684,82 +671,109 @@
         let html = `<div class="modal-title animate-step">⭐ 选择会员 & 订阅时长</div>`;
         memberships.forEach(m => {
             const isSelected = selectedMembership && selectedMembership.name === m.name;
-            html += `<div class="membership-option ${isSelected ? 'selected' : ''}" data-mem="${m.name}" data-price="${m.price}" data-print="${m.printFee}" data-wechat="${m.wechatOnly||false}"><div style="display:flex; justify-content:space-between;"><span>${m.name}</span><span>${m.price}元/月 ${subscriptionType==='physical'?`+ 打印费${m.printFee}元/月`:''}</span></div></div>`;
+            const discountText = m.discount === 1.00 ? '' : ` (总价${m.discount*100}折优惠)`;
+            html += `<div class="membership-option ${isSelected ? 'selected' : ''}" data-mem="${m.name}" data-price="${m.price}" data-discount="${m.discount}" data-print="${m.printFee}" data-wechat="${m.wechatOnly||false}"><div style="display:flex; justify-content:space-between;"><span>${m.name}</span><span>${m.price}元/月${discountText} + 打印费${m.printFee}元/月</span></div></div>`;
         });
         html += `<div class="form-group"><label>📅 选择起始月份（2026年7月-12月）</label><div class="month-picker" id="monthPicker"></div></div>`;
         html += `<div class="form-group"><label>⏱️ 订阅月数（1-6个月，结束不得晚于2026年12月）</label><input type="number" id="monthsCount" min="1" max="12" value="${subscriptionMonths}" step="1" style="border-radius:30px;"></div><div id="monthWarning" style="color:#c3641e; font-size:0.8rem; margin:6px 0;"></div>`;
         let monthlyTotal = selectedWorks.reduce((s,w)=>s+w.perMonthQuantity,0);
         let totalChapters = monthlyTotal * subscriptionMonths;
         html += `<div style="background:#f0f2f5; border-radius:24px; padding:12px; margin:10px 0; font-size:0.85rem;">📊 当前订阅方案预览：每月 ${monthlyTotal} 章，订阅 ${subscriptionMonths} 个月 → 总计 <strong>${totalChapters}</strong> 章</div>`;
-        html += `<button id="nextToInfoBtn" class="btn-primary">下一步：填写信息 →</button><button id="backToWorksFromMem" class="btn-secondary">返回修改作品</button>`;
+        html += `<button id="nextStepBtn" class="btn-primary">下一步：填写信息 →</button><button id="backToWorksBtn" class="btn-secondary">返回修改作品</button>`;
         return html;
     }
 
-    function populateMonthPicker() {
-        const container = document.getElementById('monthPicker');
-        if(!container) return;
-        container.innerHTML = '';
-        availableMonths.forEach(m => {
-            const div = document.createElement('div');
-            div.className = `month-card ${selectedStartMonth === m.value ? 'selected' : ''}`;
-            div.innerText = m.label;
-            div.setAttribute('data-month', m.value);
-            div.onclick = () => { selectedStartMonth = m.value; renderStep(); };
-            container.appendChild(div);
-        });
-    }
-    function updateMonthWarning() {
-        const warnSpan = document.getElementById('monthWarning');
-        if(warnSpan) warnSpan.innerText = (selectedStartMonth && !isEndDateValid()) ? '⚠️ 订阅结束时间超出了2026年12月31日，请减少月数或更换起始月' : '';
+    function renderMonthStep() {
+        let html = `<div class="modal-title animate-step">📅 选择订阅起止时间</div>`;
+        html += `<div class="form-group"><label>起始月份（2026年7月-12月）</label><div class="month-picker" id="monthPicker"></div></div>`;
+        html += `<div class="form-group"><label>订阅月数（1-6个月，结束不得晚于2026年12月）</label><input type="number" id="monthsCount" min="1" max="12" value="${subscriptionMonths}" step="1" style="border-radius:30px;"></div><div id="monthWarning" style="color:#c3641e; font-size:0.8rem; margin:6px 0;"></div>`;
+        let monthlyTotal = selectedWorks.reduce((s,w)=>s+w.perMonthQuantity,0);
+        let totalChapters = monthlyTotal * subscriptionMonths;
+        let totalFee = calcTotalWorksFee();
+        let avgPrice = calcAveragePricePerChapter();
+        html += `<div style="background:#f0f2f5; border-radius:24px; padding:12px; margin:10px 0; font-size:0.85rem;">📊 订阅方案预览：每月 ${monthlyTotal} 章 × ${subscriptionMonths}个月 = <strong>${totalChapters}</strong> 章<br>总费用：<strong>${totalFee.toFixed(2)}元</strong><br>平均每章：<strong>${avgPrice.toFixed(2)}元</strong></div>`;
+        html += `<button id="nextStepBtn" class="btn-primary">下一步：填写接收邮箱 →</button><button id="backToWorksBtn" class="btn-secondary">返回修改作品</button>`;
+        return html;
     }
 
     function renderInfoStep() {
-        if(subscriptionType === 'physical') {
+        if (subscriptionType === 'physical') {
             let html = `<div class="modal-title animate-step">✍️ 你的专属信件地址</div><div class="form-group"><label>收货姓名</label><input type="text" id="fullName" placeholder="真实姓名" value="${userInfo.name}"></div>`;
             html += `<div class="form-group"><label>📬 接收方式</label><div class="delivery-group" id="deliveryGroup">`;
             html += `<div class="delivery-card ${deliveryMethod==='address'?'selected':''}" data-delivery="address"><div class="delivery-emoji">📮</div><div class="delivery-label">送至地址</div><div class="check-circle"></div></div>`;
             html += `<div class="delivery-card ${deliveryMethod==='pickup'?'selected':''}" data-delivery="pickup"><div class="delivery-emoji">🏢</div><div class="delivery-label">线下传递（自取点）</div><div class="check-circle"></div></div></div></div>`;
             html += `<div id="addressField" style="${deliveryMethod==='address'?'block':'none'}"><div class="form-group"><label>详细地址</label><input type="text" id="address" placeholder="省/市/区 街道门牌" value="${userInfo.address}"></div></div>`;
             html += `<div class="form-group"><label>电子邮箱（送达提醒）</label><input type="email" id="email" placeholder="your@email.com" value="${userInfo.email}"></div>`;
-            html += `<button id="toPaymentBtn" class="btn-primary">确认信息，添加客服付款 →</button><button id="backToMembershipFromInfo" class="btn-secondary">返回修改会员</button>`;
+            html += `<button id="nextStepBtn" class="btn-primary">确认信息，添加客服付款 →</button><button id="backToPrevBtn" class="btn-secondary">返回修改</button>`;
             return html;
         } else {
-            return `<div class="modal-title animate-step">✉️ 你的接收邮箱</div><div class="form-group"><label>电子邮箱（接收兑换码）</label><input type="email" id="digitalEmailInput" placeholder="your@email.com" value="${digitalEmail}"></div><button id="toPaymentBtn" class="btn-primary">确认信息，添加客服付款 →</button><button id="backToMembershipFromInfo" class="btn-secondary">返回修改会员</button>`;
+            return `<div class="modal-title animate-step">✉️ 你的接收邮箱</div><div class="form-group"><label>电子邮箱（接收兑换码）</label><input type="email" id="digitalEmailInput" placeholder="your@email.com" value="${digitalEmail}"></div><button id="nextStepBtn" class="btn-primary">确认信息，添加客服付款 →</button><button id="backToPrevBtn" class="btn-secondary">返回修改</button>`;
         }
     }
 
     function renderPaymentStep() {
-        const monthlyWorksFee = calcMonthlyWorksFee();
-        const totalWorksFee = calcTotalWorksFee();
-        const membershipTotal = calcMembershipTotal();
-        const printTotal = calcPrintTotal();
-        const grandTotal = calcGrandTotal();
-        const monthlyTotalChapters = selectedWorks.reduce((s,w)=>s+w.perMonthQuantity,0);
-        const totalChapters = monthlyTotalChapters * subscriptionMonths;
-        const worksDetail = selectedWorks.map(w=>`${w.name} ${w.perMonthQuantity}章/月`).join('、');
-        let remark = `【MOMOREAD${subscriptionType==='physical'?'实体':'线上'}订阅订单】\n作品清单（每月）：${worksDetail}\n订阅月数：${subscriptionMonths} 个月\n每月作品费用：${monthlyWorksFee.toFixed(2)}元\n总作品费用：${totalWorksFee.toFixed(2)}元（${monthlyWorksFee.toFixed(2)} × ${subscriptionMonths}）\n会员档位：${selectedMembership.name} （${selectedMembership.price}元/月）`;
-        if(subscriptionType==='physical') remark += `\n打印费：${selectedMembership.printFee}元/月\n会员+打印总费用：${(membershipTotal+printTotal).toFixed(2)}元`;
-        else remark += `\n会员总费用：${membershipTotal.toFixed(2)}元`;
-        remark += `\n总金额：${grandTotal.toFixed(2)}元\n总章节数：${totalChapters} 章\n起始月份：${selectedStartMonth}`;
-        if(subscriptionType==='physical') remark += `\n送达方式：${deliveryMethod==='address'?`送至地址：${userInfo.address}`:'线下传递（自取）'}\n联系人：${userInfo.name} / 邮箱：${userInfo.email}`;
-        else remark += `\n接收邮箱：${digitalEmail}`;
-
-        let html = `<div class="modal-title animate-step">💳 添加客服微信完成付款</div>`;
-        html += `<div class="invoice"><strong>费用明细</strong><br>每月作品: ${monthlyWorksFee.toFixed(2)}元 × ${subscriptionMonths}月 = ${totalWorksFee.toFixed(2)}元<br>会员订阅: ${selectedMembership.price}元/月 × ${subscriptionMonths}月 = ${membershipTotal.toFixed(2)}元`;
-        if(subscriptionType==='physical') html += `<br>打印费: ${selectedMembership.printFee}元/月 × ${subscriptionMonths}月 = ${printTotal.toFixed(2)}元`;
-        html += `<br><strong>总计：${grandTotal.toFixed(2)}元</strong><br>总章节数：${totalChapters} 章</div>`;
-        html += `<div class="wechat-card"><div style="font-weight:600;">客服微信</div><div class="wechat-id">Yu2025boy</div><div>请复制下方订单信息，添加好友时发送给客服</div></div>`;
-        html += `<div class="order-summary" id="orderSummaryBox">${remark.replace(/\n/g,'<br>')}<br><button class="copy-btn-inside" id="copyRemarkInsideBtn">📋 复制订单备注</button></div>`;
-        html += `<button id="closePaymentBtn" class="btn-primary">关闭</button>`;
-        return html;
+        const totalChapters = calcTotalChapters();
+        const avgPrice = calcAveragePricePerChapter();
+        if (subscriptionType === 'digital') {
+            const totalFee = calcTotalWorksFee();
+            const monthlyDetail = selectedWorks.map(w=>`${w.name} ${w.perMonthQuantity}章/月`).join('、');
+            const remark = `【MOMOREAD线上订阅订单】
+作品清单（每月）：${monthlyDetail}
+订阅月数：${subscriptionMonths} 个月
+总作品费用：${totalFee.toFixed(2)}元
+总章节数：${totalChapters} 章
+平均每章价格：${avgPrice.toFixed(2)}元
+起始月份：${selectedStartMonth}
+接收邮箱：${digitalEmail}`;
+            let html = `<div class="modal-title animate-step">💳 添加客服微信完成付款</div>`;
+            html += `<div class="invoice"><strong>费用明细</strong><br>作品总费用: ${totalFee.toFixed(2)}元<br><strong>总计：${totalFee.toFixed(2)}元</strong><br>总章节数：${totalChapters} 章<br>平均每章价格：${avgPrice.toFixed(2)}元</div>`;
+            html += `<div class="wechat-card"><div style="font-weight:600;">客服微信</div><div class="wechat-id">Yu2025boy</div><div>请复制下方订单信息，添加好友时发送给客服</div></div>`;
+            html += `<div class="order-summary" id="orderSummaryBox">${remark.replace(/\n/g,'<br>')}<br><button class="copy-btn-inside" id="copyRemarkInsideBtn">📋 复制订单备注</button></div>`;
+            html += `<button id="closePaymentBtn" class="btn-primary">关闭</button>`;
+            return html;
+        } else {
+            const worksTotal = calcTotalWorksFee();
+            const membershipOriginal = calcMembershipOriginalTotal();
+            const printTotal = calcPrintTotal();
+            const baseTotal = calcBaseTotal();
+            const discount = selectedMembership.discount;
+            const grandTotal = calcGrandTotal();
+            const monthlyDetail = selectedWorks.map(w=>`${w.name} ${w.perMonthQuantity}章/月`).join('、');
+            let remark = `【MOMOREAD实体订阅订单】
+作品清单（每月）：${monthlyDetail}
+订阅月数：${subscriptionMonths} 个月
+总作品费用：${worksTotal.toFixed(2)}元
+会员档位：${selectedMembership.name} （${selectedMembership.price}元/月）
+打印费：${selectedMembership.printFee}元/月 × ${subscriptionMonths}月 = ${printTotal.toFixed(2)}元
+小计（作品+会员+打印费）：${baseTotal.toFixed(2)}元`;
+            if(discount !== 1.00) remark += `\n折扣：${discount*100}折优惠 → 减免 ${(baseTotal - grandTotal).toFixed(2)}元`;
+            remark += `\n应付总金额：${grandTotal.toFixed(2)}元
+总章节数：${totalChapters} 章
+平均每章价格：${avgPrice.toFixed(2)}元
+起始月份：${selectedStartMonth}
+送达方式：${deliveryMethod==='address'?`送至地址：${userInfo.address}`:'线下传递（自取）'}
+联系人：${userInfo.name} / 邮箱：${userInfo.email}`;
+            let html = `<div class="modal-title animate-step">💳 添加客服微信完成付款</div>`;
+            html += `<div class="invoice"><strong>费用明细</strong><br>作品总费用: ${worksTotal.toFixed(2)}元<br>会员原价: ${membershipOriginal.toFixed(2)}元<br>打印费: ${printTotal.toFixed(2)}元<br><strong>小计: ${baseTotal.toFixed(2)}元</strong>`;
+            if(discount !== 1.00) html += `<br>优惠折扣: ${discount*100}折 → -${(baseTotal - grandTotal).toFixed(2)}元`;
+            html += `<br><strong style="font-size:1.1rem;">总计: ${grandTotal.toFixed(2)}元</strong><br>总章节数: ${totalChapters} 章<br>平均每章价格: ${avgPrice.toFixed(2)}元</div>`;
+            html += `<div class="wechat-card"><div style="font-weight:600;">客服微信</div><div class="wechat-id">Yu2025boy</div><div>请复制下方订单信息，添加好友时发送给客服</div></div>`;
+            html += `<div class="order-summary" id="orderSummaryBox">${remark.replace(/\n/g,'<br>')}<br><button class="copy-btn-inside" id="copyRemarkInsideBtn">📋 复制订单备注</button></div>`;
+            html += `<button id="closePaymentBtn" class="btn-primary">关闭</button>`;
+            return html;
+        }
     }
 
     function renderWechatStep() {
-        return `<div class="modal-title animate-step">📱 联系客服完成订阅</div><div class="wechat-card"><div style="font-size:1.2rem;">由于 ${selectedMembership?.name} 会员为特殊支持，请添加客服微信办理：</div><div class="wechat-id">Yu2025boy</div><div style="font-size:0.85rem;">添加时请备注“MOMOREAD ${selectedMembership?.name}订阅”</div><div style="margin-top:16px;">🔹 客服将协助完成后续流程</div></div><button id="closeWechatBtn" class="btn-primary">关闭窗口</button>`;
+        const baseTotal = calcBaseTotal();
+        const grandTotal = calcGrandTotal();
+        const discount = selectedMembership ? selectedMembership.discount : 1;
+        let priceInfo = `（原价 ${baseTotal.toFixed(2)}元，${discount*100}折后 ${grandTotal.toFixed(2)}元）`;
+        if(discount === 1.00) priceInfo = `总价 ${baseTotal.toFixed(2)}元`;
+        return `<div class="modal-title animate-step">📱 联系客服完成订阅</div><div class="wechat-card"><div style="font-size:1.2rem;">由于 ${selectedMembership?.name} 会员为特殊支持，请添加客服微信办理：</div><div class="wechat-id">Yu2025boy</div><div style="font-size:0.85rem;">添加时请备注“MOMOREAD ${selectedMembership?.name}订阅”</div><div style="margin-top:12px;">金额预览：${priceInfo}</div><div style="margin-top:16px;">🔹 客服将协助完成后续流程</div></div><button id="closeWechatBtn" class="btn-primary">关闭窗口</button>`;
     }
 
-    function attachGlobalEvents() {
-        // 作品卡片逻辑
+    function attachEvents() {
         document.querySelectorAll('.work-card').forEach(card => {
             const name = card.getAttribute('data-name');
             const price = parseFloat(card.getAttribute('data-price'));
@@ -771,7 +785,7 @@
                 const qty = existing ? existing.perMonthQuantity : 0;
                 if(qtySpan) qtySpan.innerText = qty;
                 if(qty>0) card.classList.add('selected'); else card.classList.remove('selected');
-                const nextBtn = document.getElementById('nextToMembershipBtn');
+                const nextBtn = document.getElementById('nextStepBtn');
                 if(nextBtn) nextBtn.disabled = !isTotalMonthlyValid();
                 const totalDiv = document.querySelector('.works-grid')?.parentElement?.querySelector('div[style*="text-align:right"]');
                 if(totalDiv){
@@ -783,24 +797,107 @@
             if(plus) plus.onclick = (e) => { e.stopPropagation(); const ex = selectedWorks.find(w=>w.name===name); if(ex) ex.perMonthQuantity+=4; else selectedWorks.push({name,price,perMonthQuantity:4}); update(); };
             card.onclick = (e) => { if(e.target.classList && (e.target.classList.contains('qty-btn')||e.target.classList.contains('qty-num'))) return; const ex = selectedWorks.find(w=>w.name===name); if(ex) selectedWorks = selectedWorks.filter(w=>w.name!==name); else selectedWorks.push({name,price,perMonthQuantity:4}); update(); };
         });
-        const nextMembership = document.getElementById('nextToMembershipBtn');
-        if(nextMembership){ const clone = nextMembership.cloneNode(true); nextMembership.parentNode.replaceChild(clone, nextMembership); clone.onclick = () => { if(isTotalMonthlyValid()){ step='membership'; renderStep(); } else alert("每个作品每月数量必须是4的倍数且每月总章节数大于0"); }; }
-        const cancelWorks = document.getElementById('cancelWorksBtn'); if(cancelWorks) cancelWorks.onclick = closeModal;
-        document.querySelectorAll('.membership-option').forEach(opt => { opt.onclick = () => { const name=opt.getAttribute('data-mem'), price=parseFloat(opt.getAttribute('data-price')), printFee=parseInt(opt.getAttribute('data-print')), wechatOnly=opt.getAttribute('data-wechat')==='true'; selectedMembership={name,price,printFee,wechatOnly}; if(wechatOnly){ step='wechat'; renderStep(); } else renderStep(); }; });
-        const nextInfo = document.getElementById('nextToInfoBtn');
-        if(nextInfo){ const clone = nextInfo.cloneNode(true); nextInfo.parentNode.replaceChild(clone, nextInfo); clone.onclick = () => { if(!selectedMembership) alert("请选择会员制度"); else if(!selectedStartMonth) alert("请选择起始月份"); else if(!isEndDateValid()) alert("订阅结束时间不能超过2026年12月31日"); else { step='info'; renderStep(); } }; }
-        const backToWorks = document.getElementById('backToWorksFromMem'); if(backToWorks) backToWorks.onclick = () => { step='works'; renderStep(); };
-        if(step === 'info') {
-            if(subscriptionType === 'physical') {
-                document.querySelectorAll('.delivery-card').forEach(card => { card.onclick = () => { deliveryMethod = card.getAttribute('data-delivery'); renderStep(); }; });
-                const toPay = document.getElementById('toPaymentBtn');
-                if(toPay){ const clone = toPay.cloneNode(true); toPay.parentNode.replaceChild(clone, toPay); clone.onclick = () => { const name = document.getElementById('fullName')?.value, email = document.getElementById('email')?.value; if(!name || !email) alert("请填写姓名和邮箱"); else { userInfo.name=name; userInfo.email=email; if(deliveryMethod==='address'){ const addr=document.getElementById('address')?.value; if(!addr) alert("请填写详细地址"); else { userInfo.address=addr; step='payment'; renderStep(); } } else { userInfo.address="线下自取"; step='payment'; renderStep(); } } }; }
-            } else {
-                const toPay = document.getElementById('toPaymentBtn');
-                if(toPay){ const clone = toPay.cloneNode(true); toPay.parentNode.replaceChild(clone, toPay); clone.onclick = () => { const email = document.getElementById('digitalEmailInput')?.value; if(!email) alert("请填写接收邮箱"); else { digitalEmail=email; step='payment'; renderStep(); } }; }
-            }
-            const backMem = document.getElementById('backToMembershipFromInfo'); if(backMem) backMem.onclick = () => { step='membership'; renderStep(); };
+
+        const nextBtn = document.getElementById('nextStepBtn');
+        if(nextBtn) {
+            nextBtn.onclick = () => {
+                if (subscriptionType === 'physical') {
+                    if (step === 'works') { step = 'membership'; renderStep(); }
+                    else if (step === 'membership') { step = 'info'; renderStep(); }
+                    else if (step === 'info') { step = 'payment'; renderStep(); }
+                } else {
+                    if (step === 'works') { step = 'month'; renderStep(); }
+                    else if (step === 'month') { step = 'info'; renderStep(); }
+                    else if (step === 'info') { step = 'payment'; renderStep(); }
+                }
+            };
         }
+
+        const backBtn = document.getElementById('backToWorksBtn');
+        if(backBtn) backBtn.onclick = () => { step = 'works'; renderStep(); };
+        const backPrev = document.getElementById('backToPrevBtn');
+        if(backPrev) {
+            backPrev.onclick = () => {
+                if (subscriptionType === 'physical') step = 'membership';
+                else step = 'month';
+                renderStep();
+            };
+        }
+
+        const cancelBtn = document.getElementById('cancelWorksBtn');
+        if(cancelBtn) cancelBtn.onclick = closeModal;
+
+        document.querySelectorAll('.membership-option').forEach(opt => {
+            opt.onclick = () => {
+                const name = opt.getAttribute('data-mem');
+                const price = parseFloat(opt.getAttribute('data-price'));
+                const discount = parseFloat(opt.getAttribute('data-discount'));
+                const printFee = parseInt(opt.getAttribute('data-print'));
+                const wechatOnly = opt.getAttribute('data-wechat')==='true';
+                selectedMembership = { name, price, discount, printFee, wechatOnly };
+                if(wechatOnly) { step = 'wechat'; renderStep(); }
+                else renderStep();
+            };
+        });
+
+        if (step === 'membership' || step === 'month') {
+            const container = document.getElementById('monthPicker');
+            if(container) {
+                container.innerHTML = '';
+                availableMonths.forEach(m => {
+                    const div = document.createElement('div');
+                    div.className = `month-card ${selectedStartMonth === m.value ? 'selected' : ''}`;
+                    div.innerText = m.label;
+                    div.setAttribute('data-month', m.value);
+                    div.onclick = () => { selectedStartMonth = m.value; renderStep(); };
+                    container.appendChild(div);
+                });
+            }
+            const monthsInput = document.getElementById('monthsCount');
+            if(monthsInput) {
+                monthsInput.onchange = (e) => {
+                    let val = parseInt(e.target.value) || 1;
+                    subscriptionMonths = Math.min(12, Math.max(1, val));
+                    if(!isEndDateValid()) while(subscriptionMonths > 1 && !isEndDateValid()) subscriptionMonths--;
+                    monthsInput.value = subscriptionMonths;
+                    renderStep();
+                };
+            }
+            const warnSpan = document.getElementById('monthWarning');
+            if(warnSpan) warnSpan.innerText = (selectedStartMonth && !isEndDateValid()) ? '⚠️ 订阅结束时间超出了2026年12月31日，请减少月数或更换起始月' : '';
+        }
+
+        if(step === 'info' && subscriptionType === 'physical') {
+            document.querySelectorAll('.delivery-card').forEach(card => {
+                card.onclick = () => { deliveryMethod = card.getAttribute('data-delivery'); renderStep(); };
+            });
+        }
+
+        const infoNext = document.getElementById('nextStepBtn');
+        if(infoNext && step === 'info') {
+            const newNext = infoNext.cloneNode(true);
+            infoNext.parentNode.replaceChild(newNext, infoNext);
+            newNext.onclick = () => {
+                if (subscriptionType === 'physical') {
+                    const name = document.getElementById('fullName')?.value;
+                    const email = document.getElementById('email')?.value;
+                    if(!name || !email) alert("请填写姓名和邮箱");
+                    else {
+                        userInfo.name = name; userInfo.email = email;
+                        if(deliveryMethod === 'address') {
+                            const addr = document.getElementById('address')?.value;
+                            if(!addr) alert("请填写详细地址");
+                            else { userInfo.address = addr; step = 'payment'; renderStep(); }
+                        } else { userInfo.address = "线下自取"; step = 'payment'; renderStep(); }
+                    }
+                } else {
+                    const email = document.getElementById('digitalEmailInput')?.value;
+                    if(!email) alert("请填写接收邮箱");
+                    else { digitalEmail = email; step = 'payment'; renderStep(); }
+                }
+            };
+        }
+
         if(step === 'payment') {
             const copyBtn = document.getElementById('copyRemarkInsideBtn');
             if(copyBtn) {
@@ -823,29 +920,27 @@
                     }
                 };
             }
-            const closePay = document.getElementById('closePaymentBtn'); if(closePay) closePay.onclick = closeModal;
+            const closePay = document.getElementById('closePaymentBtn');
+            if(closePay) closePay.onclick = closeModal;
         }
+
         if(step === 'wechat') {
-            const closeWe = document.getElementById('closeWechatBtn'); if(closeWe) closeWe.onclick = closeModal;
+            const closeWe = document.getElementById('closeWechatBtn');
+            if(closeWe) closeWe.onclick = closeModal;
         }
     }
 
     function renderStep() {
-        if(selectedMembership && selectedMembership.wechatOnly && step !== 'wechat' && step !== 'works' && step !== 'membership') step = 'wechat';
+        if (selectedMembership && selectedMembership.wechatOnly && step !== 'wechat' && step !== 'works' && step !== 'membership') step = 'wechat';
         let html = '';
-        if(step === 'works') html = renderWorksStep();
-        else if(step === 'membership') html = renderMembershipStep();
-        else if(step === 'wechat') html = renderWechatStep();
-        else if(step === 'info') html = renderInfoStep();
-        else if(step === 'payment') html = renderPaymentStep();
+        if (step === 'works') html = renderWorksStep();
+        else if (step === 'membership') html = renderMembershipStep();
+        else if (step === 'month') html = renderMonthStep();
+        else if (step === 'wechat') html = renderWechatStep();
+        else if (step === 'info') html = renderInfoStep();
+        else if (step === 'payment') html = renderPaymentStep();
         modalContent.innerHTML = html;
-        if(step === 'membership') {
-            populateMonthPicker();
-            const monthsInput = document.getElementById('monthsCount');
-            if(monthsInput) monthsInput.onchange = (e) => { let val=parseInt(e.target.value)||1; subscriptionMonths=Math.min(12,Math.max(1,val)); if(!isEndDateValid()) while(subscriptionMonths>1 && !isEndDateValid()) subscriptionMonths--; monthsInput.value=subscriptionMonths; updateMonthWarning(); renderStep(); };
-            updateMonthWarning();
-        }
-        attachGlobalEvents();
+        attachEvents();
     }
 
     document.getElementById('openPhysicalBtn').addEventListener('click', () => openModal('physical'));
