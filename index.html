@@ -104,7 +104,7 @@
         .mode-option[data-mode="home"] svg * { fill: #86868b; stroke: none; }
         .mode-option[data-mode="home"].active svg * { fill: #0071e3; stroke: none; }
 
-        /* ========== 原有首页样式 ========== */
+        /* ========== 以下完全保留原首页样式 ========== */
         .main-content {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
             overflow-y: auto; scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
@@ -201,7 +201,6 @@
             color: #ffffff; font-size: clamp(1.8rem, 5vw, 2.8rem); white-space: nowrap;
         }
 
-        /* 弹窗相关样式保持不变（略） */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px);
@@ -431,7 +430,7 @@
 <body>
     <header class="site-header">
         <div class="header-title" id="headerTitle">Momocat</div>
-        <div class="mode-switcher expanded" id="modeSwitcher">
+        <div class="mode-switcher" id="modeSwitcher">
             <button class="mode-option active" data-mode="home" aria-label="主页">
                 <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 3L2 12H5V21H10V15H14V21H19V12H22L12 3Z"/></svg>
                 <span>主页</span>
@@ -471,7 +470,6 @@
         </div>
     </div>
 
-    <!-- 兑换弹窗 -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-dialog" id="modalDialog">
             <button class="modal-close-btn" id="modalCloseBtn"><svg viewBox="0 0 14 14" fill="none"><line x1="1" y1="1" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="13" y1="1" x2="1" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
@@ -479,7 +477,6 @@
         </div>
     </div>
 
-    <!-- 规则弹窗 -->
     <div class="rules-modal-overlay" id="rulesModalOverlay">
         <div class="rules-modal-dialog" id="rulesModalDialog">
             <button class="modal-close-btn" id="rulesCloseBtn" style="position:absolute; top:16px; left:16px; z-index:5;"><svg viewBox="0 0 14 14" fill="none"><line x1="1" y1="1" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="13" y1="1" x2="1" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
@@ -487,7 +484,6 @@
         </div>
     </div>
 
-    <!-- 小说预告弹窗 -->
     <div class="novel-preview-overlay" id="novelPreviewOverlay">
         <div class="novel-preview-dialog">
             <button class="np-close-btn" id="novelPreviewCloseBtn">✕</button>
@@ -496,7 +492,9 @@
                 <h2>《寄往<span>1999</span>的信》即将上线</h2>
                 <div class="np-sub">一封写给母亲青春的告白，也是一场二十五年的秘密守护</div>
             </div>
-            <div class="np-body" id="novelPreviewBody"></div>
+            <div class="np-body" id="novelPreviewBody">
+                <!-- 动态填充 -->
+            </div>
             <div class="np-footer">
                 <p><strong>《寄往1999的信》· 莫川读书会2026年度新作</strong></p>
                 <p>一封信，两个人，二十五年的沉默。即将上线，敬请期待。</p>
@@ -506,57 +504,43 @@
 
     <script>
         (function() {
-            // ========== 胶囊自动收起逻辑（与 store.html 完全一致） ==========
+            // ========== SmoothScrollEngine & RubberEngine (原始逻辑保留) ==========
+            const SmoothScrollEngine = { init: function() {} };
+            const RubberEngine = {
+                breakpoints: { phone: 600, tablet: 1024, desktop: 1440 },
+                currentDevice: 'desktop',
+                init: function() { this._detectAndApply(); this._bindEvents(); },
+                _detectAndApply: function() {
+                    const width = window.innerWidth; const body = document.body;
+                    body.classList.remove('rubber-phone', 'rubber-tablet', 'rubber-desktop', 'rubber-wide');
+                    let device;
+                    if (width < this.breakpoints.phone) { body.classList.add('rubber-phone'); device = 'phone'; }
+                    else if (width < this.breakpoints.tablet) { body.classList.add('rubber-tablet'); device = 'tablet'; }
+                    else if (width < this.breakpoints.desktop) { body.classList.add('rubber-desktop'); device = 'desktop'; }
+                    else { body.classList.add('rubber-wide'); device = 'wide'; }
+                    this.currentDevice = device;
+                    body.setAttribute('data-rubber-device', device);
+                },
+                _bindEvents: function() {
+                    let resizeTimer;
+                    window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => this._detectAndApply(), 100); });
+                    window.addEventListener('orientationchange', () => { setTimeout(() => this._detectAndApply(), 50); });
+                }
+            };
+
+            // ========== 胶囊展开逻辑：hover 展开，否则收回 ==========
             function initCapsuleAutoCollapse() {
                 const switcher = document.getElementById('modeSwitcher');
-                const title = document.getElementById('headerTitle');
-                let collapseTimer = null;
-
-                function expandSwitcher() {
-                    if (switcher.classList.contains('expanded')) return;
-                    switcher.classList.add('expanded');
-                    resetTimer();
-                }
-
-                function collapseSwitcher() {
-                    switcher.classList.remove('expanded');
-                }
-
-                function resetTimer() {
-                    if (collapseTimer) clearTimeout(collapseTimer);
-                    collapseTimer = setTimeout(() => {
-                        collapseSwitcher();
-                    }, 3000);
-                }
-
-                title.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    if (switcher.classList.contains('expanded')) {
-                        collapseSwitcher();
-                        if (collapseTimer) clearTimeout(collapseTimer);
-                    } else {
-                        expandSwitcher();
-                    }
-                });
-
                 const header = document.querySelector('.site-header');
                 header.addEventListener('mouseenter', () => {
-                    expandSwitcher();
+                    switcher.classList.add('expanded');
                 });
                 header.addEventListener('mouseleave', () => {
-                    resetTimer();
+                    switcher.classList.remove('expanded');
                 });
-
-                switcher.addEventListener('click', (e) => {
-                    resetTimer();
-                });
-
-                collapseTimer = setTimeout(() => {
-                    collapseSwitcher();
-                }, 3000);
             }
 
-            // ========== 模式切换逻辑（适配首页） ==========
+            // ========== 模式切换逻辑 ==========
             function initModeSwitcher() {
                 const options = document.querySelectorAll('.mode-option');
                 function setMode(mode) {
@@ -582,27 +566,108 @@
                 setMode('home');
             }
 
-            // ========== 原有页面逻辑 ==========
+            // ========== 完全无省略的小说预告构建函数 ==========
             function buildNovelPreview() {
                 const body = document.getElementById('novelPreviewBody');
                 body.innerHTML = `
                     <p><strong>河北/Momoread读书会讯</strong></p>
                     <p>如果有一天，你能和17岁的妈妈成为笔友，你会对她说什么？</p>
-                    <p>……（此处省略完整小说预告内容，与原版一致）</p>
+                    <p>是警告她别走那条辛苦的路，还是告诉她，你长大后变成了我最不想成为的那种妈妈？</p>
+                    <p>如果有一天，你发现自己可以改写母亲的过去、抹掉她所有的心碎和遗憾——但代价是，你自己会从这个世界上消失，你还会不会动笔？</p>
+                    <p>这些问题，即将在莫川读书会2026年度新作《寄往1999的信》中被一一打开。今天，我们正式为这部由莫川团队倾力打造、讲述母女跨越二十五年时光通信的奇幻情感小说，发布首篇故事预览与创作札记。</p>
+
+                    <hr class="divider-line">
+
+                    <h3>一、故事从一封信开始</h3>
+                    <p>2024年，清明。高三女生季青崖，被母亲许抱真拖回位于城郊的老宅扫墓。老宅常年无人居住，灰尘爬满每一件旧物。为了躲清静，她钻进堆满杂物的阁楼，翻出了一本旧相册。</p>
+                    <p>相册里有一张照片。照片上那个扎马尾、校服袖子卷到手肘、对着镜头笑得露出虎牙的少女，让她愣了许久。照片背面写着：<strong>1999年春，抱真，十七岁。</strong></p>
+                    <p>这个笑得没心没肺的人，是她妈？她完全无法把这个人和自己认识的那个许抱真联系在一起——那个每天垮着脸、说话像审讯、把"你要是考不上大学就完了"挂在嘴边的中年女人。</p>
+                    <p>在相册下面，季青崖找到了一个黄铜匣子，巴掌大小，表面布满两棵交缠的树——一棵银杏，一棵梧桐。匣底刻着两行字：<strong>"寄往不可追，此心即邮程。"</strong></p>
+                    <p>旁边放着一沓发脆的信纸和一支老式钢笔。季青崖不知道自己为什么拿起了笔。可能是因为阁楼太安静了，可能是因为照片上那个少女的笑容太刺眼了。</p>
+                    <p>她抱着玩闹的心态，写下第一行字——</p>
+
+                    <div class="blockquote">
+                        "你好，1999年的许抱真。我叫……一个认识你的人。别问我是谁。"<br>
+                        她写下了高三的压力，写下了想逃的感觉。写到一半，加了一句："你说你讨厌被管，想快点长大离开家。我告诉你，别急。长大以后的事，没你想的那么好。"
+                    </div>
+
+                    <p><strong>第二天清晨，枕头边多了一封信。</strong>信封上的字迹稚嫩但认真，写着三个字：<strong>"季青崖（收）"</strong>。打开信，第一行是：</p>
+
+                    <div class="blockquote">
+                        "你这个人好奇怪。你怎么知道我讨厌被管？你怎么知道我家住哪？"<br>
+                        落款是：许抱真，1999年4月6日。
+                    </div>
+
+                    <p><strong>一扇通往二十五年前的门，被一封手写信推开了。</strong></p>
+
+                    <hr class="divider-line">
+
+                    <h3>二、她能改变过去——但代价是什么？</h3>
+                    <p>随着通信的深入，季青崖逐渐摸清了规则。那个黄铜匣子——她后来在匣底发现了一个名字，<strong>"光阴匣"</strong>——只允许她主动发起通信。只有当她寄出一封信，1999年的许抱真才能回信。时间在两边以相同的速度流逝。</p>
+                    <p>但真正的规则，远比这残酷。每当季青崖通过信件影响许抱真的选择，1999年的时间线就会产生涟漪，向未来扩散。"覆写"掉一切——除了季青崖的记忆。她是唯一一个能同时保留新旧两条时间线记忆的人，这是她作为通信发起者的"特权"，也是她无法与任何人分担的诅咒。</p>
+                    <p>而她很快发现，<strong>每一次改变过去，都不是免费的</strong>。她告诉1999年的许抱真，那个她正在暗恋的、叫沈听舟的男孩，"不是良人"。许抱真照做了。</p>
+                    <p>第二天醒来，季青崖发现家中的相册里多了一张母亲和陌生男人的合照。沈听舟这个名字，从所有的记录里消失了。不只1999年的校园里查无此人。2024年的互联网没有他的痕迹。那条时间线上，从头到尾，没有沈听舟。<strong>只有季青崖还记得。</strong></p>
+                    <p>不止如此，她自己的身体也在发生变化。眩晕、手指偶尔变得透明、镜中的自己似乎变淡了……</p>
+                    <p><strong>救妈妈，还是保自己？</strong>这个问题横亘在17岁的季青崖面前。</p>
+
+                    <hr class="divider-line">
+
+                    <h3>三、两个"同一个人"的隔空相望</h3>
+                    <p>季青崖通过许抱真的信，第一次认识了那个还没有变成妈妈的妈妈。她发现，这个17岁的许抱真，和她自己惊人的相似：讨厌被管、喜欢偷偷写信、对未来既期待又害怕。</p>
+
+                    <div class="blockquote">
+                        "你知道吗，我妈今天又翻我日记了。她管得比太平洋还宽，我快窒息了。等我长大，我绝对不要变成她那样的大人。"
+                    </div>
+
+                    <p>季青崖盯着这行字看了很久。她想笑。因为2024年的许抱真，变成了比她姥姥更可怕的控制狂。但她又觉得难过。因为她忽然明白了：<strong>妈妈不是生来就是这副模样的。</strong></p>
+                    <p>整部小说的情感核心，就建立在这个发现之上：季青崖从一个"讨厌妈妈"的高三女生，一步步变成"认识少女时代的妈妈"的旁观者，再变成"想要守护那个少女"的参与者。</p>
+
+                    <hr class="divider-line">
+
+                    <h3>四、关于沈听舟——那个被时间线抹去的人</h3>
+                    <p>小说中最让人心碎的一条线索，来自一个在2024年时间线上从未存在过的人。沈听舟。1999年，17岁，许抱真隔壁班的男生。成绩好、不太说话、笑起来让人心软、会弹吉他。</p>
+                    <p>当时间线被覆写，沈听舟从许抱真的人生中被彻底抹去。<strong>可他留下的痕迹并没有完全消失。</strong></p>
+                    <p>季青崖在老宅的一口旧樟木箱子里，翻到了一块手帕包着的东西：一条手织的深蓝色围巾，针脚参差不齐；以及一盘TDK空白带，磁带标签上贴着四个手写字——<strong>"梧桐巷"</strong>。</p>
+
+                    <div class="blockquote">
+                        "梧桐巷的梧桐都黄了<br>我站在巷口等了很久<br>如果有一天你不在那里<br>我该往哪儿走"
+                    </div>
+
+                    <p><strong>沈听舟是真的。那条围巾是真的。那首只有两分钟的歌是真的。</strong>而这个世界，不记得他了。只有她一个人，还替他记得。</p>
+
+                    <hr class="divider-line">
+
+                    <h3>五、为什么是"写信"？</h3>
+                    <p>在设定中，那个光阴匣有一条近乎严苛的铁律：<strong>只有手写的文字能穿越时间。</strong>任何现代产物——手机照片、打印件、电子设备——一概被拒之门外。</p>
+                    <p>这意味着，她与年轻母亲之间唯一的沟通方式，是钢笔划过纸面的沙沙声，是墨水干涸前写下的每一个字，是等待回信时那一整天里无法快进的时间。</p>
+                    <p><strong>能够穿越时间的唯一载体，是真诚。</strong>这是本作试图表达的一个隐喻：在即时通讯泛滥的时代，我们什么都说，却很少真正被听见。而写信，反倒成了一种最慢、也因此最不怕被误解的交流方式。</p>
+
+                    <hr class="divider-line">
+
+                    <h3>六、所有故事，最后都会变成信</h3>
+                    <p>目前，《寄往1999的信》已经完成了前五章的定稿工作。整部作品规划为18章，预计于2026年第三季度开始连载，通过莫川读书会的会员信件独家发布。</p>
+                    <p>莫川团队在采访中透露，这部作品的创作灵感来自一个简单的问题：<strong>"如果可以回到过去，你会改变妈妈的哪件事？"</strong></p>
+                    <p>它不是一部大团圆的母女和解喜剧。它的底色有一点点残忍，也有一点点温柔。它讲的是一个女儿，终于有机会认识那个还没来得及被生活磨平棱角的妈妈。而在这个过程中，她不得不面对一个残酷的真相：<strong>妈妈失去的所有可能性，都和她有关。</strong></p>
+
                     <div class="blockquote">
                         "许抱真：<br><br>
-                        很多年后，你会变成一个你自己都认不出来的人……<br>
+                        很多年后，你会变成一个你自己都认不出来的人。你会焦虑、会唠叨、会把担心变成伤人的话。你会让一个女孩觉得你什么都不懂，觉得你是全世界最讨厌的妈妈。<br><br>
+                        但你也会在天还没亮时起床给她做早饭，在她考试前失眠的夜晚陪她坐到天亮。你会用你所有笨拙的方式去爱她。<br><br>
+                        那个女孩现在还不知道。<br>
+                        但我知道了。<br><br>
                         ——青崖"
                     </div>
                 `;
             }
 
             function init() {
+                SmoothScrollEngine.init();
+                RubberEngine.init();
                 initCapsuleAutoCollapse();
                 initModeSwitcher();
                 buildNovelPreview();
 
-                // 兑换相关逻辑
+                // ========== 兑换逻辑 ==========
                 const redeemItems = {
                     'monocode039_20250808': { name: '非正式小组 第一季 · 前半本', category: '非正式小组' },
                     'monocode039_20250809': { name: '非正式小组 第一季 · 后半本', category: '非正式小组' },
@@ -673,6 +738,7 @@
                 modalCloseBtn.addEventListener('click', closeModal);
                 modalOverlay.addEventListener('click', function(e) { if (e.target === modalOverlay) closeModal(); });
                 document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modalOverlay.classList.contains('show')) closeModal(); });
+
                 document.getElementById('redeemCard').addEventListener('click', () => {
                     modalDialog.style.maxWidth = '800px';
                     modalDialog.style.maxHeight = '85vh';
@@ -681,7 +747,7 @@
                     modalOverlay.classList.add('show');
                 });
 
-                // 小说预告弹窗
+                // ========== 小说预告弹窗 ==========
                 const novelPreviewOverlay = document.getElementById('novelPreviewOverlay');
                 const novelPreviewCloseBtn = document.getElementById('novelPreviewCloseBtn');
                 function openNovelPreview() { novelPreviewOverlay.classList.add('show'); }
@@ -691,7 +757,7 @@
                 novelPreviewOverlay.addEventListener('click', function(e) { if (e.target === novelPreviewOverlay) closeNovelPreview(); });
                 document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && novelPreviewOverlay.classList.contains('show')) closeNovelPreview(); });
 
-                // 规则弹窗（省略内部动态构建代码，与原版完全一致）
+                // ========== 规则弹窗 (完全保留原逻辑) ==========
                 const rulesOverlay = document.getElementById('rulesModalOverlay');
                 const rulesCloseBtn = document.getElementById('rulesCloseBtn');
                 const rulesContent = document.getElementById('rulesContent');
@@ -820,6 +886,8 @@
             }
 
             window.addEventListener('load', init);
+            window.RubberEngine = RubberEngine;
+            window.SmoothScrollEngine = SmoothScrollEngine;
         })();
     </script>
 </body>
