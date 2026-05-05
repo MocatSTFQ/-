@@ -196,7 +196,7 @@
             font-size: clamp(1.6rem, 4vw, 2.4rem); max-width: 90%; color: #FFB7C5;
         }
         .novel-center .new-rule-title {
-            color: #ffffff; font-size: clamp(1.8rem, 5vw, 2.8rem); white-space: nowrap;
+            color: #ffffff; font-size: clamp(1.8rem, 5vw, 2.8rem);
         }
 
         .modal-overlay {
@@ -492,15 +492,15 @@
 
             <div class="novel-new-card" id="novelNewCard">
                 <div class="novel-center">
-                    <div class="new-rule-title">Noo Novel Zend to 1999 ove Letter</div>
+                    <div class="new-rule-title">Noo Novel<br>Zend to 1999 ove Letter</div>
                 </div>
             </div>
         </div>
 
         <div class="lang-switch-bar">
-            <span class="lang-active">Moumauakattiesrt</span>
+            <a href="https://momocat.online">中文（中国大陆）</a>
             <span class="lang-divider">|</span>
-            <a href="index.html">中文（中国大陆）</a>
+            <span class="lang-active">Moumauakattiesrt</span>
         </div>
     </div>
 
@@ -579,10 +579,11 @@
                         btn.classList.toggle('active', isActive);
                     });
                     if (mode === 'home') {
-                        const mainContent = document.getElementById('mainContent');
-                        if (mainContent) mainContent.scrollTo({ top: 0, behavior: 'smooth' });
+                        // 在莫语主页，点击主页按钮回到莫语首页（/mo）
+                        window.location.href = 'https://momocat.online/mo';
                     } else if (mode === 'shop') {
-                        window.location.href = 'store';
+                        // 跳转到莫语商店页面
+                        window.location.href = 'https://momocat.online/store/mo';
                     }
                 }
                 options.forEach(btn => {
@@ -593,6 +594,7 @@
                         setMode(mode);
                     });
                 });
+                // 初始高亮主页
                 setMode('home');
             }
 
