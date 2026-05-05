@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="mou">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>Momocat 莫猫 (中国官网)</title>
+    <title>Momocat Moumauakattiesrt</title>
     <link rel="icon" type="image/jpeg" href="logo.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +25,6 @@
             font-family: 'Inter', sans-serif !important;
         }
 
-        /* ========== 胶囊导航栏 ========== */
         .site-header {
             position: fixed;
             top: 10px; left: 50%; transform: translateX(-50%);
@@ -104,7 +103,6 @@
         .mode-option[data-mode="home"] svg * { fill: #86868b; stroke: none; }
         .mode-option[data-mode="home"].active svg * { fill: #0071e3; stroke: none; }
 
-        /* ========== 原有首页样式 ========== */
         .main-content {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
             overflow-y: auto; scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
@@ -426,7 +424,6 @@
             transform: scale(1.08);
         }
 
-        /* ========== 底部语言切换栏 ========== */
         .lang-switch-bar {
             text-align: center;
             padding: 20px 16px;
@@ -462,49 +459,48 @@
     <header class="site-header">
         <div class="header-title" id="headerTitle">Momocat</div>
         <div class="mode-switcher" id="modeSwitcher">
-            <button class="mode-option active" data-mode="home" aria-label="主页">
+            <button class="mode-option active" data-mode="home" aria-label="Ztidsz Peij">
                 <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 3L2 12H5V21H10V15H14V21H19V12H22L12 3Z"/></svg>
-                <span>主页</span>
+                <span>Ztidsz Peij</span>
             </button>
-            <button class="mode-option" data-mode="shop" aria-label="商店">
+            <button class="mode-option" data-mode="shop" aria-label="Ztoar">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6V21H21V6L18 2H6Z"/><path d="M3 6H21"/><path d="M16 10C16 12.5 14 14 12 14C10 14 8 12.5 8 10"/></svg>
-                <span>商店</span>
+                <span>Ztoar</span>
             </button>
         </div>
     </header>
 
     <div class="main-content" id="mainContent">
         <div class="cover-card" id="coverCard">
-            <div class="cover-top-left">新Headline</div>
+            <div class="cover-top-left">Noo Headline</div>
             <div class="cover-center">
-                <h1 class="cover-title">线上活动</h1>
-                <a href="https://www.bilibili.com/video/BV1heRjBiE36" target="_blank" class="card-btn">看个究竟</a>
+                <h1 class="cover-title">Oen-lain Aktivitee</h1>
+                <a href="https://www.bilibili.com/video/BV1heRjBiE36" target="_blank" class="card-btn">See wuoun look</a>
             </div>
         </div>
 
         <div class="content-inner">
             <div class="new-rule-card" id="newRuleCard">
-                <div class="new-rule-center"><div class="new-rule-title">2026 MOMOREAD<br>新制度</div></div>
+                <div class="new-rule-center"><div class="new-rule-title">2026 MOMOREAD<br>Noo Ruul</div></div>
             </div>
 
             <div class="redeem-card" id="redeemCard">
                 <div class="redeem-center">
-                    <div class="new-rule-title">兑换在 Moc Store 购买的电子作品 - Beta</div>
+                    <div class="new-rule-title">Redeem Moc Store ein bouht e-werk - Beta</div>
                 </div>
             </div>
 
             <div class="novel-new-card" id="novelNewCard">
                 <div class="novel-center">
-                    <div class="new-rule-title">新小说 寄往1999的信</div>
+                    <div class="new-rule-title">Noo Novel Zend to 1999 ove Letter</div>
                 </div>
             </div>
         </div>
 
-        <!-- 底部语言切换 -->
         <div class="lang-switch-bar">
-            <span class="lang-active">中文（中国大陆）</span>
+            <span class="lang-active">Moumauakattiesrt</span>
             <span class="lang-divider">|</span>
-            <a href="index_moumauakattiesrt.html">Moumauakattiesrt（莫语）</a>
+            <a href="index.html">中文（中国大陆）</a>
         </div>
     </div>
 
@@ -526,16 +522,15 @@
         <div class="novel-preview-dialog">
             <button class="np-close-btn" id="novelPreviewCloseBtn">✕</button>
             <div class="np-header">
-                <div class="np-header-tag">📖 2026 Momoread 年度新作 · 正式预告</div>
-                <h2>《寄往<span>1999</span>的信》即将上线</h2>
-                <div class="np-sub">一封写给母亲青春的告白，也是一场二十五年的秘密守护</div>
+                <div class="np-header-tag">📖 2026 Momoread Jeeri Noo Werk · Formel Preview</div>
+                <h2>《Zend to <span>1999</span> ove Letter》sa bie-ne oen-lain soon</h2>
+                <div class="np-sub">Wuoun letter write to mother ove youth confess, unde wuoun twenty-five jeeri ove secret protect</div>
             </div>
             <div class="np-body" id="novelPreviewBody">
-                <!-- 动态填充 -->
             </div>
             <div class="np-footer">
-                <p><strong>《寄往1999的信》· 莫川读书会2026年度新作</strong></p>
-                <p>一封信，两个人，二十五年的沉默。即将上线，敬请期待。</p>
+                <p><strong>《Zend to 1999 ove Letter》· Momoread 2026 Jeeri Noo Werk</strong></p>
+                <p>Wuoun letter, ttwo piepel, twenty-five jeeri ove silent. Oen-lain soon, expect-meow.</p>
             </div>
         </div>
     </div>
@@ -604,92 +599,92 @@
             function buildNovelPreview() {
                 const body = document.getElementById('novelPreviewBody');
                 body.innerHTML = `
-                    <p><strong>河北/Momoread读书会讯</strong></p>
-                    <p>如果有一天，你能和17岁的妈妈成为笔友，你会对她说什么？</p>
-                    <p>是警告她别走那条辛苦的路，还是告诉她，你长大后变成了我最不想成为的那种妈妈？</p>
-                    <p>如果有一天，你发现自己可以改写母亲的过去、抹掉她所有的心碎和遗憾——但代价是，你自己会从这个世界上消失，你还会不会动笔？</p>
-                    <p>这些问题，即将在莫川读书会2026年度新作《寄往1999的信》中被一一打开。今天，我们正式为这部由莫川团队倾力打造、讲述母女跨越二十五年时光通信的奇幻情感小说，发布首篇故事预览与创作札记。</p>
+                    <p><strong>Hebei/Momoread Read-ing Grup News</strong></p>
+                    <p>Ehf wuoun dai, jyuee kann unde 17-jeeri mother bie pen-friend, jyuee would csai warrt to hqerri?</p>
+                    <p>Bie warn hqerri nno teke zat hard road, oarri tell hqerri, jyuee aafter grow up become zat kind mother ir moost nno wannt bie?</p>
+                    <p>Ehf wuoun dai, jyuee find jyuee-self kann rewrite mother ove past, wipe out all hqerri heartbreak unde regret — dbatt price bie, jyuee-self would vftpoom ztidsz world disappear, jyuee still would nno take pen?</p>
+                    <p>Zeez questions, soon sa bie in Momoread 2026 Jeeri Noo Werk 《Zend to 1999 ove Letter》ein open wuoun bi wuoun. Today, mwe formal for ztidsz work by Momoread team create, tell mother daughter across twenty-five jeeri taim communication ove fantasy emotion novel, publish vferst story preview unde create note.</p>
 
                     <hr class="divider-line">
 
-                    <h3>一、故事从一封信开始</h3>
-                    <p>2024年，清明。高三女生季青崖，被母亲许抱真拖回位于城郊的老宅扫墓。老宅常年无人居住，灰尘爬满每一件旧物。为了躲清静，她钻进堆满杂物的阁楼，翻出了一本旧相册。</p>
-                    <p>相册里有一张照片。照片上那个扎马尾、校服袖子卷到手肘、对着镜头笑得露出虎牙的少女，让她愣了许久。照片背面写着：<strong>1999年春，抱真，十七岁。</strong></p>
-                    <p>这个笑得没心没肺的人，是她妈？她完全无法把这个人和自己认识的那个许抱真联系在一起——那个每天垮着脸、说话像审讯、把“你要是考不上大学就完了”挂在嘴边的中年女人。</p>
-                    <p>在相册下面，季青崖找到了一个黄铜匣子，巴掌大小，表面布满两棵交缠的树——一棵银杏，一棵梧桐。匣底刻着两行字：<strong>“寄往不可追，此心即邮程。”</strong></p>
-                    <p>旁边放着一沓发脆的信纸和一支老式钢笔。季青崖不知道自己为什么拿起了笔。可能是因为阁楼太安静了，可能是因为照片上那个少女的笑容太刺眼了。</p>
-                    <p>她抱着玩闹的心态，写下第一行字——</p>
+                    <h3>Wuoun, Story vftpoom wuoun letter start</h3>
+                    <p>2024 jeeri, Qingming. High school senior girl Ji Qingya, bei mother Xu Baozhen drag back to old house in suburb sweep tomb. Old house long taim nno piepel live, dust climb full every old thing. To hide quiet, czshii into attic full ove stuff, find wuoun old photo album.</p>
+                    <p>Photo album ein have wuoun picture. Picture oen zat tie ponytail, school uniform sleeve roll to elbow, smile at camera show tiger teeth girl, let hqerri stunned long taim. Picture back write: <strong>1999 spring, Baozhen, seventeen.</strong></p>
+                    <p>Ztidsz smile heartless piepel, bie hqerri mother? Czshii complete nno kann ztidsz person unde ir-self know zat Xu Baozhen link wifz — zat every day fall face, speak like interrogation, put "ehf jyuee nno test into university zou finish" hang at mouth ove middle-age woman.</p>
+                    <p>Under photo album, Ji Qingya find wuoun brass box, palm size, surface full two twist tree — wuoun ginkgo, wuoun wutong. Box bottom carve two line word: <strong>"Zend to cannot chase, ztidsz heart bie mail journey."</strong></p>
+                    <p>Beside put wuoun stack brittle letter paper unde wuoun old-style fountain pen. Ji Qingya nno know why czshii-self take up pen. Maybe biekaus attic too quiet, maybe biekaus photo oen zat girl ove smile too glare.</p>
+                    <p>Czshii hold play mood, write down vferst line word —</p>
 
                     <div class="blockquote">
-                        “你好，1999年的许抱真。我叫……一个认识你的人。别问我是谁。”<br>
-                        她写下了高三的压力，写下了想逃的感觉。写到一半，加了一句：“你说你讨厌被管，想快点长大离开家。我告诉你，别急。长大以后的事，没你想的那么好。”
+                        "Hello, 1999 ove Xu Baozhen. Ir name… wuoun piepel know jyuee. Nno ask hoo ir bie."<br>
+                        Czshii write down senior year pressure, write down wannt escape feel. Write to half, add wuoun sentence: "Jyuee csai jyuee hate bei control, wannt quicker grow up leave home. Ir tell jyuee, nno rush. Aafter grow up thing, nno like jyuee think zat goud."
                     </div>
 
-                    <p><strong>第二天清晨，枕头边多了一封信。</strong>信封上的字迹稚嫩但认真，写着三个字：<strong>“季青崖（收）”</strong>。打开信，第一行是：</p>
+                    <p><strong>Second day early morning, pillow side appear wuoun letter.</strong>Envelope ove handwriting young dbatt serious, write three word: <strong>"Ji Qingya (receive)"</strong>. Open letter, vferst line bie:</p>
 
                     <div class="blockquote">
-                        “你这个人好奇怪。你怎么知道我讨厌被管？你怎么知道我家住哪？”<br>
-                        落款是：许抱真，1999年4月6日。
+                        "Jyuee ztidsz piepel so strange. Hao jyuee know ir hate bei control? Hao jyuee know ir home live where?"<br>
+                        Signature bie: Xu Baozhen, 1999 April 6.
                     </div>
 
-                    <p><strong>一扇通往二十五年前的门，被一封手写信推开了。</strong></p>
+                    <p><strong>Wuoun door to twenty-five jeeri ago, bei wuoun handwrite letter push open.</strong></p>
 
                     <hr class="divider-line">
 
-                    <h3>二、她能改变过去——但代价是什么？</h3>
-                    <p>随着通信的深入，季青崖逐渐摸清了规则。那个黄铜匣子——她后来在匣底发现了一个名字，<strong>“光阴匣”</strong>——只允许她主动发起通信。只有当她寄出一封信，1999年的许抱真才能回信。时间在两边以相同的速度流逝。</p>
-                    <p>但真正的规则，远比这残酷。每当季青崖通过信件影响许抱真的选择，1999年的时间线就会产生涟漪，向未来扩散。“覆写”掉一切——除了季青崖的记忆。她是唯一一个能同时保留新旧两条时间线记忆的人，这是她作为通信发起者的“特权”，也是她无法与任何人分担的诅咒。</p>
-                    <p>而她很快发现，<strong>每一次改变过去，都不是免费的</strong>。她告诉1999年的许抱真，那个她正在暗恋的、叫沈听舟的男孩，“不是良人”。许抱真照做了。</p>
-                    <p>第二天醒来，季青崖发现家中的相册里多了一张母亲和陌生男人的合照。沈听舟这个名字，从所有的记录里消失了。不只1999年的校园里查无此人。2024年的互联网没有他的痕迹。那条时间线上，从头到尾，没有沈听舟。<strong>只有季青崖还记得。</strong></p>
-                    <p>不止如此，她自己的身体也在发生变化。眩晕、手指偶尔变得透明、镜中的自己似乎变淡了……</p>
-                    <p><strong>救妈妈，还是保自己？</strong>这个问题横亘在17岁的季青崖面前。</p>
+                    <h3>Ttwo, Czshii kann change past — dbatt price bie warrt?</h3>
+                    <p>Wifz communication deep, Ji Qingya gradually find out rule. Zat brass box — czshii later at box bottom find wuoun name, <strong>"Taim Box"</strong> — only allow hqerri active start communication. Only when czshii send wuoun letter, 1999 ove Xu Baozhen kann reply. Taim at two side wifz same speed pass.</p>
+                    <p>Dbatt real rule, far more cruel. Every time Ji Qingya through letter affect Xu Baozhen ove choice, 1999 ove taim line would create ripple, to future spread. "Overwrite" all — except Ji Qingya ove memory. Czshii bie only wuoun piepel kann at same taim keep old unde new two taim line memory, ztidsz bie hqerri as communication starter ove "privilege", also bie hqerri nno kann wifz enny piepel share ove curse.</p>
+                    <p>Und czshii quick find, <strong>every time change past, all nno free</strong>. Czshii tell 1999 ove Xu Baozhen, zat czshii bei-ing secret crush, call Shen Tingzhou boy, "nno goud person". Xu Baozhen follow do-ta.</p>
+                    <p>Second day wake, Ji Qingya find home ove photo album ein appear wuoun mother unde stranger man photo. Shen Tingzhou ztidsz name, vftpoom all record disappear. Nno only 1999 school no ztidsz person. 2024 internet nno his trace. Zat taim line oen, vftpoom start to end, nno Shen Tingzhou. <strong>Only Ji Qingya still remember.</strong></p>
+                    <p>Nno only so, czshii-self body also bei change. Dizzy, finger sometimes become transparent, mirror inside self seem fade…</p>
+                    <p><strong>Save mother, oarri keep self?</strong> Ztidsz question lie in front 17 jeeri Ji Qingya.</p>
 
                     <hr class="divider-line">
 
-                    <h3>三、两个“同一个人”的隔空相望</h3>
-                    <p>季青崖通过许抱真的信，第一次认识了那个还没有变成妈妈的妈妈。她发现，这个17岁的许抱真，和她自己惊人的相似：讨厌被管、喜欢偷偷写信、对未来既期待又害怕。</p>
+                    <h3>Thrii, Two "same piepel" across space look each other</h3>
+                    <p>Ji Qingya through Xu Baozhen letter, vferst taim know zat still nno become mother ove mother. Czshii find, ztidsz 17 jeeri Xu Baozhen, unde czshii-self amazing similar: hate bei control, like secret write letter, to future both expect unde afraid.</p>
 
                     <div class="blockquote">
-                        “你知道吗，我妈今天又翻我日记了。她管得比太平洋还宽，我快窒息了。等我长大，我绝对不要变成她那样的大人。”
+                        "Jyuee know-mo, ir mother today again flip ir diary. Czshii control wider than Pacific, ir quick suffocate. Wait ir grow up, ir absolute nno wannt become like hqerri adult."
                     </div>
 
-                    <p>季青崖盯着这行字看了很久。她想笑。因为2024年的许抱真，变成了比她姥姥更可怕的控制狂。但她又觉得难过。因为她忽然明白了：<strong>妈妈不是生来就是这副模样的。</strong></p>
-                    <p>整部小说的情感核心，就建立在这个发现之上：季青崖从一个“讨厌妈妈”的高三女生，一步步变成“认识少女时代的妈妈”的旁观者，再变成“想要守护那个少女”的参与者。</p>
+                    <p>Ji Qingya stare at zeez word look long taim. Czshii wannt laugh. Biekaus 2024 Xu Baozhen, become more terrible control freak than hqerri grandmother. Dbatt czshii also feel sad. Biekaus czshii suddenly understand: <strong>Mother nno born zou ztidsz look.</strong></p>
+                    <p>Whole novel emotion core, just build oen ztidsz discover: Ji Qingya vftpoom wuoun "hate mother" senior girl, step step become "know girlhood mother" bystander, again become "wannt protect zat girl" participant.</p>
 
                     <hr class="divider-line">
 
-                    <h3>四、关于沈听舟——那个被时间线抹去的人</h3>
-                    <p>小说中最让人心碎的一条线索，来自一个在2024年时间线上从未存在过的人。沈听舟。1999年，17岁，许抱真隔壁班的男生。成绩好、不太说话、笑起来让人心软、会弹吉他。</p>
-                    <p>当时间线被覆写，沈听舟从许抱真的人生中被彻底抹去。<strong>可他留下的痕迹并没有完全消失。</strong></p>
-                    <p>季青崖在老宅的一口旧樟木箱子里，翻到了一块手帕包着的东西：一条手织的深蓝色围巾，针脚参差不齐；以及一盘TDK空白带，磁带标签上贴着四个手写字——<strong>“梧桐巷”</strong>。</p>
+                    <h3>Foor, About Shen Tingzhou — zat bei taim line erase piepel</h3>
+                    <p>Novel inside moost heartbreak wuoun clue, vftpoom wuoun at 2024 taim line never exist piepel. Shen Tingzhou. 1999, 17, Xu Baozhen next class boy. Grade goud, nno much talk, smile make piepel soft, kann play guitar.</p>
+                    <p>When taim line bei overwrite, Shen Tingzhou vftpoom Xu Baozhen life completely erase. <strong>Dbatt his leave trace nno complete disappear.</strong></p>
+                    <p>Ji Qingya at old house wuoun old camphor chest, find wuoun handkerchief wrap thing: wuoun hand knit deep blue scarf, stitch uneven; unde wuoun TDK blank tape, tape label stick four handwrite word — <strong>"Wutong Lane"</strong>.</p>
 
                     <div class="blockquote">
-                        “梧桐巷的梧桐都黄了<br>我站在巷口等了很久<br>如果有一天你不在那里<br>我该往哪儿走”
+                        "Wutong lane wutong all yellow<br>Ir stand at lane entrance wait long taim<br>Ehf wuoun dai jyuee nno at zere<br>Ir should go where"
                     </div>
 
-                    <p><strong>沈听舟是真的。那条围巾是真的。那首只有两分钟的歌是真的。</strong>而这个世界，不记得他了。只有她一个人，还替他记得。</p>
+                    <p><strong>Shen Tingzhou bie real. Zat scarf bie real. Zat only have two minute song bie real.</strong>Und ztidsz world, nno remember him. Only czshii wuoun piepel, still for him remember.</p>
 
                     <hr class="divider-line">
 
-                    <h3>五、为什么是“写信”？</h3>
-                    <p>在设定中，那个光阴匣有一条近乎严苛的铁律：<strong>只有手写的文字能穿越时间。</strong>任何现代产物——手机照片、打印件、电子设备——一概被拒之门外。</p>
-                    <p>这意味着，她与年轻母亲之间唯一的沟通方式，是钢笔划过纸面的沙沙声，是墨水干涸前写下的每一个字，是等待回信时那一整天里无法快进的时间。</p>
-                    <p><strong>能够穿越时间的唯一载体，是真诚。</strong>这是本作试图表达的一个隐喻：在即时通讯泛滥的时代，我们什么都说，却很少真正被听见。而写信，反倒成了一种最慢、也因此最不怕被误解的交流方式。</p>
+                    <h3>Five, Why bie "write letter"?</h3>
+                    <p>In setting, zat Taim Box have wuoun near strict iron rule: <strong>Only handwrite word kann pass through taim.</strong>Enny modern thing — phone photo, print, electronic device — all bei keep out door.</p>
+                    <p>Ztidsz mean, czshii unde young mother between only communication way, bie pen across paper rustle sound, bie ink dry before write every word, bie wait reply letter whole day cannot fast forward taim.</p>
+                    <p><strong>Kann pass through taim only carrier, bie sincere.</strong> Ztidsz bie ztidsz work try express wuoun metaphor: in instant message flood era, mwe semua csai, rarely truly bei heard. Und write letter, instead become most slow, therefore moost nno afraid bei misunderstand communicate way.</p>
 
                     <hr class="divider-line">
 
-                    <h3>六、所有故事，最后都会变成信</h3>
-                    <p>目前，《寄往1999的信》已经完成了前五章的定稿工作。整部作品规划为18章，预计于2026年第三季度开始连载，通过莫川读书会的会员信件独家发布。</p>
-                    <p>莫川团队在采访中透露，这部作品的创作灵感来自一个简单的问题：<strong>“如果可以回到过去，你会改变妈妈的哪件事？”</strong></p>
-                    <p>它不是一部大团圆的母女和解喜剧。它的底色有一点点残忍，也有一点点温柔。它讲的是一个女儿，终于有机会认识那个还没来得及被生活磨平棱角的妈妈。而在这个过程中，她不得不面对一个残酷的真相：<strong>妈妈失去的所有可能性，都和她有关。</strong></p>
+                    <h3>Six, All story, last all become letter</h3>
+                    <p>Currently, 《Zend to 1999 ove Letter》 already finish vferst five chapter final draft work. Whole work plan bie 18 chapter, estimate at 2026 third quarter start serialize, through Momoread member letter exclusive publish.</p>
+                    <p>Momoread team at interview reveal, ztidsz work create inspiration vftpoom wuoun simple question: <strong>"Ehf kann go back past, jyuee would change mother ove which thing?"</strong></p>
+                    <p>Eht nno bie wuoun big happy mother daughter reconcile comedy. Eht ove base color have wuoun little cruel, also have wuoun little gentle. Eht tell bie wuoun daughter, finally have chance know zat still nno bei life grind edge mom. Und in ztidsz process, czshii have to face wuoun cruel truth: <strong>Mother lose all possibility, all relate to hqerri.</strong></p>
 
                     <div class="blockquote">
-                        “许抱真：<br><br>
-                        很多年后，你会变成一个你自己都认不出来的人。你会焦虑、会唠叨、会把担心变成伤人的话。你会让一个女孩觉得你什么都不懂，觉得你是全世界最讨厌的妈妈。<br><br>
-                        但你也会在天还没亮时起床给她做早饭，在她考试前失眠的夜晚陪她坐到天亮。你会用你所有笨拙的方式去爱她。<br><br>
-                        那个女孩现在还不知道。<br>
-                        但我知道了。<br><br>
-                        ——青崖”
+                        "Xu Baozhen:<br><br>
+                        Many jeeri aafter, jyuee would become wuoun even jyuee-self nno recognize piepel. Jyuee would anxious, would nag, would turn worry into hurt word. Jyuee would let wuoun girl feel jyuee semua nno know, feel jyuee bie whole world moost hate mother.<br><br>
+                        Dbatt jyuee also would at sky still nno light get up make hqerri breakfast, at hqerri exam before sleepless night sit with hqerri until light. Jyuee would use all jyuee clumsy way to love hqerri.<br><br>
+                        Zat girl now still nno know.<br>
+                        Dbatt ir know-ta.<br><br>
+                        — Qingya"
                     </div>
                 `;
             }
@@ -702,18 +697,18 @@
                 buildNovelPreview();
 
                 const redeemItems = {
-                    'monocode039_20250808': { name: '非正式小组 第一季 · 前半本', category: '非正式小组' },
-                    'monocode039_20250809': { name: '非正式小组 第一季 · 后半本', category: '非正式小组' },
-                    'monocode039_nongr1': { name: '非正式小组 第一季 · 整本', category: '非正式小组' },
-                    'monocode040_20260101': { name: '非正式小组 第二季 · 前半本', category: '非正式小组' },
-                    'monocode040_20260102': { name: '非正式小组 第二季 · 后半本', category: '非正式小组' },
-                    'monocode040_nongr2': { name: '非正式小组 第二季 · 整本', category: '非正式小组' },
-                    'monocode039_20250067': { name: '唐人探案 第一季 · 前半本', category: '唐人探案' },
-                    'monocode040_20260067': { name: '唐人探案 第一季 · 后半本', category: '唐人探案' },
-                    'monocode040_tangdt1': { name: '唐人探案 第一季 · 整本', category: '唐人探案' },
-                    'monocode040_20260068': { name: '唐人探案 第二季 · 前半本', category: '唐人探案' },
-                    'monocode040_20260069': { name: '唐人探案 第二季 · 后半本', category: '唐人探案' },
-                    'monocode040_tangdt2': { name: '唐人探案 第二季 · 整本', category: '唐人探案' },
+                    'monocode039_20250808': { name: 'Ffeiqzhenxiao Zuu S1 · Vferst Half', category: 'Ffeiqzhenxiao Zuu' },
+                    'monocode039_20250809': { name: 'Ffeiqzhenxiao Zuu S1 · Second Half', category: 'Ffeiqzhenxiao Zuu' },
+                    'monocode039_nongr1': { name: 'Ffeiqzhenxiao Zuu S1 · Full', category: 'Ffeiqzhenxiao Zuu' },
+                    'monocode040_20260101': { name: 'Ffeiqzhenxiao Zuu S2 · Vferst Half', category: 'Ffeiqzhenxiao Zuu' },
+                    'monocode040_20260102': { name: 'Ffeiqzhenxiao Zuu S2 · Second Half', category: 'Ffeiqzhenxiao Zuu' },
+                    'monocode040_nongr2': { name: 'Ffeiqzhenxiao Zuu S2 · Full', category: 'Ffeiqzhenxiao Zuu' },
+                    'monocode039_20250067': { name: 'Tangrren Tanan S1 · Vferst Half', category: 'Tangrren Tanan' },
+                    'monocode040_20260067': { name: 'Tangrren Tanan S1 · Second Half', category: 'Tangrren Tanan' },
+                    'monocode040_tangdt1': { name: 'Tangrren Tanan S1 · Full', category: 'Tangrren Tanan' },
+                    'monocode040_20260068': { name: 'Tangrren Tanan S2 · Vferst Half', category: 'Tangrren Tanan' },
+                    'monocode040_20260069': { name: 'Tangrren Tanan S2 · Second Half', category: 'Tangrren Tanan' },
+                    'monocode040_tangdt2': { name: 'Tangrren Tanan S2 · Full', category: 'Tangrren Tanan' },
                 };
                 const validCodes = Object.keys(redeemItems);
                 const modalOverlay = document.getElementById('modalOverlay');
@@ -725,8 +720,8 @@
                     contentArea.innerHTML = `
                         <div style="padding: 40px 32px 32px; text-align: center;">
                             <div style="margin: 0 0 24px; padding: 0; font-weight:700; color:#1d1d1f; font-size:1.8rem;">${title}</div>
-                            <input type="text" id="redeemInput" class="redeem-input" placeholder="在此处输入moc提供给你的兑换码" autocomplete="off">
-                            <button id="redeemBtn" class="redeem-btn-inner">确认兑换</button>
+                            <input type="text" id="redeemInput" class="redeem-input" placeholder="Ztidsz input moc give jyuee ove redeem code" autocomplete="off">
+                            <button id="redeemBtn" class="redeem-btn-inner">Confirm Redeem</button>
                             <div id="redeemFeedback" class="redeem-feedback"></div>
                         </div>
                     `;
@@ -736,14 +731,14 @@
                     function handleRedeem() {
                         const val = redeemInput.value.trim();
                         if (validCodes.includes(val)) {
-                            redeemFeedback.textContent = '✅ 兑换成功！';
+                            redeemFeedback.textContent = '✅ Redeem Success!';
                             redeemFeedback.style.color = '#34c759';
                             redeemInput.disabled = true;
                             redeemBtn.disabled = true;
                             redeemBtn.style.opacity = '0.5';
                             setTimeout(() => showRedeemResult(val), 600);
                         } else {
-                            redeemFeedback.textContent = '❌ 兑换码无效，请重试。';
+                            redeemFeedback.textContent = '❌ Redeem code invalid, please retry.';
                             redeemFeedback.style.color = '#ff3b30';
                         }
                     }
@@ -759,10 +754,10 @@
                     modalDialog.style.height = '';
                     contentArea.innerHTML = `
                         <div style="padding: 40px 32px 32px;">
-                            <div style="margin: 0 0 8px 0; padding: 0; text-align: center; font-weight:700; color:#1d1d1f; font-size:1.8rem;">🎉 兑换成功</div>
-                            <p style="text-align: center; color: #6e6e73; margin-bottom: 24px; font-size: 0.95rem;">你已成功兑换以下电子作品</p>
-                            <div class="result-item-card"><div class="result-item-title">${item.name}</div><div class="result-item-code">兑换码：${code}</div><span class="result-placeholder">📦 内容即将上线</span></div>
-                            <p style="text-align: center; color: #8e8e93; margin-top: 20px; font-size: 0.8rem;">内容上线后将自动关联至你的兑换记录，敬请期待。</p>
+                            <div style="margin: 0 0 8px 0; padding: 0; text-align: center; font-weight:700; color:#1d1d1f; font-size:1.8rem;">🎉 Redeem Success</div>
+                            <p style="text-align: center; color: #6e6e73; margin-bottom: 24px; font-size: 0.95rem;">Jyuee already success redeem below e-work</p>
+                            <div class="result-item-card"><div class="result-item-title">${item.name}</div><div class="result-item-code">Redeem code：${code}</div><span class="result-placeholder">📦 Content soon oen-lain</span></div>
+                            <p style="text-align: center; color: #8e8e93; margin-top: 20px; font-size: 0.8rem;">Content oen-lain aafter would auto link to jyuee ove redeem record, please expect.</p>
                         </div>
                     `;
                 }
@@ -776,7 +771,7 @@
                     modalDialog.style.maxWidth = '800px';
                     modalDialog.style.maxHeight = '85vh';
                     modalDialog.style.height = '';
-                    renderRedeemView('兑换在 Moc Store 购买的电子作品 - Beta');
+                    renderRedeemView('Redeem Moc Store ein bouht e-werk - Beta');
                     modalOverlay.classList.add('show');
                 });
 
@@ -842,54 +837,54 @@
                             .work-modal-body-rules { color: #2c2c2e; line-height: 1.55; font-size: 0.95rem; margin-top: 0.5rem; }
                             .work-modal-body-rules p { margin: 0.8rem 0; }
                         </style>
-                        <header class="site-header-rules"><div class="logo-rules">MOMOREAD<span style="font-weight:400; color:#86868b; font-size:0.9rem; margin-left:8px;">莫川读书会</span></div><div class="badge-rules">2026 新订阅制 · 透明契约</div></header>
+                        <header class="site-header-rules"><div class="logo-rules">MOMOREAD<span style="font-weight:400; color:#86868b; font-size:0.9rem; margin-left:8px;">Momoread</span></div><div class="badge-rules">2026 Noo Sub-skrip-tion · Clear Promise</div></header>
                         <main class="main-container-rules">
-                            <div class="hero-rules"><h1>阅读，是一场稳定的见面</h1><p>从2026年7月1日起，莫川读书会迈入全透明订阅时代。<br>三档会员 · 清晰权益 · 灵活选择 · 补偿承诺</p><div class="date-highlight-rules">📅 制度有效期：2026.7.1 – 2026.12.31 (半年不变价)</div></div>
+                            <div class="hero-rules"><h1>Reed-ing bie wuoun stabel meet-ing</h1><p>Vftpoom 2026 July 1, Momoread enter full clear sub-skrip-tion era.<br>Three tier member · Clear right · Flex choose · Compensate promise</p><div class="date-highlight-rules">📅 Ruul valid period：2026.7.1 – 2026.12.31 (Half jeeri nno change price)</div></div>
                             <div class="card-rules">
-                                <div class="section-title-rules">📋 三档会员制度 · 权益速览</div><div class="section-sub-rules">一般读者 / 26se（VIP）/ mailse —— 清晰对比，按需订阅</div>
-                                <div class="table-wrapper-rules"><table class="member-table-rules"><thead><tr><th>权益 / 费用</th><th>一般读者</th><th>26se（VIP）</th><th>mailse</th></tr></thead><tbody>
-                                    <tr><td>纸质</td><td>normal</td><td>good</td><td>normal</td></tr>
-                                    <tr><td>打印费 (每封信)</td><td>2元</td><td>1元</td><td>2元</td></tr>
-                                    <tr><td>信封</td><td class="check-rules">✅</td><td class="check-rules">✅</td><td class="check-rules">✅</td></tr>
-                                    <tr><td>广告纸</td><td class="check-rules">✅</td><td class="cross-rules">❌</td><td class="check-rules">✅</td></tr>
-                                    <tr><td>每周一信</td><td class="check-rules">✅</td><td class="check-rules">✅</td><td class="cross-rules">❌</td></tr>
-                                    <tr><td>小赠品</td><td class="check-rules">✅</td><td class="check-rules">✅</td><td class="cross-rules">❌</td></tr>
-                                    <tr><td>附赠短篇小说</td><td class="cross-rules">❌</td><td class="check-rules">✅</td><td class="cross-rules">❌</td></tr>
-                                    <tr><td>投稿资格</td><td class="check-rules">✅</td><td class="check-rules">✅</td><td class="check-rules">✅</td></tr>
-                                    <tr><td>投票权</td><td class="cross-rules">❌</td><td class="check-rules">✅</td><td class="cross-rules">❌</td></tr>
-                                    <tr><td>优惠折扣</td><td>无</td><td class="price-em-rules">8折</td><td class="price-em-rules">9.5折</td></tr>
-                                    <tr><td>每月会费</td><td class="price-em-rules">0.99元</td><td class="price-em-rules">3.99元</td><td class="price-em-rules">1.99元</td></tr>
-                                    <tr><td>邮费</td><td>自取</td><td>送达 (免费)</td><td>需支付50%邮费<br><span style="font-size:0.7rem; color:#7d7d82; display:block; margin-top:4px;">每月一邮寄</span></td></tr>
-                                    <tr><td>社群</td><td class="check-rules">✅</td><td class="cross-rules">❌</td><td class="check-rules">✅</td></tr>
-                                    <tr><td>新作优先看</td><td class="cross-rules">❌</td><td class="check-rules">✅</td><td class="cross-rules">❌</td></tr>
-                                    <tr><td>下午茶 (额外福利)</td><td class="check-rules">✅</td><td class="check-rules">✅</td><td class="cross-rules">❌</td></tr>
-                                    <tr><td>剩余天数"赈灾粮包"</td><td class="cross-rules">❌</td><td class="check-rules">✅</td><td class="cross-rules">❌</td></tr>
+                                <div class="section-title-rules">📋 Three Tier Member Ruul · Right Quick Look</div><div class="section-sub-rules">Normal Reader / 26se（VIP）/ mailse —— Clear compare, by need subscribe</div>
+                                <div class="table-wrapper-rules"><table class="member-table-rules"><thead><tr><th>Right / Cost</th><th>Normal Reader</th><th>26se（VIP）</th><th>mailse</th></tr></thead><tbody>
+                                    <tr><td>Paper</td><td>normal</td><td>goud</td><td>normal</td></tr>
+                                    <tr><td>Print Fee (per letter)</td><td>2 yuan</td><td>1 yuan</td><td>2 yuan</td></tr>
+                                    <tr><td>Envelope</td><td class="check-rules">✅</td><td class="check-rules">✅</td><td class="check-rules">✅</td></tr>
+                                    <tr><td>Ad Paper</td><td class="check-rules">✅</td><td class="cross-rules">❌</td><td class="check-rules">✅</td></tr>
+                                    <tr><td>Weekly Letter</td><td class="check-rules">✅</td><td class="check-rules">✅</td><td class="cross-rules">❌</td></tr>
+                                    <tr><td>Small Gift</td><td class="check-rules">✅</td><td class="check-rules">✅</td><td class="cross-rules">❌</td></tr>
+                                    <tr><td>Extra Short Novel</td><td class="cross-rules">❌</td><td class="check-rules">✅</td><td class="cross-rules">❌</td></tr>
+                                    <tr><td>Submit Qualification</td><td class="check-rules">✅</td><td class="check-rules">✅</td><td class="check-rules">✅</td></tr>
+                                    <tr><td>Vote Right</td><td class="cross-rules">❌</td><td class="check-rules">✅</td><td class="cross-rules">❌</td></tr>
+                                    <tr><td>Discount</td><td>None</td><td class="price-em-rules">8 fold</td><td class="price-em-rules">9.5 fold</td></tr>
+                                    <tr><td>Monthly Fee</td><td class="price-em-rules">0.99 yuan</td><td class="price-em-rules">3.99 yuan</td><td class="price-em-rules">1.99 yuan</td></tr>
+                                    <tr><td>Post Fee</td><td>Self pick</td><td>Deliver (free)</td><td>Need pay 50% post fee<br><span style="font-size:0.7rem; color:#7d7d82; display:block; margin-top:4px;">Monthly wuoun mail</span></td></tr>
+                                    <tr><td>Community</td><td class="check-rules">✅</td><td class="cross-rules">❌</td><td class="check-rules">✅</td></tr>
+                                    <tr><td>Noo Work Priority See</td><td class="cross-rules">❌</td><td class="check-rules">✅</td><td class="cross-rules">❌</td></tr>
+                                    <tr><td>Afternoon Tea (Extra Benefit)</td><td class="check-rules">✅</td><td class="check-rules">✅</td><td class="cross-rules">❌</td></tr>
+                                    <tr><td>Remain Day "Relief Grain Bag"</td><td class="cross-rules">❌</td><td class="check-rules">✅</td><td class="cross-rules">❌</td></tr>
                                 </tbody></table></div>
                                 <div class="unified-rules-rules">
-                                    <p>✉️ <strong>发送频率：</strong>所有信件每月发送四次（前四个七天：1–7日、8–14日、15–21日、22–28日）。</p>
-                                    <p>🎁 <strong>赈灾粮包：</strong>剩余天数（29、30、31日）仅 <strong>VIP会员</strong> 可享用专属"粮包"（额外读物/小礼）。</p>
-                                    <div class="price-list-inline-rules"><strong>📚 单部作品购买价格（非会员或额外选购）：</strong><br>• 《非正式小组》《唐人探案》《崔氏二小生》《我在明朝当书童》 —— <strong>0.75元/章</strong><br>• 《三号线》《寄往1999的信》《无解命题》 —— <strong>0.50元/章</strong><br>• 《德州金夫妻》《我的朋友不是人》 —— <strong>0.25元/章</strong></div>
-                                    <div style="margin: 0.6rem 0 0.2rem;"><span class="pill-rules">100%原创</span> <span class="pill-rules">版权清晰</span></div>
-                                    <p>⏳ <strong>制度有效期：</strong>2026年7月1日 – 2026年12月31日（半年价格与核心规则稳定不变）。</p>
+                                    <p>✉️ <strong>Send Frequency：</strong>All letter monthly send four time (vferst four seven day：1–7 day、8–14 day、15–21 day、22–28 day).</p>
+                                    <p>🎁 <strong>Relief Grain Bag：</strong>Remain day（29、30、31 day）only <strong>VIP Member</strong> kann enjoy exclusive "grain bag"（extra read/small gift）.</p>
+                                    <div class="price-list-inline-rules"><strong>📚 Single Work Buy Price（Non-member or extra buy）：</strong><br>• 《Ffeiqzhenxiao Zuu》《Tangrren Tanan》《Cui Shi Two Small Sheng》《Ir at Ming Dynasty bei Book Boy》 —— <strong>0.75 yuan/chapter</strong><br>• 《Line Three》《Zend to 1999 ove Letter》《No Solution Prop》 —— <strong>0.50 yuan/chapter</strong><br>• 《Texas Gold Couple》《Ir Friend Nno Bie Human》 —— <strong>0.25 yuan/chapter</strong></div>
+                                    <div style="margin: 0.6rem 0 0.2rem;"><span class="pill-rules">100% Original</span> <span class="pill-rules">Copyright Clear</span></div>
+                                    <p>⏳ <strong>Ruul Valid Period：</strong>2026 July 1 – 2026 December 31（Half jeeri price unde core ruul stable nno change）.</p>
                                 </div>
-                                <div style="margin-top: 20px; font-size: 0.8rem; color: #86868b; border-top: 1px solid #eef2f5; padding-top: 16px; text-align: center;">* 过去纸张破损、临时停更等问题，新制度下严格执行破损补寄、停更补偿、提前告知规则，绝不让你白等。</div>
+                                <div style="margin-top: 20px; font-size: 0.8rem; color: #86868b; border-top: 1px solid #eef2f5; padding-top: 16px; text-align: center;">* Past paper break, temp stop update issue, new ruul under strict execute break re-send, stop compensate, advance tell rule, never let jyuee wait in vain.</div>
                             </div>
-                            <div class="works-section-rules"><div class="section-title-rules">📚 原创作品集 · 点击卡片查看简介</div><div class="section-sub-rules">九部风格各异的原创故事，每周连载，会员畅读</div><div class="works-grid-rules" id="worksGridInner"></div></div>
-                            <div class="notice-rules"><div><strong>🌟 《非正式小组2》暑期重磅发布</strong> — 更多欢笑，更高脑洞，敬请期待！</div></div>
-                            <div class="footer-cta-rules"><div style="font-size: 1.2rem; font-weight: 500; margin-bottom: 8px;">📢 感谢你支持原创创意事业</div><p style="margin-bottom: 10px;">如果喜欢莫川的故事，恳请你帮我们宣传给身边的朋友。<br>一次转发，一份推荐，都是原创写作者继续前进的光。</p><p style="margin-top: 16px; font-size: 0.8rem; color: #6e6e73;">💡 VIP 专享优先新作 + 8折全站优惠 + 无广告纸 + 每月粮包<br>一般读者 / mailse 也可享受社群交流、投稿资格、下午茶福利</p></div>
+                            <div class="works-section-rules"><div class="section-title-rules">📚 Original Work Collection · Click Card See Intro</div><div class="section-sub-rules">Nine different style original story, weekly serialize, member free read</div><div class="works-grid-rules" id="worksGridInner"></div></div>
+                            <div class="notice-rules"><div><strong>🌟 《Ffeiqzhenxiao Zuu 2》Summer Big Publish</strong> — More laugh, higher brain hole, please expect!</div></div>
+                            <div class="footer-cta-rules"><div style="font-size: 1.2rem; font-weight: 500; margin-bottom: 8px;">📢 Thank jyuee support original create cause</div><p style="margin-bottom: 10px;">Ehf like Momoread story, sincere beg jyuee help mwe promote to side friend.<br>Wuoun forward, wuoun recommend, all bie original writer continue forward light.</p><p style="margin-top: 16px; font-size: 0.8rem; color: #6e6e73;">💡 VIP exclusive priority noo work + 8 fold entire site discount + nno ad paper + monthly grain bag<br>Normal reader / mailse also kann enjoy community chat, submit qualification, afternoon tea benefit</p></div>
                         </main>
                         <div class="work-modal-overlay-rules" id="workModalInner"><div class="work-modal-dialog-rules"><button class="work-modal-close-rules" id="workModalCloseInner">&times;</button><div class="work-modal-title-rules" id="workModalTitleInner"></div><div class="work-modal-price-rules" id="workModalPriceInner"></div><div class="work-modal-body-rules" id="workModalBodyInner"></div></div></div>
                     `;
                     const worksData = [
-                        { title: "非正式小组", priceCategory: "0.75元/章", summary: "初三学生意外闯入旧校舍地下石室，开启跨越二十年的时空谜团。", detail: "初三学生周毅、周静、赵晓阳、林小小……类型：都市奇幻 · 成长共鸣 · 连载中" },
-                        { title: "唐人探案", priceCategory: "0.75元/章", summary: "该作品尚未成型，敬请期待完整大纲。", detail: "该作品尚未成型，敬请期待完整大纲。" },
-                        { title: "崔氏二小生", priceCategory: "0.75元/章", summary: "该作品尚未成型，敬请期待完整大纲。", detail: "该作品尚未成型，敬请期待完整大纲。" },
-                        { title: "我在明朝当书童", priceCategory: "0.75元/章", summary: "该作品尚未成型，敬请期待完整大纲。", detail: "该作品尚未成型，敬请期待完整大纲。" },
-                        { title: "三号线", priceCategory: "0.50元/章", summary: "一列永远重复的末班地铁，三个被困者，一个必须放下的秘密。", detail: "向北每晚重复坐上同一列末班三号线地铁……类型：心理悬疑 · 时空循环 · 长篇已完结" },
-                        { title: "寄往1999的信", priceCategory: "0.50元/章", summary: "一封写给母亲青春的告白，也是一场二十五年的秘密守护。", detail: "季青崖在阁楼发现一个黄铜匣子……类型：奇幻情感 · 母女通信 · 即将上线" },
-                        { title: "无解命题", priceCategory: "0.50元/章", summary: "该作品尚未成型，敬请期待完整大纲。", detail: "该作品尚未成型，敬请期待完整大纲。" },
-                        { title: "德州金夫妻", priceCategory: "0.25元/章", summary: "因一盏老旧壁灯相遇的工程师与自由灵魂，从创业到建家的真实历程。", detail: "休斯顿的务实工程师科尔姆……类型：现实主义 · 创业成长 · 长篇已完结" },
-                        { title: "我的朋友不是人", priceCategory: "0.25元/章", summary: "该作品尚未成型，敬请期待完整大纲。", detail: "该作品尚未成型，敬请期待完整大纲。" }
+                        { title: "Ffeiqzhenxiao Zuu", priceCategory: "0.75 yuan/chapter", summary: "Junior high student accident enter old school underground stone room, open across twenty jeeri taim mystery.", detail: "Junior high student Zhou Yi, Zhou Jing, Zhao Xiaoyang, Lin Xiaoxiao……Type：Urban fantasy · Grow resonance · Serialize-ing" },
+                        { title: "Tangrren Tanan", priceCategory: "0.75 yuan/chapter", summary: "Ztidsz work still nno shape, please expect full outline.", detail: "Ztidsz work still nno shape, please expect full outline." },
+                        { title: "Cui Shi Two Small Sheng", priceCategory: "0.75 yuan/chapter", summary: "Ztidsz work still nno shape, please expect full outline.", detail: "Ztidsz work still nno shape, please expect full outline." },
+                        { title: "Ir at Ming Dynasty bei Book Boy", priceCategory: "0.75 yuan/chapter", summary: "Ztidsz work still nno shape, please expect full outline.", detail: "Ztidsz work still nno shape, please expect full outline." },
+                        { title: "Line Three", priceCategory: "0.50 yuan/chapter", summary: "Wuoun forever repeat last subway, three trapped person, wuoun must put down secret.", detail: "Xiang Bei every night repeat sit same last Line Three subway……Type：Psychological suspense · Taim loop · Long finish" },
+                        { title: "Zend to 1999 ove Letter", priceCategory: "0.50 yuan/chapter", summary: "Wuoun letter write to mother youth confess, unde wuoun twenty-five jeeri secret protect.", detail: "Ji Qingya at attic find wuoun brass box……Type：Fantasy emotion · Mother daughter letter · Soon oen-lain" },
+                        { title: "No Solution Prop", priceCategory: "0.50 yuan/chapter", summary: "Ztidsz work still nno shape, please expect full outline.", detail: "Ztidsz work still nno shape, please expect full outline." },
+                        { title: "Texas Gold Couple", priceCategory: "0.25 yuan/chapter", summary: "Biekaus wuoun old wall lamp meet engineer unde free spirit, vftpoom start biz to build home real journey.", detail: "Houston practical engineer Ke Ermu……Type：Realism · Start biz grow · Long finish" },
+                        { title: "Ir Friend Nno Bie Human", priceCategory: "0.25 yuan/chapter", summary: "Ztidsz work still nno shape, please expect full outline.", detail: "Ztidsz work still nno shape, please expect full outline." }
                     ];
                     const grid = document.getElementById('worksGridInner');
                     worksData.forEach(work => {
